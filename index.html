@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boutique360 | True Spaces</title>
+    <!-- Google Fonts link with additional fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            background-color: #050505;
+            color: #999999;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #E6E6E6;
+            margin-bottom: 30px;
+            text-transform: lowercase;
+            letter-spacing: 0; /* Removed letter spacing */
+        }
+        
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 22px; 
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 16px; /* Consistent body text size */
+            color: #999999; /* Consistent text color */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Mobile responsiveness for base styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            body {
+                font-size: 15px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0; /* Fixed size from the start */
+        }
+        
+        .logo {
+            position: relative;
+        }
+        
+        .logo img {
+            height: 40px; /* Fixed size from the start */
+        }
+        
+        .header-spacer {
+            height: 0; /* No space needed */
+        }
+        
+        /* Scrolled compact state */
+        .header-compact {
+            background-color: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            visibility: visible;
+            border-bottom: 1px solid rgba(239, 89, 0, 0.1);
+        }
+        
+        .special-offer {
+            color: #FFDF4D;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .special-offer span {
+            padding: 3px 6px;
+            background-color: rgba(255, 223, 77, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Mobile responsiveness for header */
+        @media (max-width: 768px) {
+            .special-offer {
+                font-size: 12px;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
+            
+            .header-content {
+                padding: 12px 0;
+            }
+        }
+        
+        .ihs-special {
+            color: #FFDF4D;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .ihs-special span {
+            margin-left: 6px;
+            padding: 3px 6px;
+            background-color: rgba(255, 223, 77, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh; /* Full viewport height initially */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-background:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 5, 5, 0.5); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+        
+        .hero-background canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        .hero-logo {
+            margin-bottom: 80px;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hero-logo img {
+            height: 220px;
+            max-width: 100%;
+        }
+        
+        /* Mobile responsiveness for hero */
+        @media (max-width: 768px) {
+            .hero-logo img {
+                height: auto;
+                width: 80%;
+                max-width: 280px;
+            }
+            
+            .hero-logo {
+                margin-bottom: 30px;
+            }
+            
+            .hero-tagline {
+                font-size: 16px;
+                margin-bottom: 40px;
+                padding: 0 10px;
+            }
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #FFFFFF; /* Changed to white for better readability */
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px; /* Less rounded corners, more rectangular */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: lowercase; /* Changed to lowercase */
+            letter-spacing: 2px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: rgba(255, 255, 255, 0.12); /* Reduced hover effect */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15); /* Reduced glow */
+            transform: translateY(-1px); /* Reduced lift effect */
+        }
+        
+        /* Process section (formerly Concept section) */
+        .concept {
+            padding: 80px 0;
+            border-top: 1px solid rgba(239, 89, 0, 0.1);
+        }
+        
+        .concept p {
+            font-size: 16px; /* Matched to industry expertise section */
+            max-width: 700px;
+            color: #999999;
+        }
+        
+        /* Process section styles */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .process-step {
+            position: relative;
+            padding: 30px 20px;
+            background-color: #0f0f0f;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+        }
+
+        .step-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: rgba(255, 223, 77, 0.2);
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .process-step h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .process-step p {
+            font-size: 15px;
+            color: #999999;
+            margin-bottom: 0;
+        }
+
+        .process-summary {
+            max-width: 700px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 223, 77, 0.1);
+        }
+
+        /* Mobile responsiveness for process section */
+        @media (max-width: 992px) {
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                padding: 25px 15px;
+            }
+            
+            .step-number {
+                font-size: 36px;
+            }
+        }
+        
+        /* Experience section */
+        .experience {
+            padding: 80px 0;
+            background-color: #111111;
+            border-top: 1px solid rgba(255, 223, 77, 0.1);
+            border-bottom: 1px solid rgba(255, 223, 77, 0.1);
+        }
+        
+        .experience h2 {
+            margin-bottom: 40px;
+        }
+        
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px 40px;
+            margin-bottom: 40px;
+        }
+        
+        .client-logo {
+            filter: brightness(0.8);
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .client-logo:hover {
+            filter: brightness(1);
+        }
+        
+        .experience-text {
+            color: #999999;
+            max-width: 700px;
+            font-size: 16px;
+        }
+        
+        /* Pre-launch section */
+        .pre-launch {
+            padding: 80px 0;
+        }
+        
+        .pre-launch h2 {
+            margin-bottom: 30px;
+        }
+        
+        .pre-launch-text {
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: #999999;
+            font-size: 16px; /* Consistent with other sections */
+        }
+        
+        .pre-launch-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .pre-launch-info {
+            flex: 1;
+        }
+        
+        .countdown {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFFFFF; /* Changed to white for better contrast */
+            background-color: rgba(255, 223, 77, 0.2); /* Same as discount tag */
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            min-width: 90px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+            color: #999999;
+        }
+        
+        /* Mobile responsiveness for countdown */
+        @media (max-width: 768px) {
+            .pre-launch-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .countdown {
+                margin-bottom: 40px;
+                justify-content: center;
+                width: 100%;
+                gap: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 28px;
+                min-width: 70px;
+                padding: 10px;
+            }
+            
+            .countdown-label {
+                font-size: 12px;
+            }
+            
+            .pre-launch-text {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Packages section */
+        .packages {
+            padding: 80px 0;
+            background-color: #111111;
+            border-top: 1px solid rgba(239, 89, 0, 0.1);
+            border-bottom: 1px solid rgba(239, 89, 0, 0.1);
+        }
+        
+        .packages-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .discount-tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 223, 77, 0.2);
+            color: #FFDF4D;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .packages h2 {
+            margin-bottom: 0;
+        }
+        
+        /* Mobile responsiveness for packages header */
+        @media (max-width: 768px) {
+            .packages-header {
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+        
+        .package-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        /* First package (Essentials) */
+        .package:nth-child(1) {
+            background-color: #0f0f0f;
+            padding: 40px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            border: 2px solid rgba(135, 209, 86, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Second package (Premium) */
+        .package:nth-child(2) {
+            background-color: #0f0f0f;
+            padding: 40px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            border: 2px solid rgba(255, 223, 77, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Third package (Boutique Complete) */
+        .package:nth-child(3) {
+            background-color: #0f0f0f;
+            padding: 40px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            border: 2px solid rgba(239, 89, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .package:nth-child(1):hover {
+            transform: translateY(-5px);
+            border-color: rgba(135, 209, 86, 0.3);
+            box-shadow: 0 5px 15px rgba(135, 209, 86, 0.1);
+        }
+        
+        .package:nth-child(2):hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 223, 77, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+        }
+        
+        .package:nth-child(3):hover {
+            transform: translateY(-5px);
+            border-color: rgba(239, 89, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(239, 89, 0, 0.1);
+        }
+        
+        .package h3 {
+            margin-bottom: 20px;
+        }
+        
+        .package-price {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #FFDF4D;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .original-price {
+            font-size: 22px;
+            color: #999999;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+        
+        .discounted-price {
+            display: flex;
+            align-items: center;
+        }
+        
+        .vat-notice {
+            font-size: 12px;
+            color: #777777;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .package-features {
+            margin-bottom: 30px;
+            list-style-type: none;
+        }
+        
+        .package-features li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+            color: #999999;
+            font-size: 16px; /* Consistent text size */
+        }
+        
+        .package-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #87D156;
+        }
+        
+        /* Mobile responsiveness for packages */
+        @media (max-width: 768px) {
+            .package-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .package:nth-child(1),
+            .package:nth-child(2),
+            .package:nth-child(3) {
+                max-width: 100%;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .packages h2 {
+                margin-bottom: 40px;
+            }
+            
+            .package-price {
+                font-size: 28px;
+            }
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact h2 {
+            margin-bottom: 40px;
+        }
+        
+        .contact-form {
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #999999;
+            font-size: 16px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            background-color: #0f0f0f;
+            border: 1px solid rgba(255, 223, 77, 0.1);
+            color: #E6E6E6;
+            font-size: 16px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #FFDF4D;
+        }
+        
+        .contact-note {
+            margin-top: 20px;
+            color: #999999;
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(135, 209, 86, 0.1);
+            color: #666;
+        }
+        
+        .copyright {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header id="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo">
+                </div>
+                <div class="special-offer">
+                    <span>25% OFF until 31st March</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="header-spacer"></div>
+    
+    <section class="hero">
+        <div class="hero-background" id="panorama-container">
+            <!-- 360° panorama will be injected here by JavaScript -->
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo">
+                </div>
+                <p class="hero-tagline">experience your property as your guests will. our immersive 360° technology brings hotel spaces to life, allowing guests to virtually walk through rooms before they book. showcase lighting, views, and details from every angle to build confidence and reduce booking hesitation.</p>
+                <a href="#demo" class="cta-button">step inside</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="concept">
+        <div class="container">
+            <h2>our process</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>consultation</h3>
+                    <p>we begin with understanding your property's unique features and identifying which rooms and lighting scenarios will showcase your space best.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>capture</h3>
+                    <p>our specialists visit your property to capture high-resolution 360° imagery using professional equipment, ensuring every detail is preserved.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>enhancement</h3>
+                    <p>we process the imagery and build interactive elements, optimize for all devices, and ensure seamless navigation between viewpoints.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>integration</h3>
+                    <p>we deliver the final product with full technical support for integration into your booking system, website, and marketing materials.</p>
+                </div>
+            </div>
+            
+            <div class="process-summary">
+                <p>from capture to launch in as little as seven days. our service includes technical support, analytics, and hosting – everything needed to give your guests confidence in their booking decision.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="experience">
+        <div class="container">
+            <h2>industry experience</h2>
+            <div class="client-logos">
+                <img src="/api/placeholder/120/40" alt="Marriott" class="client-logo">
+                <img src="/api/placeholder/120/40" alt="Scandic" class="client-logo">
+                <img src="/api/placeholder/120/40" alt="Lapland Hotels" class="client-logo">
+                <img src="/api/placeholder/120/40" alt="Client 4" class="client-logo">
+                <img src="/api/placeholder/120/40" alt="Client 5" class="client-logo">
+                <img src="/api/placeholder/120/40" alt="Client 6" class="client-logo">
+            </div>
+            <p class="experience-text">drawing from years of hospitality technology expertise with leading hotel brands. specializing in guest room management systems and creating memorable digital experiences since 2020.</p>
+        </div>
+    </section>
+    
+    <section class="pre-launch">
+        <div class="container">
+            <div class="pre-launch-content">
+                <div class="pre-launch-info">
+                    <h2>exclusive pre-launch opportunity</h2>
+                    <p class="pre-launch-text">boutique360 will officially launch in april 2025. take advantage of early adopter pricing and be among the first hotels to offer this unique experience to your guests.</p>
+                </div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="packages">
+        <div class="container">
+            <div class="packages-header">
+                <h2>packages</h2>
+                <div class="discount-tag">-25%</div>
+            </div>
+            <div class="package-container">
+                <div class="package" onclick="window.location.href='#contact';">
+                    <h3>essentials</h3>
+                    <div class="package-price">
+                        <div class="original-price">€1,200</div>
+                        <div class="discounted-price">€900</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>one room type</li>
+                        <li>four lighting scenarios</li>
+                        <li>basic website integration</li>
+                        <li>3-month hosting</li>
+                        <li>one-week turnaround</li>
+                    </ul>
+                </div>
+                
+                <div class="package" onclick="window.location.href='#contact';">
+                    <h3>premium</h3>
+                    <div class="package-price">
+                        <div class="original-price">€2,800</div>
+                        <div class="discounted-price">€2,100</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>three room types</li>
+                        <li>four lighting scenarios each</li>
+                        <li>full integration support</li>
+                        <li>12-month hosting</li>
+                        <li>user engagement analytics</li>
+                    </ul>
+                </div>
+                
+                <div class="package" onclick="window.location.href='#contact';">
+                    <h3>boutique complete</h3>
+                    <div class="package-price">
+                        <div class="original-price">€4,500</div>
+                        <div class="discounted-price">€3,375</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>five room types + common area</li>
+                        <li>all lighting scenarios</li>
+                        <li>booking system integration</li>
+                        <li>12-month hosting</li>
+                        <li>custom interactive elements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>connect</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <button type="submit" class="cta-button">send</button>
+            </form>
+            <p class="contact-note">we'll reach out within 24 hours to discuss your vision.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <span>© 2025 boutique360 | petsq.works</span>
+                <span class="vat-notice">all prices exclude vat</span>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Initialize all scripts within DOMContentLoaded to ensure elements exist
+        document.addEventListener('DOMContentLoaded', function() {
+            // Countdown Timer
+            function updateCountdown() {
+                const endDate = new Date("March 31, 2025 23:59:59").getTime();
+                const now = new Date().getTime();
+                const timeLeft = endDate - now;
+                
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById("countdown-days").innerHTML = days < 10 ? "0" + days : days;
+                document.getElementById("countdown-hours").innerHTML = hours < 10 ? "0" + hours : hours;
+                document.getElementById("countdown-minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("countdown-seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            }
+            
+            // Update the countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Header scroll animation
+            function handleHeaderScroll() {
+                const header = document.getElementById('site-header');
+                const heroLogo = document.querySelector('.hero-logo');
+                const scrollPosition = window.scrollY;
+                
+                // When scrolled past threshold (100px), show header
+                if (scrollPosition > 100) {
+                    header.classList.add('header-compact');
+                    
+                    // Fade out the hero logo as we scroll
+                    if (heroLogo) {
+                        heroLogo.style.opacity = Math.max(0, 1 - scrollPosition / 300);
+                    }
+                } else {
+                    header.classList.remove('header-compact');
+                    
+                    // Restore hero logo opacity
+                    if (heroLogo) {
+                        heroLogo.style.opacity = 1;
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', handleHeaderScroll);
+            // Initialize header state
+            handleHeaderScroll();
+            
+            // 360° Panorama Setup
+            const panoramaContainer = document.getElementById('panorama-container');
+            
+            // Create scene, camera and renderer
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / panoramaContainer.clientHeight, 0.1, 1000);
+            
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, panoramaContainer.clientHeight);
+            panoramaContainer.appendChild(renderer.domElement);
+            
+            // Create sphere geometry for the panorama
+            const geometry = new THREE.SphereGeometry(500, 60, 40);
+            geometry.scale(-1, 1, 1); // Invert the sphere so that the image is on the inside
+            
+            // Load panorama texture
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load(
+                'https://assets.360.petsq.works/union/union-eve.jpg', 
+                function(texture) {
+                    const material = new THREE.MeshBasicMaterial({ map: texture });
+                    const sphere = new THREE.Mesh(geometry, material);
+                    scene.add(sphere);
+                    
+                    // Start animation
+                    animate();
+                },
+                undefined,
+                function(err) {
+                    console.error('An error occurred loading the panorama texture', err);
+                }
+            );
+            
+            // Auto-panning animation
+            let panPosition = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Slowly rotate the camera for auto-panning effect
+                panPosition += 0.0005;
+                camera.rotation.y = panPosition;
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle window resize
+            function handleResize() {
+                const width = window.innerWidth;
+                const height = panoramaContainer.clientHeight;
+                
+                // Update camera
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                
+                // Update renderer
+                renderer.setSize(width, height);
+            }
+            
+            window.addEventListener('resize', handleResize);
+            // Initial resize call to ensure proper setup
+            handleResize();
+        });
+    </script>
+</body>
+</html>
