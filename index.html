@@ -187,6 +187,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(5, 5, 5, 0.5); /* Dark overlay for text readability */
+            backdrop-filter: blur(3px); /* Added subtle blur effect */
             z-index: 1;
         }
         
@@ -194,6 +195,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            filter: blur(1px); /* Added very subtle blur to the canvas */
         }
         
         .hero-content {
@@ -287,7 +289,7 @@
             color: #999999;
         }
         
-        /* Process section styles */
+        /* Process section styles with alternating colors */
         .process-steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -305,13 +307,61 @@
 
         .process-step:hover {
             transform: translateY(-5px);
+        }
+
+        /* Step 1 - Yellow accents */
+        .process-step:nth-child(1) .step-number {
+            color: rgba(255, 223, 77, 0.2); /* Yellow */
+        }
+        .process-step:nth-child(1):hover {
             box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+            border-color: rgba(255, 223, 77, 0.3);
+        }
+        
+        /* Step 2 - Green accents */
+        .process-step:nth-child(2) .step-number {
+            color: rgba(135, 209, 86, 0.2); /* Green */
+        }
+        .process-step:nth-child(2):hover {
+            box-shadow: 0 5px 15px rgba(135, 209, 86, 0.1);
+            border-color: rgba(135, 209, 86, 0.3);
+        }
+        
+        /* Step 3 - Orange accents */
+        .process-step:nth-child(3) .step-number {
+            color: rgba(239, 89, 0, 0.2); /* Orange */
+        }
+        .process-step:nth-child(3):hover {
+            box-shadow: 0 5px 15px rgba(239, 89, 0, 0.1);
+            border-color: rgba(239, 89, 0, 0.3);
+        }
+        
+        /* Step 4 - Yellow accents (repeating pattern) */
+        .process-step:nth-child(4) .step-number {
+            color: rgba(255, 223, 77, 0.2); /* Yellow */
+        }
+        .process-step:nth-child(4):hover {
+            box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+            border-color: rgba(255, 223, 77, 0.3);
+        }
+
+        /* Adding subtle borders with brand colors */
+        .process-step:nth-child(1) {
+            border: 1px solid rgba(255, 223, 77, 0.1); /* Yellow */
+        }
+        .process-step:nth-child(2) {
+            border: 1px solid rgba(135, 209, 86, 0.1); /* Green */
+        }
+        .process-step:nth-child(3) {
+            border: 1px solid rgba(239, 89, 0, 0.1); /* Orange */
+        }
+        .process-step:nth-child(4) {
+            border: 1px solid rgba(255, 223, 77, 0.1); /* Yellow */
         }
 
         .step-number {
             font-size: 42px;
             font-weight: 700;
-            color: rgba(255, 223, 77, 0.2);
             margin-bottom: 15px;
             font-family: 'Inter', sans-serif;
         }
@@ -358,36 +408,102 @@
         /* Experience section */
         .experience {
             padding: 80px 0;
-            background-color: #111111;
             border-top: 1px solid rgba(255, 223, 77, 0.1);
             border-bottom: 1px solid rgba(255, 223, 77, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://assets.360.petsq.works/lapland/lapland-night.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .experience-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(17, 17, 17, 0.55);
+            backdrop-filter: blur(2px);
+            z-index: -1;
         }
         
         .experience h2 {
             margin-bottom: 40px;
         }
         
+        .client-logos-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+            width: 100%;
+            height: 60px;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        
         .client-logos {
             display: flex;
-            flex-wrap: wrap;
-            gap: 60px 40px;
-            margin-bottom: 40px;
+            position: absolute;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+            gap: 50px;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
         
         .client-logo {
-            filter: brightness(0.8);
-            height: 40px;
-            transition: all 0.3s ease;
+            height: 45px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
         }
         
         .client-logo:hover {
-            filter: brightness(1);
+            opacity: 1;
         }
         
         .experience-text {
-            color: #999999;
+            color: #BBBBBB;
             max-width: 700px;
             font-size: 16px;
+            line-height: 1.8;
+            text-align: left;
+        }
+        
+        .stat-highlight {
+            display: inline-block;
+            background-color: rgba(255, 223, 77, 0.2);
+            color: #FFDF4D;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 0 3px;
+            font-weight: 500;
+        }
+        
+        .citation {
+            display: block;
+            font-size: 12px;
+            color: #777777;
+            margin-top: 15px;
+            font-style: italic;
         }
         
         /* Pre-launch section */
@@ -781,17 +897,33 @@
     </section>
     
     <section class="experience">
+        <div class="experience-background"></div>
+        <div class="experience-overlay"></div>
         <div class="container">
             <h2>industry experience</h2>
-            <div class="client-logos">
-                <img src="/api/placeholder/120/40" alt="Marriott" class="client-logo">
-                <img src="/api/placeholder/120/40" alt="Scandic" class="client-logo">
-                <img src="/api/placeholder/120/40" alt="Lapland Hotels" class="client-logo">
-                <img src="/api/placeholder/120/40" alt="Client 4" class="client-logo">
-                <img src="/api/placeholder/120/40" alt="Client 5" class="client-logo">
-                <img src="/api/placeholder/120/40" alt="Client 6" class="client-logo">
+            <div class="client-logos-container">
+                <div class="client-logos">
+                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
+                    <!-- Duplicate logos for infinite scroll effect -->
+                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
+                </div>
             </div>
-            <p class="experience-text">drawing from years of hospitality technology expertise with leading hotel brands. specializing in guest room management systems and creating memorable digital experiences since 2020.</p>
+            <p class="experience-text">creating digital hospitality experiences since 2020. studies show that interactive 360° visualizations can increase booking conversion rates by <span class="stat-highlight">up to 30%*</span>.</p>
+            <span class="citation">*source: <a href="#" style="color: #777777; text-decoration: underline;">placeholderlink</a></span>
         </div>
     </section>
     
