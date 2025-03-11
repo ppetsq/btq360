@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta property="og:title" content="boutique360 | immersive hotel experiences">
+    <meta property="og:description" content="Step inside your room before booking. boutique360 offers immersive 360° virtual tours to enhance guest experience and increase bookings.">
+    <meta property="og:image" content="https://assets.360.petsq.works/btq360/btq360-og.png">
+    <meta property="og:image:alt" content="Preview of boutique360's immersive 360° hotel visualization">
+    <meta property="og:url" content="https://btq360.petsq.works">
+    <meta property="og:type" content="website">
+
+    <meta name="description" content="boutique360 offers immersive 360° hotel visualizations, helping guests explore spaces before booking. Increase confidence, reduce hesitation, and boost conversions.">
+    <meta name="keywords" content="360 hotel tours, virtual hotel tours, immersive booking experience, hotel marketing, boutique360">
+    <meta name="author" content="boutique360">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://btq360.petsq.works">
+
+    <link rel="icon" href="https://assets.360.petsq.works/btq360/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://assets.360.petsq.works/btq360/favicon.ico">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>boutique360 | True Spaces</title>
+    <title>boutique360 | immersive hotel experiences</title>
     <!-- Google Fonts link with additional fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +51,7 @@
         }
         
         h2 {
-            font-size: 32px;
+            font-size: 42px;
             font-weight: 700;
         }
         
@@ -67,7 +83,7 @@
             }
             
             h2 {
-                font-size: 20px;
+                font-size: 32px;
             }
             
             h3 {
@@ -75,13 +91,60 @@
             }
         }
         
+        /* Enhanced Animation Classes - All vertical animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Scale animation without horizontal movement */
+        .scale-in {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Animation delays for staggered appearance */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+        
+        .delay-500 {
+            transition-delay: 0.5s;
+        }
+
         /* Header */
         header {
             position: fixed;
             width: 100%;
             z-index: 1000;
             background-color: transparent;
-            transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            border-bottom: none;
             opacity: 0;
             visibility: hidden;
         }
@@ -99,20 +162,13 @@
         
         .logo img {
             height: 40px; /* Fixed size from the start */
+            transition: transform 0.3s ease;
         }
         
-        .header-spacer {
-            height: 0; /* No space needed */
-        }
-        
-        /* Scrolled compact state */
-        .header-compact {
-            background-color: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            opacity: 1;
-            visibility: visible;
-            border-bottom: 1px solid rgba(239, 89, 0, 0.1);
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
         
         .special-offer {
@@ -121,12 +177,38 @@
             letter-spacing: 1px;
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
         
         .special-offer span {
-            padding: 3px 6px;
+            padding: 6px 15px;
             background-color: rgba(255, 223, 77, 0.2);
-            border-radius: 4px;
+            border-radius: 6px;
+            font-weight: 400;
+        }
+        
+        .header-cta {
+            display: inline-block;
+            padding: 6px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border: 0px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .header-cta:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 0 5px rgba(255, 223, 77, 0.15);
         }
         
         /* Mobile responsiveness for header */
@@ -134,7 +216,9 @@
             .special-offer {
                 font-size: 12px;
             }
-            
+            .header-cta {
+                font-size: 12px;
+            }
             .logo img {
                 height: 30px;
             }
@@ -233,7 +317,7 @@
             }
             
             .hero-tagline {
-                font-size: 16px;
+                font-size: 14px;
                 margin-bottom: 40px;
                 padding: 0 10px;
             }
@@ -273,7 +357,7 @@
         
         .cta-button:hover {
             background-color: rgba(255, 255, 255, 0.12); /* Reduced hover effect */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15); /* Reduced glow */
+            box-shadow: 0 0 5px rgba(255, 223, 77, 0.25); /* Enhanced glow */
             transform: translateY(-1px); /* Reduced lift effect */
         }
         
@@ -412,6 +496,7 @@
             border-bottom: 1px solid rgba(255, 223, 77, 0.1);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         
         .experience-background {
@@ -420,11 +505,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://assets.360.petsq.works/lapland/lapland-night.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: blur(3px);
-            opacity: 0.5;
             z-index: -1;
         }
         
@@ -434,7 +514,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(17, 17, 17, 0.55);
+            background-color: rgba(5, 5, 5, 0.7);
             backdrop-filter: blur(2px);
             z-index: -1;
         }
@@ -473,19 +553,19 @@
         .client-logo {
             height: 45px;
             opacity: 0.9;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         
         .client-logo:hover {
             opacity: 1;
+            transform: scale(1.1);
         }
         
         .experience-text {
             color: #BBBBBB;
-            max-width: 700px;
             font-size: 16px;
             line-height: 1.8;
-            text-align: left;
+            text-align: center;
         }
         
         .stat-highlight {
@@ -555,6 +635,7 @@
             min-width: 90px;
             display: flex;
             justify-content: center;
+            transition: transform 0.3s ease;
         }
         
         .countdown-label {
@@ -724,6 +805,8 @@
             color: #777777;
             margin-top: 5px;
             font-style: italic;
+            text-align: center;
+            padding-top: 50px;
         }
         
         .package-features {
@@ -773,6 +856,7 @@
         /* Contact section */
         .contact {
             padding: 80px 0;
+            text-align: center;
         }
         
         .contact h2 {
@@ -780,7 +864,8 @@
         }
         
         .contact-form {
-            max-width: 500px;
+            max-width: 300px;
+            margin: 0 auto;
         }
         
         .form-group {
@@ -804,17 +889,19 @@
             border-radius: 6px;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .form-group input:focus {
             outline: none;
             border-color: #FFDF4D;
+            box-shadow: 0 0 8px rgba(255, 223, 77, 0.2);
         }
         
         .contact-note {
             margin-top: 20px;
             color: #999999;
-            font-size: 16px;
+            font-size: 14px;
         }
         
         /* Footer */
@@ -822,6 +909,16 @@
             padding: 40px 0;
             border-top: 1px solid rgba(135, 209, 86, 0.1);
             color: #666;
+            text-align: center;
+        }
+        
+        footer a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
         }
         
         .copyright {
@@ -836,13 +933,15 @@
                 <div class="logo">
                     <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo">
                 </div>
-                <div class="special-offer">
-                    <span>25% OFF until 31st March</span>
+                <div class="header-right">
+                    <div class="special-offer" onclick="window.location.href='#packages';">
+                        <span>30% off</span>
+                    </div>
+                    <a href="https://360.petsq.works/image/overlook/" class="header-cta">see demo</a>
                 </div>
             </div>
         </div>
     </header>
-    
     <div class="header-spacer"></div>
     
     <section class="hero">
@@ -851,57 +950,59 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-logo">
+                <div class="hero-logo fade-in">
                     <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo">
                 </div>
-                <p class="hero-tagline">experience your property as your guests will. our immersive 360° technology brings hotel spaces to life, allowing guests to virtually walk through rooms before they book. showcase lighting, views, and details from every angle to build confidence and reduce booking hesitation.</p>
-                <a href="https://360.petsq.works/image/overlook/" class="cta-button">step inside</a>
+                <p class="hero-tagline fade-in delay-200"><b>reduce booking hesitation with 360° technology</b><br>guests who virtually explore spaces make decisions faster and book with confidence. start showcasing your hotel in immersive virtual reality and turn browsers into bookers.</p>
+                <a href="https://360.petsq.works/image/overlook/" class="cta-button fade-in delay-400">see demo</a>
             </div>
         </div>
     </section>
     
     <section class="concept">
         <div class="container">
-            <h2>our process</h2>
+            <h2 class="fade-in">our process</h2>
             
             <div class="process-steps">
-                <div class="process-step">
+                <div class="process-step fade-in delay-100">
                     <div class="step-number">01</div>
                     <h3>consultation</h3>
-                    <p>we begin with understanding your property's unique features and identifying which rooms and lighting scenarios will showcase your space best.</p>
+                    <p>we begin by understanding your property's unique features and identifying which rooms and lighting scenarios will showcase your space best.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step fade-in delay-200">
                     <div class="step-number">02</div>
                     <h3>capture</h3>
                     <p>our specialists visit your property to capture high-resolution 360° imagery using professional equipment, ensuring every detail is preserved.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step fade-in delay-300">
                     <div class="step-number">03</div>
                     <h3>enhancement</h3>
-                    <p>we process the imagery and build interactive elements, optimize for all devices, and ensure seamless navigation between viewpoints.</p>
+                    <p>we process the imagery and build interactive elements, optimize for all devices, and ensure seamless navigation.</p>
                 </div>
                 
-                <div class="process-step">
+                <div class="process-step fade-in delay-400">
                     <div class="step-number">04</div>
-                    <h3>integration</h3>
+                    <h3>live</h3>
                     <p>we deliver the final product with full technical support for integration into your booking system, website, and marketing materials.</p>
                 </div>
             </div>
             
-            <div class="process-summary">
-                <p>from capture to launch in as little as seven days. our service includes technical support, analytics, and hosting – everything needed to give your guests confidence in their booking decision.</p>
+            <div class="process-summary fade-in delay-500">
+                <p><b>7-day delivery, zero hassle.</b> our turnkey solution includes technical support and customizations – everything you need to showcase your property professionally and in alignment with your brand.</p>
             </div>
         </div>
     </section>
     
     <section class="experience">
-        <div class="experience-background"></div>
+        <div class="experience-background" id="experience-panorama-container">
+            <!-- 360° panorama will be injected here by JavaScript -->
+        </div>
         <div class="experience-overlay"></div>
         <div class="container">
-            <h2>industry experience</h2>
-            <div class="client-logos-container">
+            <h2 class="fade-in">trusted by</h2>
+            <div class="client-logos-container scale-in delay-100">
                 <div class="client-logos">
                     <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
                     <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
@@ -922,8 +1023,8 @@
                     <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
                 </div>
             </div>
-            <p class="experience-text">creating digital hospitality experiences since 2020. studies show that interactive 360° visualizations can increase booking conversion rates by <span class="stat-highlight">up to 30%*</span>.</p>
-            <span class="citation">*source: <a href="#" style="color: #777777; text-decoration: underline;">placeholderlink</a></span>
+            <p class="experience-text fade-in delay-200"><b>pioneering immersive hospitality experiences since 2020</b><br> studies show that interactive 360° visualizations can increase booking rates by <span class="stat-highlight">up to 67%*</span></p>
+            <span class="citation fade-in delay-300">*source: <a href="https://thevivestia.com/hospitality-in-360-degrees-virtual-tours-influence-on-hotel-marketing/" target="_blank" style="color: #777777; text-decoration: underline;">thevivestia.com</a></span>
         </div>
     </section>
     
@@ -931,10 +1032,10 @@
         <div class="container">
             <div class="pre-launch-content">
                 <div class="pre-launch-info">
-                    <h2>exclusive pre-launch opportunity</h2>
-                    <p class="pre-launch-text">boutique360 will officially launch in april 2025. take advantage of early adopter pricing and be among the first hotels to offer this unique experience to your guests.</p>
+                    <h2 class="fade-in">limited time offer</h2>
+                    <p class="pre-launch-text fade-in delay-100">boutique360 pre-launch pricing is available exclusively on all orders placed before the end of march 2025.</p>
                 </div>
-                <div class="countdown">
+                <div class="countdown scale-in delay-200">
                     <div class="countdown-item">
                         <div class="countdown-number" id="countdown-days">00</div>
                         <div class="countdown-label">Days</div>
@@ -956,80 +1057,80 @@
         </div>
     </section>
     
-    <section class="packages">
+    <section class="packages" id="packages">
         <div class="container">
             <div class="packages-header">
-                <h2>packages</h2>
-                <div class="discount-tag">-25%</div>
+                <h2 class="fade-in">packages</h2>
+                <div class="discount-tag fade-in delay-100">-30%</div>
             </div>
             <div class="package-container">
-                <div class="package" onclick="window.location.href='#contact';">
+                <div class="package fade-in delay-100" onclick="window.location.href='#contact';">
                     <h3>essentials</h3>
                     <div class="package-price">
                         <div class="original-price">€1,200</div>
-                        <div class="discounted-price">€900</div>
+                        <div class="discounted-price">€840</div>
                     </div>
                     <ul class="package-features">
                         <li>one room type</li>
                         <li>four lighting scenarios</li>
                         <li>basic website integration</li>
+                        <li>basic branding elements</li>
                         <li>3-month hosting</li>
-                        <li>one-week turnaround</li>
                     </ul>
                 </div>
                 
-                <div class="package" onclick="window.location.href='#contact';">
+                <div class="package fade-in delay-200" onclick="window.location.href='#contact';">
                     <h3>premium</h3>
                     <div class="package-price">
                         <div class="original-price">€2,800</div>
-                        <div class="discounted-price">€2,100</div>
+                        <div class="discounted-price">€1,960</div>
                     </div>
                     <ul class="package-features">
                         <li>three room types</li>
                         <li>four lighting scenarios each</li>
                         <li>full integration support</li>
-                        <li>12-month hosting</li>
-                        <li>user engagement analytics</li>
+                        <li>custom branding elements</li>
+                        <li>6-month hosting</li>
                     </ul>
                 </div>
                 
-                <div class="package" onclick="window.location.href='#contact';">
-                    <h3>boutique complete</h3>
+                <div class="package fade-in delay-300" onclick="window.location.href='#contact';">
+                    <h3>boutique</h3>
                     <div class="package-price">
                         <div class="original-price">€4,500</div>
-                        <div class="discounted-price">€3,375</div>
+                        <div class="discounted-price">€3,150</div>
                     </div>
                     <ul class="package-features">
                         <li>five room types + common area</li>
-                        <li>all lighting scenarios</li>
-                        <li>booking system integration</li>
-                        <li>12-month hosting</li>
+                        <li>unlimited lighting scenarios</li>
+                        <li>full integration support</li>
                         <li>custom interactive elements</li>
+                        <li>12-month hosting</li>
                     </ul>
                 </div>
+            </div>
+            <div class="vat-notice">all prices shown are excluding vat and valid until 31st of March 2025
             </div>
         </div>
     </section>
     
     <section class="contact" id="contact">
         <div class="container">
-            <h2>connect</h2>
-            <form class="contact-form">
+            <h2 class="fade-in">redeem your discount</h2>
+            <p class="contact-note fade-in delay-200">leave your email address and we'll reach out within 24 hours to discuss your vision.</p>
+            <form action="https://formspree.io/f/xqapkqqk" method="POST" class="contact-form fade-in delay-100">
                 <div class="form-group">
-                    <label for="email">email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <button type="submit" class="cta-button">send</button>
             </form>
-            <p class="contact-note">we'll reach out within 24 hours to discuss your vision.</p>
         </div>
     </section>
     
     <footer>
         <div class="container">
             <div class="copyright">
-                <span>© 2025 boutique360 | petsq.works</span>
-                <span class="vat-notice">all prices exclude vat</span>
+                <span>© 2025 boutique360 | <a href="https://petsq.works">petsq.works</a></span><br>
             </div>
         </div>
     </footer>
@@ -1038,7 +1139,42 @@
     <script>
         // Initialize all scripts within DOMContentLoaded to ensure elements exist
         document.addEventListener('DOMContentLoaded', function() {
-            // Countdown Timer
+            // Improved scroll animation handler
+            function handleScrollAnimation() {
+                const animatedElements = document.querySelectorAll('.fade-in:not(.visible), .scale-in:not(.visible)');
+                
+                animatedElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const triggerPoint = window.innerHeight * 0.85; // Trigger when element is 85% up the viewport
+                    
+                    if (elementTop < triggerPoint) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Add scroll event listener for animations with throttling for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(function() {
+                        handleScrollAnimation();
+                        scrollTimeout = null;
+                    }, 10);
+                }
+            });
+            
+            // Run initial animation check
+            setTimeout(handleScrollAnimation, 100);
+            
+            // Apply animations to hero section immediately without scroll
+            setTimeout(function() {
+                document.querySelectorAll('.hero-content > *').forEach((element) => {
+                    element.classList.add('visible');
+                });
+            }, 300);
+            
+            // Countdown Timer with animation
             function updateCountdown() {
                 const endDate = new Date("March 31, 2025 23:59:59").getTime();
                 const now = new Date().getTime();
@@ -1049,105 +1185,358 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                document.getElementById("countdown-days").innerHTML = days < 10 ? "0" + days : days;
-                document.getElementById("countdown-hours").innerHTML = hours < 10 ? "0" + hours : hours;
-                document.getElementById("countdown-minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("countdown-seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+                // Get current values
+                const currentDays = document.getElementById("countdown-days").innerHTML;
+                const currentHours = document.getElementById("countdown-hours").innerHTML;
+                const currentMinutes = document.getElementById("countdown-minutes").innerHTML;
+                const currentSeconds = document.getElementById("countdown-seconds").innerHTML;
+                
+                // Format new values
+                const newDays = days < 10 ? "0" + days : days;
+                const newHours = hours < 10 ? "0" + hours : hours;
+                const newMinutes = minutes < 10 ? "0" + minutes : minutes;
+                const newSeconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                // Update with animation if values changed
+                if (currentDays !== newDays.toString()) {
+                    animateCountdownNumber("countdown-days", newDays);
+                }
+                if (currentHours !== newHours.toString()) {
+                    animateCountdownNumber("countdown-hours", newHours);
+                }
+                if (currentMinutes !== newMinutes.toString()) {
+                    animateCountdownNumber("countdown-minutes", newMinutes);
+                }
+                if (currentSeconds !== newSeconds.toString()) {
+                    animateCountdownNumber("countdown-seconds", newSeconds);
+                }
+            }
+            
+            function animateCountdownNumber(id, newValue) {
+                const element = document.getElementById(id);
+                element.innerHTML = newValue;
+                
+                setTimeout(() => {
+                    element.style.transform = "scale(1)";
+                }, 200);
             }
             
             // Update the countdown every second
             updateCountdown();
             setInterval(updateCountdown, 1000);
             
-            // Header scroll animation
+            // Enhanced Header scroll animation
             function handleHeaderScroll() {
                 const header = document.getElementById('site-header');
                 const heroLogo = document.querySelector('.hero-logo');
                 const scrollPosition = window.scrollY;
+                const lastScrollTop = this.lastScrollTop || 0;
                 
-                // When scrolled past threshold (100px), show header
+                // When scrolled past threshold, show header
                 if (scrollPosition > 100) {
-                    header.classList.add('header-compact');
+                    // Different animation for scrolling down vs up
+                    if (scrollPosition > lastScrollTop) {
+                        // Scrolling down - subtle animation
+                        header.style.transform = 'translateY(0)';
+                        header.style.transition = 'opacity 0.4s ease, transform 0.4s ease, background-color 0.4s ease';
+                    } else {
+                        // Scrolling up - quicker appearance
+                        header.style.transform = 'translateY(0)';
+                        header.style.transition = 'opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease';
+                    }
+                    
+                    header.style.backgroundColor = 'rgba(5, 5, 5, 0.9)';
+                    header.style.backdropFilter = 'blur(5px)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
+                    header.style.borderBottom = '1px solid rgba(239, 89, 0, 0.1)';
+                    header.style.opacity = '1';
+                    header.style.visibility = 'visible';
                     
                     // Fade out the hero logo as we scroll
                     if (heroLogo) {
                         heroLogo.style.opacity = Math.max(0, 1 - scrollPosition / 300);
                     }
                 } else {
-                    header.classList.remove('header-compact');
+                    header.style.backgroundColor = 'transparent';
+                    header.style.backdropFilter = 'none';
+                    header.style.boxShadow = 'none';
+                    header.style.borderBottom = 'none';
+                    header.style.opacity = '0';
+                    header.style.visibility = 'hidden';
+                    header.style.transform = 'translateY(-5px)';
                     
                     // Restore hero logo opacity
                     if (heroLogo) {
                         heroLogo.style.opacity = 1;
                     }
                 }
+                
+                this.lastScrollTop = scrollPosition;
             }
             
             window.addEventListener('scroll', handleHeaderScroll);
             // Initialize header state
             handleHeaderScroll();
             
-            // 360° Panorama Setup
-            const panoramaContainer = document.getElementById('panorama-container');
+            // Enhanced hover animations for packages
+            const packages = document.querySelectorAll('.package');
+            packages.forEach(pkg => {
+                pkg.addEventListener('mouseenter', function() {
+                    // Add subtle pulse animation
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease';
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                pkg.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
             
-            // Create scene, camera and renderer
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / panoramaContainer.clientHeight, 0.1, 1000);
+            // Logo hover effect
+            const logos = document.querySelectorAll('.logo');
+            logos.forEach(logo => {
+                logo.addEventListener('mouseenter', function() {
+                    const img = this.querySelector('img');
+                    img.style.transition = 'transform 0.3s ease';
+                    img.style.transform = 'scale(1.05)';
+                });
+                
+                logo.addEventListener('mouseleave', function() {
+                    const img = this.querySelector('img');
+                    img.style.transform = 'scale(1)';
+                });
+            });
             
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            renderer.setSize(window.innerWidth, panoramaContainer.clientHeight);
-            panoramaContainer.appendChild(renderer.domElement);
+            // Add subtle animation to CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-button, .header-cta');
+            ctaButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                    this.style.boxShadow = '0 0 15px rgba(255, 223, 77, 0.25)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                });
+            });
             
-            // Create sphere geometry for the panorama
-            const geometry = new THREE.SphereGeometry(500, 60, 40);
-            geometry.scale(-1, 1, 1); // Invert the sphere so that the image is on the inside
-            
-            // Load panorama texture
-            const textureLoader = new THREE.TextureLoader();
-            textureLoader.load(
-                'https://assets.360.petsq.works/union/union-eve.jpg', 
-                function(texture) {
-                    const material = new THREE.MeshBasicMaterial({ map: texture });
-                    const sphere = new THREE.Mesh(geometry, material);
-                    scene.add(sphere);
+            // Enhanced client logo hover effect
+            const clientLogos = document.querySelectorAll('.client-logo');
+            clientLogos.forEach(logo => {
+                logo.addEventListener('mouseenter', function() {
+                    // Pause the animation when hovering over a logo
+                    const logoContainer = document.querySelector('.client-logos');
+                    logoContainer.style.animationPlayState = 'paused';
                     
-                    // Start animation
-                    animate();
-                },
-                undefined,
-                function(err) {
-                    console.error('An error occurred loading the panorama texture', err);
+                    // Highlight the hovered logo
+                    this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                    this.style.transform = 'scale(1.1)';
+                    this.style.opacity = '1';
+                });
+                
+                logo.addEventListener('mouseleave', function() {
+                    // Resume the animation
+                    const logoContainer = document.querySelector('.client-logos');
+                    logoContainer.style.animationPlayState = 'running';
+                    
+                    // Reset the logo
+                    this.style.transform = 'scale(1)';
+                    this.style.opacity = '0.9';
+                });
+            });
+            
+            // Setup panoramas (without loading overlay)
+            setupPanorama('panorama-container', 'https://assets.360.petsq.works/union/union-eve.jpg');
+            setupPanorama('experience-panorama-container', 'https://assets.360.petsq.works/lapland/lapland-eve.jpg');
+            
+            // Function to set up panorama in any container
+            function setupPanorama(containerId, imageUrl) {
+                const panoramaContainer = document.getElementById(containerId);
+                if (!panoramaContainer) return;
+                
+                // Create scene, camera and renderer
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / panoramaContainer.clientHeight, 0.1, 1000);
+                
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, panoramaContainer.clientHeight);
+                renderer.setPixelRatio(window.devicePixelRatio); // Better quality on high-DPI displays
+                panoramaContainer.appendChild(renderer.domElement);
+                
+                // Create sphere geometry for the panorama
+                const geometry = new THREE.SphereGeometry(500, 60, 40);
+                geometry.scale(-1, 1, 1); // Invert the sphere so that the image is on the inside
+                
+                // Load panorama texture with smooth fade-in
+                const textureLoader = new THREE.TextureLoader();
+                textureLoader.load(
+                    imageUrl, 
+                    function(texture) {
+                        const material = new THREE.MeshBasicMaterial({ 
+                            map: texture
+                        });
+                        
+                        const sphere = new THREE.Mesh(geometry, material);
+                        scene.add(sphere);
+                        
+                        // Start animation
+                        animate();
+                    },
+                    // Progress callback
+                    function(xhr) {
+                        // Silent loading - no overlay
+                    },
+                    function(err) {
+                        console.error('An error occurred loading the panorama texture', err);
+                    }
+                );
+                
+                // Interactive panning variables
+                let isUserInteracting = false;
+                let mouseX = 0, mouseY = 0;
+                let mouseXOnMouseDown = 0, mouseYOnMouseDown = 0;
+                let targetRotationX = 0, targetRotationY = 0;
+                let targetRotationXOnMouseDown = 0, targetRotationYOnMouseDown = 0;
+                
+                // Add interactivity
+                renderer.domElement.addEventListener('mousedown', onDocumentMouseDown, false);
+                renderer.domElement.addEventListener('touchstart', onDocumentTouchStart, false);
+                
+                function onDocumentMouseDown(event) {
+                    event.preventDefault();
+                    
+                    isUserInteracting = true;
+                    
+                    mouseXOnMouseDown = event.clientX;
+                    mouseYOnMouseDown = event.clientY;
+                    
+                    targetRotationXOnMouseDown = targetRotationX;
+                    targetRotationYOnMouseDown = targetRotationY;
+                    
+                    document.addEventListener('mousemove', onDocumentMouseMove, false);
+                    document.addEventListener('mouseup', onDocumentMouseUp, false);
                 }
-            );
-            
-            // Auto-panning animation
-            let panPosition = 0;
-            function animate() {
-                requestAnimationFrame(animate);
                 
-                // Slowly rotate the camera for auto-panning effect
-                panPosition += 0.0005;
-                camera.rotation.y = panPosition;
+                function onDocumentMouseMove(event) {
+                    mouseX = event.clientX;
+                    mouseY = event.clientY;
+                    
+                    targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02;
+                    targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.02;
+                    
+                    // Limit vertical rotation to prevent flipping
+                    targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 2), -Math.PI / 2);
+                }
                 
-                renderer.render(scene, camera);
+                function onDocumentMouseUp() {
+                    isUserInteracting = false;
+                    
+                    document.removeEventListener('mousemove', onDocumentMouseMove, false);
+                    document.removeEventListener('mouseup', onDocumentMouseUp, false);
+                }
+                
+                function onDocumentTouchStart(event) {
+                    if (event.touches.length === 1) {
+                        event.preventDefault();
+                        
+                        mouseXOnMouseDown = event.touches[0].pageX;
+                        mouseYOnMouseDown = event.touches[0].pageY;
+                        
+                        targetRotationXOnMouseDown = targetRotationX;
+                        targetRotationYOnMouseDown = targetRotationY;
+                        
+                        document.addEventListener('touchmove', onDocumentTouchMove, false);
+                        document.addEventListener('touchend', onDocumentTouchEnd, false);
+                    }
+                }
+                
+                function onDocumentTouchMove(event) {
+                    if (event.touches.length === 1) {
+                        event.preventDefault();
+                        
+                        mouseX = event.touches[0].pageX;
+                        mouseY = event.touches[0].pageY;
+                        
+                        targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05;
+                        targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.05;
+                        
+                        // Limit vertical rotation
+                        targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 2), -Math.PI / 2);
+                    }
+                }
+                
+                function onDocumentTouchEnd() {
+                    document.removeEventListener('touchmove', onDocumentTouchMove, false);
+                    document.removeEventListener('touchend', onDocumentTouchEnd, false);
+                }
+                
+                // Auto-panning animation with smooth interpolation
+                let panPosition = 0;
+                let autoRotateSpeed = 0.0003; // Lower for smoother rotation
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    // Apply auto rotation only when user is not interacting
+                    if (!isUserInteracting) {
+                        panPosition += autoRotateSpeed;
+                        camera.rotation.y = panPosition;
+                    } else {
+                        // Apply smooth rotation based on user interaction
+                        camera.rotation.y += (targetRotationX - camera.rotation.y) * 0.05;
+                        camera.rotation.x += (targetRotationY - camera.rotation.x) * 0.05;
+                    }
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                // Handle window resize with better performance
+                let resizeTimeout;
+                function handleResize() {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(function() {
+                        const width = window.innerWidth;
+                        const height = panoramaContainer.clientHeight;
+                        
+                        // Update camera
+                        camera.aspect = width / height;
+                        camera.updateProjectionMatrix();
+                        
+                        // Update renderer
+                        renderer.setSize(width, height);
+                    }, 250);
+                }
+                
+                window.addEventListener('resize', handleResize);
+                // Initial resize call to ensure proper setup
+                handleResize();
             }
             
-            // Handle window resize
-            function handleResize() {
-                const width = window.innerWidth;
-                const height = panoramaContainer.clientHeight;
+            // Use IntersectionObserver for more sophisticated animations if supported
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.15
+                };
                 
-                // Update camera
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
+                const handleIntersect = (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target); // Stop observing once it's visible
+                        }
+                    });
+                };
                 
-                // Update renderer
-                renderer.setSize(width, height);
+                const observer = new IntersectionObserver(handleIntersect, observerOptions);
+                
+                // Observe all animatable elements
+                const elements = document.querySelectorAll('.fade-in, .scale-in');
+                elements.forEach(element => {
+                    observer.observe(element);
+                });
             }
-            
-            window.addEventListener('resize', handleResize);
-            // Initial resize call to ensure proper setup
-            handleResize();
         });
     </script>
 </body>
