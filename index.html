@@ -926,6 +926,357 @@
         .copyright {
             font-size: 14px;
         }
+
+         /* Our Story Section Styles */
+    .our-story {
+        padding: 80px 0;
+        border-top: 1px solid rgba(135, 209, 86, 0.1);
+        background-color: #050505;
+    }
+    
+    .story-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .story-timeline {
+        position: relative;
+        margin-bottom: 60px;
+    }
+    
+    .story-timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 30px;
+        height: 100%;
+        width: 1px;
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 223, 77, 0.1),
+            rgba(135, 209, 86, 0.1),
+            rgba(239, 89, 0, 0.1)
+        );
+    }
+    
+    .timeline-item {
+        position: relative;
+        margin-bottom: 40px;
+        padding-left: 80px;
+    }
+    
+    .timeline-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #050505;
+        padding: 10px 0;
+    }
+    
+    .icon-container {
+        width: 60px;
+        height: 60px;
+        background-color: #0f0f0f;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        border: 1px solid rgba(255, 223, 77, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .timeline-item:nth-child(1) .icon-container {
+        border-color: rgba(255, 223, 77, 0.2);
+    }
+    
+    .timeline-item:nth-child(1) .icon-container:hover {
+        box-shadow: 0 0 15px rgba(255, 223, 77, 0.1);
+        transform: scale(1.05);
+    }
+    
+    .timeline-item:nth-child(2) .icon-container {
+        border-color: rgba(135, 209, 86, 0.2);
+    }
+    
+    .timeline-item:nth-child(2) .icon-container:hover {
+        box-shadow: 0 0 15px rgba(135, 209, 86, 0.1);
+        transform: scale(1.05);
+    }
+    
+    .timeline-item:nth-child(3) .icon-container {
+        border-color: rgba(239, 89, 0, 0.2);
+    }
+    
+    .timeline-item:nth-child(3) .icon-container:hover {
+        box-shadow: 0 0 15px rgba(239, 89, 0, 0.1);
+        transform: scale(1.05);
+    }
+    
+    .timeline-content h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .timeline-content p {
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    
+    .founder-section {
+        background-color: #0f0f0f;
+        padding: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 223, 77, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .founder-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(255, 223, 77, 0.05);
+        border-color: rgba(255, 223, 77, 0.2);
+    }
+    
+    .founder-content h3 {
+        margin-bottom: 20px;
+    }
+    
+    .founder-content blockquote {
+        font-size: 18px;
+        font-style: italic;
+        color: #E6E6E6;
+        border-left: 3px solid rgba(255, 223, 77, 0.3);
+        padding-left: 20px;
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .timeline-item {
+            padding-left: 60px;
+        }
+        
+        .story-timeline:before {
+            left: 20px;
+        }
+        
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+        
+        .founder-section {
+            padding: 30px 20px;
+        }
+        
+        .founder-content blockquote {
+            font-size: 16px;
+        }
+    }
+
+    .faq {
+        padding: 80px 0;
+        border-top: 1px solid rgba(239, 89, 0, 0.1);
+        background-color: #050505;
+    }
+    
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .faq-item {
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    /* Alternating colors for FAQ items */
+    .faq-item:nth-child(odd) {
+        border-left: 3px solid rgba(255, 223, 77, 0.2);
+    }
+    
+    .faq-item:nth-child(odd):hover {
+        box-shadow: 0 5px 15px rgba(255, 223, 77, 0.05);
+        border-left-color: rgba(255, 223, 77, 0.4);
+    }
+    
+    .faq-item:nth-child(even) {
+        border-left: 3px solid rgba(239, 89, 0, 0.2);
+    }
+    
+    .faq-item:nth-child(even):hover {
+        box-shadow: 0 5px 15px rgba(239, 89, 0, 0.05);
+        border-left-color: rgba(239, 89, 0, 0.4);
+    }
+    
+    .faq-item:hover {
+        transform: translateY(-2px);
+    }
+    
+    .faq-question {
+        padding: 20px;
+        background-color: #0f0f0f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .faq-question h3 {
+        margin: 0;
+        font-size: 18px;
+        transition: color 0.3s ease;
+    }
+    
+    .faq-icon {
+        font-size: 24px;
+        color: #999;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .faq-question:hover h3 {
+        color: #FFDF4D;
+    }
+    
+/* 🌟 Global Styles */
+body {
+    font-size: 14px; /* 2px smaller than before */
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background-color: #050505;
+    color: #999999;
+    line-height: 1.7;
+}
+
+/* 🔥 FAQ Section */
+.faq-answer {
+    padding: 0 20px;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    background-color: #0a0a0a;
+    border-radius: 6px;
+}
+
+.faq-item.active .faq-answer {
+    height: auto;
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/* ✨ Cool Inner Text Styling */
+.faq-answer-inner {
+    opacity: 0;
+    transform: translateY(1px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    font-size: 14px; /* Reduced from 15px to 14px (1px smaller) */
+    color: #CCCCCC;
+    letter-spacing: 0.3px;
+    padding: 20px 0 0 0; /* Add 20px padding to top and bottom */
+}
+
+.faq-item.active .faq-answer-inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 🔹 FAQ Titles */
+.faq-question {
+    padding: 18px 22px;
+    background-color: #0f0f0f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #E6E6E6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(255, 223, 77, 0.1);
+    color: #FFDF4D;
+}
+
+/* 🌀 FAQ Icon */
+.faq-icon {
+    font-size: 22px;
+    color: #777;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    color: #FFDF4D;
+}
+
+/* 📜 List Styling Inside FAQ */
+.faq-answer ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+    list-style-type: none; /* Remove the default bullets */
+}
+
+.faq-answer ul li {
+    margin-bottom: 10px;
+    color: #CCCCCC;
+    font-size: 14px;
+    position: relative;
+    padding-left: 18px;
+    color: #999999
+}
+
+.faq-answer ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #FFDF4D;
+}
+
+/* 🌙 Highlight Text */
+.highlight {
+    background-color: rgba(255, 223, 77, 0.2);
+    color: #FFDF4D;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* 📱 Mobile Optimizations */
+@media (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    .faq-question {
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 15px;
+    }
+
+    .faq-answer-inner {
+        font-size: 14px;
+    }
+
+    .faq-icon {
+        font-size: 20px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1030,6 +1381,125 @@
         </div>
     </section>
     
+    <section class="our-story">
+        <div class="container">
+            <h2 class="fade-in">our story</h2>
+            
+            <div class="story-content">
+                <div class="story-timeline fade-in delay-100">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">💡</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the concept</h3>
+                            <p>while working for a hospitality technology company, we needed to showcase the dramatic impact of well-designed lighting scenes in hotel rooms. the challenge: how could we demonstrate this without physically bringing people to a property?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in delay-200">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">🔍</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the insight</h3>
+                            <p>we realized boutique hotels faced a universal problem: their carefully designed spaces look incredible in person, but photos never capture the true experience. this disconnect sends potential guests to third-party review sites, taking them away from the hotel's carefully crafted brand experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in delay-300">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">🚀</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the solution</h3>
+                            <p>four years and several major hotel projects later, boutique360 was born—bringing immersive 360° technology specifically to boutique hotels in the netherlands. our mission: help the most distinctive properties communicate their unique vibe more effectively and boost their direct bookings.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="founder-section fade-in delay-400">
+                    <div class="founder-content">
+                        <h3>why we do this</h3>
+                        <blockquote>"we just want more awesome boutique hotels to thrive in the netherlands. cool spaces deserve to be seen properly."</blockquote>
+                        <p>coming from both business and creative backgrounds, we've spent years in hospitality tech seeing what works. now through petsq.works, we're bringing those insights directly to the coolest boutique spaces that need them most.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="fade-in">frequently asked questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item fade-in delay-100">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>what is a 360° virtual tour?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>a 360° virtual tour allows potential guests to explore your hotel spaces from every angle, just as if they were physically there. unlike traditional photos, our tours let users look up, down, and all around, giving them a genuine sense of your space's dimensions, lighting, and atmosphere. each tour works seamlessly on mobile, desktop, and even VR headsets.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in delay-200">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>how does this increase bookings?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>studies show that immersive content reduces booking hesitation by creating confidence in purchasing decisions. when potential guests can truly experience your space before booking, they're 67% more likely to book directly rather than continuing to research on third-party sites. this keeps them in your booking funnel and decreases abandonment rates.</p>
+                            <p>additionally, 360° tours address the "expectation gap" that often leads to negative reviews when a guest's experience doesn't match what they imagined from traditional photos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in delay-300">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>how disruptive is the process?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>we've optimized our capture process to minimize disruption to your operations. typically, photographing a standard room takes about 30-45 minutes. we work around your schedule and can often complete an entire property in just one day, depending on the package selected.</p>
+                            <p>we recommend capturing rooms when they're at their best—freshly cleaned and during optimal natural lighting conditions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item fade-in delay-400">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>how do we integrate this with our existing website?</h3>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>integration is seamless regardless of your website platform. We provide:</p>
+                            <ul>
+                                <li>Simple embed codes that work with any CMS (WordPress, Wix, Squarespace, etc.)</li>
+                                <li>Direct links for email marketing campaigns</li>
+                                <li>QR codes for print materials and in-room information</li>
+                                <li>Technical support throughout the implementation process</li>
+                            </ul>
+                            <p>Our tours are also optimized for social media sharing, allowing you to use the same assets across multiple channels.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="pre-launch">
         <div class="container">
             <div class="pre-launch-content">
@@ -1062,7 +1532,7 @@
     <section class="packages" id="packages">
         <div class="container">
             <div class="packages-header">
-                <h2 class="fade-in">packages</h2>
+                <h2 class="fade-in">virtual tour packages</h2>
                 <div class="discount-tag fade-in delay-100">-30%</div>
             </div>
             <div class="package-container">
@@ -1128,7 +1598,7 @@
             </form>
         </div>
     </section>
-    
+
     <footer>
         <div class="container">
             <div class="copyright">
@@ -1540,6 +2010,57 @@
                 });
             }
         });
+
+        function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    const faqAnswer = faqItem.querySelector('.faq-answer');
+
+    if (faqItem.classList.contains('active')) {
+        // Close the item smoothly
+        faqAnswer.style.height = faqAnswer.scrollHeight + 'px'; // Set to actual height first
+        requestAnimationFrame(() => {
+            faqAnswer.style.transition = 'height 0.3s ease-out, opacity 0.2s ease-out';
+            faqAnswer.style.height = '0px';
+            faqAnswer.style.opacity = '0';
+        });
+        faqItem.classList.remove('active');
+    } else {
+        // Close all other FAQs first
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                const otherAnswer = item.querySelector('.faq-answer');
+                otherAnswer.style.height = otherAnswer.scrollHeight + 'px'; 
+                requestAnimationFrame(() => {
+                    otherAnswer.style.transition = 'height 0.3s ease-out, opacity 0.2s ease-out';
+                    otherAnswer.style.height = '0px';
+                    otherAnswer.style.opacity = '0';
+                });
+                item.classList.remove('active');
+            }
+        });
+
+        // Open this item
+        faqItem.classList.add('active');
+        
+        // Important: Let the browser calculate the height AFTER adding the active class
+        const faqAnswerInner = faqAnswer.querySelector('.faq-answer-inner');
+        
+        // Reset height for accurate calculation
+        faqAnswer.style.height = 'auto';
+        const exactHeight = faqAnswerInner.offsetHeight + 40; // content height + padding (20px top and 20px bottom)
+        
+        // Set to 0 before animation
+        faqAnswer.style.height = '0px';
+        faqAnswer.style.opacity = '0';
+        
+        // Trigger animation with precise height
+        requestAnimationFrame(() => {
+            faqAnswer.style.transition = 'height 0.3s ease-in, opacity 0.2s ease-in';
+            faqAnswer.style.height = exactHeight + 'px';
+            faqAnswer.style.opacity = '1';
+        });
+    }
+}
     </script>
 </body>
 </html>
