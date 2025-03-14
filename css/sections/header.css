@@ -1,0 +1,45 @@
+/* Header Styles */
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    border-bottom: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    position: relative;
+}
+
+.logo img {
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Mobile responsiveness for header */
+@media (max-width: 768px) {
+    .logo img {
+        height: 30px;
+    }
+    
+    .header-content {
+        padding: 12px 0;
+    }
+}

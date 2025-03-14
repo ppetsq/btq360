@@ -1,0 +1,72 @@
+/**
+ * Main CSS file for boutique360
+ * Serves as a central import and for generic styles
+ */
+
+/* Contains all cross-site styles not specific to individual sections */
+.ihs-special {
+    color: #FFDF4D;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.ihs-special span {
+    margin-left: 6px;
+    padding: 3px 6px;
+    background-color: rgba(255, 223, 77, 0.2);
+    border-radius: 4px;
+}
+
+/* Section spacers */
+.header-spacer {
+    height: 0; /* Adjusted by JS if needed */
+}
+
+/* Custom scrollbar (optional enhancement) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Panorama hotspot styling */
+.panorama-hotspot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 223, 77, 0.7);
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #0f0f0f;
+    font-weight: bold;
+    animation: hotspot-pulse 2s infinite;
+    z-index: 20;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.panorama-hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background-color: rgba(255, 223, 77, 0.9);
+}

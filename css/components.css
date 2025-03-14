@@ -1,0 +1,127 @@
+/* Button Components */
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 5px rgba(255, 223, 77, 0.25);
+    transform: translateY(-1px);
+}
+
+.header-cta {
+    display: inline-block;
+    padding: 6px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border: 0px solid rgba(255, 255, 255, 0.15);
+}
+
+.header-cta:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 0 5px rgba(255, 223, 77, 0.15);
+}
+
+/* Special Offer Components */
+.special-offer {
+    color: #FFDF4D;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.special-offer span {
+    padding: 6px 15px;
+    background-color: rgba(255, 223, 77, 0.2);
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.discount-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 223, 77, 0.2);
+    color: #FFDF4D;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.stat-highlight {
+    display: inline-block;
+    background-color: rgba(255, 223, 77, 0.2);
+    color: #FFDF4D;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin: 0 3px;
+    font-weight: 500;
+}
+
+/* Form Components */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    background-color: #0f0f0f;
+    border: 1px solid rgba(255, 223, 77, 0.1);
+    color: #E6E6E6;
+    font-size: 16px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FFDF4D;
+    box-shadow: 0 0 8px rgba(255, 223, 77, 0.2);
+}
+
+/* Mobile responsiveness for components */
+@media (max-width: 768px) {
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+    
+    .special-offer {
+        font-size: 12px;
+    }
+    
+    .header-cta {
+        font-size: 12px;
+    }
+}
