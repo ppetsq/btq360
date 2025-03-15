@@ -72,22 +72,19 @@
     
     .countdown {
         margin-bottom: 40px;
-        justify-content: center;
+        justify-content: space-between;
         width: 100%;
         gap: 10px;
     }
     
     .countdown-number {
         font-size: 28px;
-        min-width: 70px;
+        min-width: 0;
+        width: 100%;
         padding: 10px;
     }
     
-    .countdown-label {
-        font-size: 12px;
-    }
-    
-    .pre-launch-text {
-        margin-bottom: 30px;
+    .countdown-item {
+        flex: 1;
     }
 }

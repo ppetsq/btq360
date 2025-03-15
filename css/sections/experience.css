@@ -75,3 +75,8 @@
     margin-top: 15px;
     font-style: italic;
 }
+
+.experience-text-container {
+    max-width: 500px;
+    margin: 0 auto;
+}

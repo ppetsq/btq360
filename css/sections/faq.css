@@ -32,6 +32,16 @@
     border-left: 3px solid rgba(239, 89, 0, 0.2);
 }
 
+/* Green for every third FAQ item */
+.faq-item:nth-child(3n) {
+    border-left: 3px solid rgba(135, 209, 86, 0.2);
+}
+
+.faq-item:nth-child(3n):hover {
+    box-shadow: 0 5px 15px rgba(135, 209, 86, 0.05);
+    border-left-color: rgba(135, 209, 86, 0.4);
+}
+
 .faq-item:nth-child(even):hover {
     box-shadow: 0 5px 15px rgba(239, 89, 0, 0.05);
     border-left-color: rgba(239, 89, 0, 0.4);
