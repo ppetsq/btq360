@@ -144,3 +144,26 @@
         font-size: 20px;
     }
 }
+
+/* Add this new section */
+@media (max-width: 480px) {
+    .faq-question {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .faq-question h3 {
+        font-size: 14px;
+        max-width: 85%;
+    }
+    
+    .faq-answer-inner {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .faq-answer ul li {
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+}

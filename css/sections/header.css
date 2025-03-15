@@ -42,4 +42,33 @@ header {
     .header-content {
         padding: 12px 0;
     }
+
+/* Further mobile optimizations */
+@media (max-width: 480px) {
+    .header-content {
+        padding: 10px 0;
+    }
+    
+    .logo img {
+        height: 26px;
+    }
+    
+    .header-right {
+        gap: 8px;
+    }
+    
+    .special-offer {
+        font-size: 12px;
+    }
+    
+    .special-offer span {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    
+    .header-cta {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}
 }
