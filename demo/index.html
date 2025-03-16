@@ -47,16 +47,28 @@
 
         <!-- Controls -->
 <!-- Replace your existing controls div with this -->
+<!-- Controls -->
+<!-- Controls -->
 <div class="controls">
-    <button id="btn-day" onclick="changeView('day')">Day</button>
-    <button id="btn-evening" onclick="changeView('evening')">Evening</button>
-    <button id="btn-night" onclick="changeView('night')">Night</button>
-    <button id="btn-off" onclick="changeView('off')">Off</button>
-    <button id="btn-cycle" onclick="toggleCycle()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-        </svg>
-    </button>
+    <div class="controls-action-buttons">
+        <button id="btn-cycle" onclick="toggleCycle()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+        </button>
+        <button id="btn-hide-ui" onclick="toggleUIVisibility()" title="Hide UI">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+    <div class="controls-view-modes">
+        <button id="btn-day" onclick="changeView('day')">Day</button>
+        <button id="btn-evening" onclick="changeView('evening')">Evening</button>
+        <button id="btn-night" onclick="changeView('night')">Night</button>
+        <button id="btn-off" onclick="changeView('off')">Off</button>
+    </div>
 </div>
     </div>
     

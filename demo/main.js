@@ -43,6 +43,26 @@ function fadeInScene() {
     document.getElementById('fade-overlay').style.opacity = '0';
 }
 
+// Toggle panning state
+function togglePanning() {
+    // First interaction starts panning
+    if (!hasUserInteracted) {
+        hasUserInteracted = true;
+        viewer.startAutorotate(0.1);
+        isPanning = true;
+        return;
+    }
+
+    // Toggle panning
+    if (isPanning) {
+        viewer.stopAutorotate();
+        isPanning = false;
+    } else {
+        viewer.startAutorotate(0.1);
+        isPanning = true;
+    }
+}
+
 // Initialize the viewer when the page loads
 window.onload = function() {
     // Show loader first
@@ -96,26 +116,15 @@ window.onload = function() {
     });
 };
 
-// Toggle panning state
-function togglePanning() {
-    // Start panning on first click
+// Change the panorama view
+function changeView(mode) {
+    // Ensure first interaction triggers autorotate
     if (!hasUserInteracted) {
         hasUserInteracted = true;
         viewer.startAutorotate(0.1);
         isPanning = true;
-    } else {
-        // Toggle panning on subsequent clicks
-        if (isPanning) {
-            viewer.stopAutorotate();
-        } else {
-            viewer.startAutorotate(0.1);
-        }
-        isPanning = !isPanning;
     }
-}
 
-// Change the panorama view
-function changeView(mode) {
     // Store current panning state before changing view
     const wasPanning = isPanning;
     
@@ -124,8 +133,6 @@ function changeView(mode) {
     
     // Update the cycle index to match the current view
     currentCycleIndex = cycleSequence.indexOf(mode);
-    
-    hasUserInteracted = true;
     
     // Only restart autorotate if it was previously active
     if (wasPanning) {
@@ -211,3 +218,88 @@ function cycleThroughViews() {
     
     isPanning = wasPanning;
 }
+
+// Tracking UI visibility
+let isUIHidden = false;
+let lastTapTime = 0;
+
+function toggleUIVisibility() {
+    const uiElements = [
+        '.overlay',  // Title, description, etc.
+        '.controls', // Lighting buttons
+        '.nav-container' // Back button and coordinates
+    ];
+
+    // Toggle UI visibility
+    uiElements.forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.classList.toggle('ui-hidden');
+        }
+    });
+
+    // Toggle UI state
+    isUIHidden = !isUIHidden;
+
+    // Show custom centered notification when hiding UI
+    if (isUIHidden) {
+        const notificationContainer = document.createElement('div');
+        notificationContainer.id = 'ui-hide-notification';
+        notificationContainer.innerHTML = 'Double-tap to bring controls back';
+        document.body.appendChild(notificationContainer);
+
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            const existingNotification = document.getElementById('ui-hide-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+        }, 3000);
+    } else {
+        // Remove notification if it exists when UI is shown
+        const existingNotification = document.getElementById('ui-hide-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+    }
+}
+
+// Double-tap handler specifically for bringing back UI
+function handleDoubleTap(event) {
+    // Only handle double-tap if not clicking on a button or interactive element
+    const isInteractiveElement = 
+        event.target.closest('button') || 
+        event.target.closest('.overlay') || 
+        event.target.closest('.nav-container');
+
+    if (isInteractiveElement) {
+        return;
+    }
+
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTapTime;
+
+    // Check if UI is hidden and it's a double tap (within 300ms)
+    if (isUIHidden && tapLength < 300 && tapLength > 0) {
+        toggleUIVisibility();
+    }
+
+    lastTapTime = currentTime;
+}
+
+// Add event listeners with more specific targeting
+window.addEventListener('load', () => {
+    // Touch events for mobile
+    document.addEventListener('touchstart', handleDoubleTap);
+    
+    // Click events for desktop
+    document.addEventListener('click', handleDoubleTap);
+
+    // Escape key for desktop
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && isUIHidden) {
+            toggleUIVisibility();
+        }
+    });
+});
+

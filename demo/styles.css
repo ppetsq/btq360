@@ -20,19 +20,20 @@ body {
     transition: opacity 2s ease-out;
 }
 
-/* ✅ UI Container */
-.ui-container {
-    position: absolute;
-    top: 40px;
-    left: 40px;
+/* 📌 Overlay Styling */
+.overlay { 
+    position: absolute; 
+    top: 40px; 
+    left: 40px; 
+    z-index: 100;
     width: calc(100% - 80px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    pointer-events: auto;
     opacity: 0;
-    transition: opacity 1s ease-out 0.5s;
-    z-index: 9999;
+    transition: opacity 0.8s ease-out 0.5s;
+    gap: 15px; /* ✅ Proper spacing */
+    pointer-events: none; /* Prevent blocking interactions */
 }
 
 /* ✅ Title */
@@ -43,6 +44,8 @@ body {
     cursor: pointer;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     transition: opacity 0.2s ease-in-out;
+    pointer-events: auto; /* Ensure title is clickable */
+    user-select: none; /* Prevent text selection */
 }
 
 /* ✅ Hover Effect */
@@ -55,6 +58,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    pointer-events: auto; /* Ensure interactions work */
 }
 
 /* ✅ Coordinates */
@@ -79,49 +83,38 @@ body {
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     text-align: left;
     color: rgba(255, 255, 255, 0.7);
+    pointer-events: none; /* Prevent blocking interactions */
+    user-select: none; /* Prevent text selection interference */
 }
 
-@media (max-width: 810px) {
-    .title { font-size: 40px; line-height: 1.05; }
-    .coordinates { font-size: 14px; }
-    .description { font-size: 16px; }
-}
-
-/* ✅ Ensures the lighting buttons fit on all screens */
+/* Controls Layout */
 .controls {
     position: absolute;
     bottom: 40px;
     right: 40px;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     gap: 12px;
-    flex-wrap: wrap; /* ✅ Allows wrapping on smaller screens */
-    justify-content: center; /* ✅ Keeps buttons centered */
+    width: auto;
 }
 
-/* ✅ Responsive Fix for Mobile */
-@media (max-width: 810px) {
-    .controls {
-        bottom: 20px; /* ✅ Moves controls slightly up */
-        right: 50%; /* ✅ Centers horizontally */
-        transform: translateX(50%); /* ✅ Ensures perfect centering */
-        flex-wrap: wrap; /* ✅ Allows buttons to wrap properly */
-        width: 90%; /* ✅ Ensures they don't stretch too far */
-        justify-content: center; /* ✅ Keeps them aligned */
-    }
-
-    .controls button {
-        flex-grow: 1;
-        text-align: center;
-        max-width: 48%; /* ✅ Ensures 2 buttons per row on smaller screens */
-        padding: 10px; /* ✅ Reduces padding for better fit */
-        font-size: 12px; /* ✅ Adjust font size for mobile */
-    }
+.controls-view-modes,
+.controls-action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
 }
 
-/* Button Styles - Now all buttons have 2px border */
-button {
+.controls-view-modes button,
+.controls-action-buttons button {
     background: rgba(255, 255, 255, 0.12);
     border: 2px solid rgba(255, 255, 255, 0.25);
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 50px;
     padding: 14px 28px;
     font-size: 1rem;
     font-weight: 600;
@@ -131,46 +124,63 @@ button {
     backdrop-filter: blur(10px);
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
+.controls-action-buttons button {
+    width: 50px;
+    padding: 14px;
+}
+
+/* Button Hover and Active States */
 button:hover {
     background: rgba(255, 255, 255, 0.2);
     color: white;
 }
 
-/* Active state with yellow border and subtle background */
 button.active {
-    background: rgba(255, 223, 77, 0.1); /* Subtle yellow background */
-    border: 2px solid rgba(255, 223, 77, 0.3); /* Yellow border */
+    background: rgba(255, 223, 77, 0.1);
+    border: 2px solid rgba(255, 223, 77, 0.3);
     color: white;
 }
 
-/* Cycle Button Specific Styles */
-#btn-cycle {
-    position: relative;
+/* Cycle and Hide UI Buttons */
+#btn-cycle,
+#btn-hide-ui {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 14px;
-    width: 50px;
 }
 
-#btn-cycle svg {
-    display: block;
+#btn-cycle svg,
+#btn-hide-ui svg {
     width: 18px;
     height: 18px;
-    color: rgba(255, 255, 255, 0.85); /* Default color */
+    color: rgba(255, 255, 255, 0.85);
     transition: color 0.3s ease-in-out;
 }
 
-/* Green accented active cycle button */
-#btn-cycle.active {
-    background: rgba(135, 209, 86, 0.1); /* Subtle green background */
-    border: 2px solid rgba(135, 209, 86, 0.3); /* Green border */
+#btn-cycle:hover svg,
+#btn-hide-ui:hover svg {
+    color: white;
 }
 
+/* Hide UI Button Hover State */
+#btn-hide-ui:hover {
+    background: rgba(239, 89, 0, 0.1);
+    border: 2px solid rgba(239, 89, 0, 0.3);
+}
+
+#btn-hide-ui:hover svg {
+    color: rgba(239, 89, 0, 1);
+}
+
+/* Gentle Rotation for Cycle Button */
 #btn-cycle.active svg {
-    color: rgba(135, 209, 86, 0.9); /* Green icon when active */
+    color: rgba(135, 209, 86, 0.9);
     animation: gentle-rotate 10s linear infinite;
 }
 
@@ -179,71 +189,103 @@ button.active {
     to { transform: rotate(360deg); }
 }
 
-/* 🎨 Brand Colors */
-#brand-colors {
-    display: flex;
-    gap: 12px !important;
-    justify-content: flex-end;
-    align-self: flex-end;
-    padding-bottom: 20px; /* ✅ Ensures proper spacing */
-}
+/* Responsive Design */
+@media (max-width: 810px) {
+    .title { 
+        font-size: 40px; 
+        line-height: 1.05; 
+    }
 
-#brand-colors-link {
-    display: flex; /* ✅ Ensures it only wraps its content */
-    align-items: center; /* ✅ Keeps alignment */
-    text-decoration: none; /* ✅ Removes any weird text artifacts */
-    outline: none; /* ✅ Prevents focus outlines */
-    border: none; /* ✅ Just in case */
-}
+    .coordinates { 
+        font-size: 14px; 
+    }
 
-.color-box {
-    width: 12px;
-    height: 12px;
-    border-radius: 4px;
-    transition: opacity 0.3s ease-in-out;
-    display: inline-block;
-    margin-right: 8px;
-}
+    .description { 
+        font-size: 16px; 
+    }
 
-/* ✅ Remove margin from the last element */
-.color-box:last-child {
-    margin-right: 0;
-}
+    .controls {
+        right: 20px;
+        bottom: 20px;
+        width: calc(100% - 40px);
+        max-width: 400px;
+    }
 
-/* ✅ Hover effect for all boxes */
-@media (hover: hover) {
-    #brand-colors:hover .color-box {
-        opacity: 0.5;
+    .controls-view-modes,
+    .controls-action-buttons {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .controls-view-modes button,
+    .controls-action-buttons button {
+        flex-grow: 1;
+        max-width: calc(50% - 8px);
+        padding: 10px;
+        font-size: 12px;
     }
 }
 
-.color-green { background-color: #87D156; }
-.color-yellow { background-color: #FFDF4D; }
-.color-orange { background-color: #EF5900; }
-
-/* ✅ Modern, Greyish, Transparent, Slightly Blurred Back Button */
-.back-button {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 300;
-    font-size: 14px;
-    background: rgba(50, 50, 50, 0.4); /* ✅ Semi-transparent dark grey */
-    color: rgba(255, 255, 255, 0.8); /* ✅ Slightly faded white */
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    backdrop-filter: blur(8px); /* ✅ Subtle blur effect */
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-    text-transform: lowercase;
+/* Smooth UI Visibility Toggle */
+.overlay,
+.controls {
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+        opacity 0.5s ease-out, 
+        visibility 0.5s ease-out;
 }
 
-/* ✅ Hover Effect */
-.back-button:hover {
-    background: rgba(50, 50, 50, 0.7); /* ✅ Darker on hover */
-    color: #fff; /* ✅ Fully white text */
+.overlay:not(.ui-hidden),
+.controls:not(.ui-hidden) {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* 🔥 Fade-In Effect */
+/* Ensure interactive elements remain clickable */
+.overlay .title,
+.overlay button,
+.overlay .nav-container {
+    pointer-events: auto;
+}
+
+.ui-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: 
+        opacity 0.5s ease-in-out, 
+        visibility 0.5s ease-in-out;
+}
+
+/* Centered UI Hide Notification */
+#ui-hide-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        -2px -2px 4px rgba(0, 0, 0, 0.5),
+        2px -2px 4px rgba(0, 0, 0, 0.5),
+        -2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes fade-in-out {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+
+/* Other Utility Styles */
 #fade-overlay {
     position: fixed;
     top: 0;
@@ -257,33 +299,6 @@ button.active {
     pointer-events: none !important;
 }
 
-/* 📌 Overlay Styling */
-.overlay { 
-    position: absolute; 
-    top: 40px; 
-    left: 40px; 
-    z-index: 100;
-    width: calc(100% - 80px);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    pointer-events: auto;
-    opacity: 0;
-    transition: opacity 0.8s ease-out 0.5s;
-    gap: 15px; /* ✅ Proper spacing */
-}
-
-/* Hide the PSV loader completely */
-.psv-loader-container {
-    display: none !important;
-}
-
-/* Remove any flickering with our custom loader */
-.psv-container {
-    background: black !important;
-}
-
-/* Custom loader */
 #custom-loader {
     position: fixed;
     top: 0;
@@ -297,4 +312,75 @@ button.active {
     align-items: center;
     opacity: 0;
     transition: opacity 0.5s ease-out;
+}
+
+.psv-loader-container {
+    display: none !important;
+}
+
+.psv-container {
+    background: black !important;
+}
+
+/* Cycle Button Active State */
+#btn-cycle.active {
+    background: rgba(135, 209, 86, 0.1); /* Subtle green background */
+    border: 2px solid rgba(135, 209, 86, 0.3); /* Green border */
+}
+
+/* Mobile Responsive Controls */
+@media (max-width: 810px) {
+    .controls {
+        right: 20px;
+        bottom: 20px;
+        width: auto;
+        max-width: none;
+        align-items: flex-end;
+    }
+
+    .controls-action-buttons {
+        justify-content: flex-end;
+    }
+
+    .controls-action-buttons button {
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
+        padding: 14px;
+        aspect-ratio: 1 / 1;
+    }
+
+    .controls-view-modes {
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .controls-view-modes button {
+        flex-grow: 1;
+        max-width: calc(50% - 8px);
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Back Button Styling */
+.back-button {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    font-size: 14px;
+    background: rgba(50, 50, 50, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-transform: lowercase;
+}
+
+.back-button:hover {
+    background: rgba(50, 50, 50, 0.7);
+    color: #fff;
 }
