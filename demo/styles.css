@@ -1,7 +1,32 @@
-* {
+/* 
+ * Clean, Organized CSS
+ * ---------------------
+ * Structure:
+ * 1. Reset & Base Styles
+ * 2. Layout & Containers
+ * 3. Typography
+ * 4. UI Components 
+ * 5. Controls & Buttons
+ * 6. Animations & Transitions
+ * 7. Media Queries
+ * 8. Utility Classes
+ */
+
+/* ============================
+   1. RESET & BASE STYLES
+   ============================ */
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Prevent tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    /* Creates a non-visible "reset" area to fix iOS sticky hover */
+    min-height: 100%;
+    cursor: default;
 }
 
 body {
@@ -9,9 +34,13 @@ body {
     background-color: #000;
     color: #fff;
     overflow: hidden;
+    /* Ensures tapping elsewhere removes hover states */
+    cursor: default;
 }
 
-/* ✅ Viewer Container */
+/* ============================
+   2. LAYOUT & CONTAINERS
+   ============================ */
 .viewer-container {
     position: absolute;
     width: 100vw;
@@ -20,7 +49,7 @@ body {
     transition: opacity 2s ease-out;
 }
 
-/* 📌 Overlay Styling */
+/* Main overlay for UI elements */
 .overlay { 
     position: absolute; 
     top: 40px; 
@@ -30,64 +59,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
+    /* Prevents the overlay from blocking panorama interactions */
+    pointer-events: none;
+    /* Visibility handling */
     opacity: 0;
-    transition: opacity 0.8s ease-out 0.5s;
-    gap: 15px; /* ✅ Proper spacing */
-    pointer-events: none; /* Prevent blocking interactions */
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, 
+                visibility 0.5s ease-out,
+                transform 0.5s ease-out;
 }
 
-/* ✅ Title */
-.title {
-    font-size: 78px;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    transition: opacity 0.2s ease-in-out;
-    pointer-events: auto; /* Ensure title is clickable */
-    user-select: none; /* Prevent text selection */
+/* Make overlay visible unless hidden */
+.overlay:not(.ui-hidden) {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* ✅ Hover Effect */
-.title:hover {
-    opacity: 0.7;
-}
-
-/* ✅ Back Button & Coordinates */
-.nav-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    pointer-events: auto; /* Ensure interactions work */
-}
-
-/* ✅ Coordinates */
-.coordinates {
-    font-size: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-}
-
-/* 📝 Description Styling */
-.description { 
-    font-family: 'Cormorant Garamond', serif; 
-    font-size: 18px; 
-    font-weight: 400; 
-    max-width: 600px; 
-    margin-top: 0px; 
-    line-height: 1.4; 
-    word-wrap: break-word;
-    opacity: 1; 
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    text-align: left;
-    color: rgba(255, 255, 255, 0.7);
-    pointer-events: none; /* Prevent blocking interactions */
-    user-select: none; /* Prevent text selection interference */
-}
-
-/* Controls Layout */
+/* Controls container positioning */
 .controls {
     position: absolute;
     bottom: 40px;
@@ -97,8 +86,21 @@ body {
     align-items: flex-end;
     gap: 12px;
     width: auto;
+    /* Visibility handling */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, 
+                visibility 0.5s ease-out,
+                transform 0.5s ease-out;
 }
 
+/* Make controls visible unless hidden */
+.controls:not(.ui-hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Layout for rows of buttons */
 .controls-view-modes,
 .controls-action-buttons {
     display: flex;
@@ -108,184 +110,18 @@ body {
     width: 100%;
 }
 
-.controls-view-modes button,
-.controls-action-buttons button {
-    background: rgba(255, 255, 255, 0.12);
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    flex: 0 1 auto;
-    width: auto;
-    min-width: 50px;
-    padding: 14px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
-    border-radius: 8px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease-in-out;
-    text-transform: uppercase;
+/* Container for back button and coordinates */
+.nav-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    gap: 12px;
+    pointer-events: auto; /* Make sure clicks work */
+    transition: opacity 0.5s ease-out, 
+                visibility 0.5s ease-out,
+                transform 0.5s ease-out;
 }
 
-.controls-action-buttons button {
-    width: 50px;
-    padding: 14px;
-}
-
-/* Button Hover and Active States */
-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-button.active {
-    background: rgba(255, 223, 77, 0.1);
-    border: 2px solid rgba(255, 223, 77, 0.3);
-    color: white;
-}
-
-/* Cycle and Hide UI Buttons */
-#btn-cycle,
-#btn-hide-ui {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#btn-cycle svg,
-#btn-hide-ui svg {
-    width: 18px;
-    height: 18px;
-    color: rgba(255, 255, 255, 0.85);
-    transition: color 0.3s ease-in-out;
-}
-
-#btn-cycle:hover svg,
-#btn-hide-ui:hover svg {
-    color: white;
-}
-
-/* Hide UI Button Hover State */
-#btn-hide-ui:hover {
-    background: rgba(239, 89, 0, 0.1);
-    border: 2px solid rgba(239, 89, 0, 0.3);
-}
-
-#btn-hide-ui:hover svg {
-    color: rgba(239, 89, 0, 1);
-}
-
-/* Gentle Rotation for Cycle Button */
-#btn-cycle.active svg {
-    color: rgba(135, 209, 86, 0.9);
-    animation: gentle-rotate 10s linear infinite;
-}
-
-@keyframes gentle-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Responsive Design */
-@media (max-width: 810px) {
-    .title { 
-        font-size: 40px; 
-        line-height: 1.05; 
-    }
-
-    .coordinates { 
-        font-size: 14px; 
-    }
-
-    .description { 
-        font-size: 16px; 
-    }
-
-    .controls {
-        right: 20px;
-        bottom: 20px;
-        width: calc(100% - 40px);
-        max-width: 400px;
-    }
-
-    .controls-view-modes,
-    .controls-action-buttons {
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .controls-view-modes button,
-    .controls-action-buttons button {
-        flex-grow: 1;
-        max-width: calc(50% - 8px);
-        padding: 10px;
-        font-size: 12px;
-    }
-}
-
-/* Smooth UI Visibility Toggle */
-.overlay,
-.controls {
-    opacity: 0;
-    visibility: hidden;
-    transition: 
-        opacity 0.5s ease-out, 
-        visibility 0.5s ease-out;
-}
-
-.overlay:not(.ui-hidden),
-.controls:not(.ui-hidden) {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Ensure interactive elements remain clickable */
-.overlay .title,
-.overlay button,
-.overlay .nav-container {
-    pointer-events: auto;
-}
-
-.ui-hidden {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    transition: 
-        opacity 0.5s ease-in-out, 
-        visibility 0.5s ease-in-out;
-}
-
-/* Centered UI Hide Notification */
-#ui-hide-notification {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: white;
-    text-align: center;
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.5),
-        -2px -2px 4px rgba(0, 0, 0, 0.5),
-        2px -2px 4px rgba(0, 0, 0, 0.5),
-        -2px 2px 4px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    animation: fade-in-out 3s ease-in-out;
-    pointer-events: none;
-}
-
-@keyframes fade-in-out {
-    0%, 100% { opacity: 0; }
-    10%, 90% { opacity: 1; }
-}
-
-/* Other Utility Styles */
+/* Special utility overlays */
 #fade-overlay {
     position: fixed;
     top: 0;
@@ -314,22 +150,263 @@ button.active {
     transition: opacity 0.5s ease-out;
 }
 
+/* Hide the default PhotoSphere loader */
 .psv-loader-container {
     display: none !important;
 }
 
+/* ============================
+   3. TYPOGRAPHY
+   ============================ */
+.title {
+    font-size: 78px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: auto; /* Make the title clickable */
+    user-select: none; /* Prevent text selection */
+}
+
+.title:hover {
+    opacity: 0.7;
+}
+
+.coordinates {
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+}
+
+.description { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 18px; 
+    font-weight: 400; 
+    max-width: 600px; 
+    line-height: 1.4; 
+    word-wrap: break-word;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.7);
+    /* Visibility handling */
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    pointer-events: none; /* Don't block clicks */
+    user-select: none; /* Prevent text selection */
+}
+
+/* ============================
+   4. UI COMPONENTS
+   ============================ */
+/* UI notification for hidden controls */
+#ui-hide-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    /* Text shadow on all sides for better visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                -2px -2px 4px rgba(0, 0, 0, 0.5),
+                2px -2px 4px rgba(0, 0, 0, 0.5),
+                -2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out;
+    pointer-events: none;
+}
+
+/* Force PhotoSphere background to black */
 .psv-container {
     background: black !important;
 }
 
-/* Cycle Button Active State */
+/* ============================
+   5. CONTROLS & BUTTONS
+   ============================ */
+/* Base style for all control buttons */
+.controls-view-modes button,
+.controls-action-buttons button {
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    
+    /* Button sizing */
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 50px;
+    padding: 14px 28px;
+    
+    /* Typography */
+    font-size: 1rem;
+    font-weight: 600;
+    
+    /* Display */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Effects */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+    will-change: opacity, transform;
+}
+
+/* Square action buttons */
+.controls-action-buttons button {
+    width: 50px;
+    padding: 14px;
+}
+
+/* Button states */
+button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+button.active {
+    background: rgba(255, 223, 77, 0.1);
+    border: 2px solid rgba(255, 223, 77, 0.3);
+    color: white;
+}
+
+/* Special states for action buttons */
+#btn-cycle,
+#btn-hide-ui {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-cycle svg,
+#btn-hide-ui svg {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.3s ease-in-out;
+}
+
+#btn-cycle:hover svg,
+#btn-hide-ui:hover svg {
+    color: white;
+}
+
+/* Unique cycle button active state */
 #btn-cycle.active {
-    background: rgba(135, 209, 86, 0.1); /* Subtle green background */
+    background: rgba(135, 209, 86, 0.1); /* Green background */
     border: 2px solid rgba(135, 209, 86, 0.3); /* Green border */
 }
 
-/* Mobile Responsive Controls */
+#btn-cycle.active svg {
+    color: rgba(135, 209, 86, 0.9);
+    animation: gentle-rotate 10s linear infinite;
+}
+
+/* Unique UI toggle button hover state */
+#btn-hide-ui:hover {
+    background: rgba(239, 89, 0, 0.1);
+    border: 2px solid rgba(239, 89, 0, 0.3);
+}
+
+#btn-hide-ui:hover svg {
+    color: rgba(239, 89, 0, 1);
+}
+
+/* Back button styling */
+.back-button {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    font-size: 14px;
+    background: rgba(50, 50, 50, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: lowercase;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.3s ease, 
+                color 0.3s ease, 
+                backdrop-filter 0.5s ease-out;
+}
+
+.back-button:hover {
+    background: rgba(50, 50, 50, 0.7);
+    color: #fff;
+}
+
+/* ============================
+   6. ANIMATIONS & TRANSITIONS
+   ============================ */
+/* Define transition for UI elements to improve performance */
+.overlay *,
+.controls *,
+.nav-container * {
+    will-change: opacity, transform;
+}
+
+/* State class for hiding UI elements */
+.ui-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.5s ease-in-out, 
+                visibility 0.5s ease-in-out,
+                transform 0.5s ease-in-out,
+                background-color 0.5s ease-in-out;
+}
+
+/* Ensure interactive elements remain clickable */
+.overlay .title,
+.overlay button,
+.overlay .nav-container {
+    pointer-events: auto;
+}
+
+/* Animation for the cycle button */
+@keyframes gentle-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Animation for notification fade-in-out */
+@keyframes fade-in-out {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+
+/* ============================
+   7. MEDIA QUERIES
+   ============================ */
+/* Responsive layout for smaller screens */
 @media (max-width: 810px) {
+    /* Typography adjustments */
+    .title { 
+        font-size: 40px; 
+        line-height: 1.05; 
+    }
+
+    .coordinates { 
+        font-size: 14px; 
+    }
+
+    .description { 
+        font-size: 16px; 
+    }
+
+    /* Controls positioning */
     .controls {
         right: 20px;
         bottom: 20px;
@@ -338,6 +415,7 @@ button.active {
         align-items: flex-end;
     }
 
+    /* Action buttons layout */
     .controls-action-buttons {
         justify-content: flex-end;
     }
@@ -350,6 +428,7 @@ button.active {
         aspect-ratio: 1 / 1;
     }
 
+    /* View mode buttons layout */
     .controls-view-modes {
         justify-content: center;
         gap: 8px;
@@ -364,23 +443,10 @@ button.active {
     }
 }
 
-/* Back Button Styling */
-.back-button {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 300;
-    font-size: 14px;
-    background: rgba(50, 50, 50, 0.4);
-    color: rgba(255, 255, 255, 0.8);
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    backdrop-filter: blur(8px);
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-    text-transform: lowercase;
-}
-
-.back-button:hover {
-    background: rgba(50, 50, 50, 0.7);
-    color: #fff;
+/* Special handling for touch devices */
+@media (hover: none) {
+    /* Override hover effects for touch devices */
+    .title:hover {
+        opacity: 1 !important;
+    }
 }

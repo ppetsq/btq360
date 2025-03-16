@@ -1,75 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Overlook Hotel - Virtual Showroom</title>
-
-    <!-- Load dependencies locally -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://assets.360.petsq.works/btq360/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://assets.360.petsq.works/btq360/favicon.ico">
+    
+    <!-- Google Fonts - Consolidated -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- PhotoSphere Viewer - Core files -->
+    <link rel="stylesheet" href="libs/photo-sphere-viewer.min.css">
     <script src="libs/three.min.js"></script>
     <script src="libs/uevent.min.js"></script>
-
-    <!-- Load PhotoSphereViewer locally -->
-    <link rel="stylesheet" href="libs/photo-sphere-viewer.min.css">
     <script src="libs/photo-sphere-viewer.min.js"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Custom minimal loader -->
+    <!-- Loading overlay -->
     <div id="custom-loader"></div>
+    <div id="fade-overlay" class="fade-overlay"></div>
     
-    <!-- Main container to hold everything -->
+    <!-- Main application container -->
     <div class="main-container">
-        <!-- Viewer container -->
+        <!-- Panorama viewer container -->
         <div class="viewer-container" id="viewer"></div>
-        
-        <!-- Custom black overlay that stays until scene is ready -->
-        <div id="fade-overlay" class="fade-overlay"></div>
         
         <!-- UI elements -->
         <div class="overlay">
+            <!-- Title area -->
             <h1 class="title" onclick="toggleDescription()">THE OVERLOOK HOTEL</h1>
+            
+            <!-- Navigation and location -->
             <div class="nav-container">
                 <button class="back-button" onclick="goBack()">← back</button>
                 <p class="coordinates">39.7392° N, 105.9903° E</p>
             </div>
-            <p class="description" id="description">Step inside this historic suite, where time stands still and the past lingers in the dimly lit corridors. Offering absolute solitude, this room is perfect for those seeking inspiration—or perhaps an eternal stay. Previous guests have described their experience as 'mind-bending' and 'unforgettable'—though we can't quite recall who they were. Just remember: all work and no play makes for an uneventful stay.</p>
+            
+            <!-- Description text -->
+            <p class="description" id="description">
+                Step inside this historic suite, where time stands still and the past lingers in the dimly lit corridors. 
+                Offering absolute solitude, this room is perfect for those seeking inspiration—or perhaps an eternal stay. 
+                Previous guests have described their experience as 'mind-bending' and 'unforgettable'—though we can't 
+                quite recall who they were. Just remember: all work and no play makes for an uneventful stay.
+            </p>
         </div>
 
-        <!-- Controls -->
-<!-- Replace your existing controls div with this -->
-<!-- Controls -->
-<!-- Controls -->
-<div class="controls">
-    <div class="controls-action-buttons">
-        <button id="btn-cycle" onclick="toggleCycle()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-            </svg>
-        </button>
-        <button id="btn-hide-ui" onclick="toggleUIVisibility()" title="Hide UI">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-    </div>
-    <div class="controls-view-modes">
-        <button id="btn-day" onclick="changeView('day')">Day</button>
-        <button id="btn-evening" onclick="changeView('evening')">Evening</button>
-        <button id="btn-night" onclick="changeView('night')">Night</button>
-        <button id="btn-off" onclick="changeView('off')">Off</button>
-    </div>
-</div>
+        <!-- Control panel -->
+        <div class="controls">
+            <!-- Action buttons -->
+            <div class="controls-action-buttons">
+                <!-- Auto-cycle button -->
+                <button id="btn-cycle" onclick="toggleCycle()" title="Auto cycle through views">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                    </svg>
+                </button>
+                
+                <!-- Hide UI button -->
+                <button id="btn-hide-ui" onclick="toggleUIVisibility()" title="Hide UI">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- View mode selector buttons -->
+            <div class="controls-view-modes">
+                <button id="btn-day" onclick="changeView('day')">Day</button>
+                <button id="btn-evening" onclick="changeView('evening')">Evening</button>
+                <button id="btn-night" onclick="changeView('night')">Night</button>
+                <button id="btn-off" onclick="changeView('off')">Off</button>
+            </div>
+        </div>
     </div>
     
     <!-- Custom JS -->
