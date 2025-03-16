@@ -48,3 +48,76 @@
     border-color: #FFDF4D;
     box-shadow: 0 0 8px rgba(255, 223, 77, 0.2);
 }
+
+/* Form checkbox styles */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form-checkbox input {
+    margin-right: 8px;
+    cursor: pointer;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid rgba(255, 223, 77, 0.3);
+    border-radius: 3px;
+    background-color: rgba(15, 15, 15, 0.8);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-checkbox input:checked {
+    background-color: rgba(255, 223, 77, 0.2);
+    border-color: rgba(255, 223, 77, 0.5);
+}
+
+.form-checkbox input:checked:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    border: solid #FFDF4D;
+    border-width: 0 1.5px 1.5px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+    display: block;
+}
+
+.form-checkbox label {
+    font-size: 10px;
+    color: #999999;
+    cursor: pointer;
+}
+
+/* Success message styles */
+.form-success {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(135, 209, 86, 0.1);
+    border: 1px solid rgba(135, 209, 86, 0.2);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.form-success svg {
+    color: #87D156;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.form-success p {
+    color: #E6E6E6;
+    margin-bottom: 0;
+}

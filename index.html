@@ -362,12 +362,26 @@
         <div class="container">
             <h2 class="fade-in">redeem your discount</h2>
             <p class="contact-note fade-in delay-200">leave your email address and we'll reach out within 24 hours to discuss your vision.</p>
-            <form action="https://formspree.io/f/xqapkqqk" method="POST" class="contact-form fade-in delay-100">
+            
+            <form action="https://formspree.io/f/xqapkqqk" method="POST" class="contact-form fade-in delay-100" id="email-form">
                 <div class="form-group">
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="your email" required>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I agree to be contacted about boutique360 services</label>
                 </div>
                 <button type="submit" class="cta-button">send</button>
+                <!-- No hidden _next field needed anymore -->
             </form>
+            
+            <div id="thank-you" class="form-success">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>thank you! we'll be in touch soon.</p>
+            </div>
         </div>
     </section>
 
@@ -386,5 +400,6 @@
     <script src="js/countdown.js"></script>
     <script src="js/faq.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/form-handler.js"></script>
 </body>
 </html>
