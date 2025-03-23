@@ -1,0 +1,393 @@
+/* Industries section - updated with visual style similar to device access section */
+.industries {
+    padding: 80px 0;
+    border-top: 1px solid rgba(135, 209, 86, 0.1);
+    background-color: #050505;
+}
+
+.industries h2 {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+/* Industries grid with better fade effect */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    margin-bottom: 50px;
+    position: relative;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+/* Improved fade effect */
+.industries-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(5, 5, 5, 0) 30%,
+        rgba(5, 5, 5, 0.7) 70%,
+        rgba(5, 5, 5, 1) 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+.industry-card {
+    background-color: #0f0f0f;
+    border-radius: 14px;
+    padding: 30px;
+    text-align: left;
+    cursor: default;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 320px;
+    position: relative;
+}
+
+/* Industry card colors and hover effects */
+.industry-card:nth-child(1) {
+    border: 1px solid rgba(255, 223, 77, 0.4); /* Yellow */
+    background-color: rgba(255, 223, 77, 0.05);
+}
+.industry-card:nth-child(1):hover {
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
+}
+
+.industry-card:nth-child(2) {
+    border: 1px solid rgba(135, 209, 86, 0.4); /* Green */
+    background-color: rgba(135, 209, 86, 0.05);
+}
+.industry-card:nth-child(2):hover {
+    box-shadow: 0 0 15px rgba(135, 209, 86, 0.3);
+}
+
+.industry-card:nth-child(3) {
+    border: 1px solid rgba(239, 89, 0, 0.4); /* Orange */
+    background-color: rgba(239, 89, 0, 0.05);
+}
+.industry-card:nth-child(3):hover {
+    box-shadow: 0 0 15px rgba(239, 89, 0, 0.3);
+}
+
+.industry-card:nth-child(4) {
+    border: 1px solid rgba(255, 223, 77, 0.4); /* Yellow again */
+    background-color: rgba(255, 223, 77, 0.05);
+}
+.industry-card:nth-child(4):hover {
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
+}
+
+/* Industry icons - refined styling */
+.industry-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 0 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+}
+
+/* Icon colors and backgrounds */
+.industry-icon-hotel {
+    background-color: rgba(255, 223, 77, 0.05);
+    border: 1px solid rgba(255, 223, 77, 0.4);
+}
+.industry-icon-hotel svg {
+    stroke: rgba(255, 223, 77, 0.9);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.industry-icon-venue {
+    background-color: rgba(135, 209, 86, 0.05);
+    border: 1px solid rgba(135, 209, 86, 0.4);
+}
+.industry-icon-venue svg {
+    stroke: rgba(135, 209, 86, 0.9);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.industry-icon-realestate {
+    background-color: rgba(239, 89, 0, 0.05);
+    border: 1px solid rgba(239, 89, 0, 0.4);
+}
+.industry-icon-realestate svg {
+    stroke: rgba(239, 89, 0, 0.9);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.industry-icon-airbnb {
+    background-color: rgba(255, 89, 95, 0.05);
+    border: 1px solid rgba(255, 89, 95, 0.4);
+}
+.industry-icon-airbnb svg {
+    fill: rgba(255, 89, 95, 0.9);
+}
+
+/* Icon sizing */
+.industry-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.industry-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #E6E6E6;
+    text-align: left;
+}
+
+.industry-card p {
+    font-size: 15px;
+    color: #999999;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.industries-cta {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #BBBBBB;
+}
+
+.industries-cta b {
+    color: #FFFFFF; /* Making "and more..." fully white */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1200px) {
+    .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .industries-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+    }
+    
+    .industry-card {
+        min-height: auto;
+        padding: 25px 15px;
+    }
+    
+    .industry-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+    
+    .industry-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Additional CSS for foldable industry cards */
+
+/* Base state for industry card content */
+.industry-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.3s ease;
+    opacity: 0;
+    padding-top: 10px;
+  }
+  
+  /* Expanded state */
+  .industry-card.expanded .industry-card-content {
+    max-height: 500px; /* Large enough for any content, will be set dynamically in JS */
+    opacity: 1;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  }
+  
+  /* Toggle indicator */
+  .toggle-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+  }
+  
+  /* Industry-specific toggle colors */
+  .industry-card:nth-child(1) .toggle-indicator {
+    border-color: rgba(255, 223, 77, 0.2);
+  }
+  
+  .industry-card:nth-child(2) .toggle-indicator {
+    border-color: rgba(135, 209, 86, 0.2);
+  }
+  
+  .industry-card:nth-child(3) .toggle-indicator {
+    border-color: rgba(239, 89, 0, 0.2);
+  }
+  
+  .industry-card:nth-child(4) .toggle-indicator {
+    border-color: rgba(255, 223, 77, 0.2);
+  }
+  
+  /* Hover style for toggle */
+  .toggle-indicator:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Rotate plus symbol when expanded */
+  .industry-card.expanded .toggle-indicator {
+    transform: rotate(45deg);
+  }
+  
+  /* Style for Airbnb icon to match the yellow card */
+  .industry-card:nth-child(4) .industry-icon-airbnb {
+    background-color: rgba(255, 223, 77, 0.05);
+    border: 1px solid rgba(255, 223, 77, 0.4);
+  }
+  
+  .industry-card:nth-child(4) .industry-icon-airbnb svg {
+    fill: rgba(255, 223, 77, 0.9);
+  }
+  
+  /* Adjust card title and layout for foldable behavior */
+  .industry-card h3 {
+    padding-right: 30px; /* Make room for toggle indicator */
+  }
+  
+  /* Smooth transition for the card height */
+  .industry-card {
+    transition: height 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  /* Adjusting min-height for collapsed state */
+  .industry-card:not(.expanded) {
+    min-height: 130px;
+  }
+  
+  /* Make sure h3 is clickable */
+  .industry-card h3 {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Style for paragraphs inside the content area */
+  .industry-card-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  /* Additional reset CSS to prevent any conflicts */
+.industry-card {
+    position: relative; /* Ensure proper positioning */
+    height: auto; /* Reset any fixed heights */
+    overflow: visible; /* Allow content to show properly */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .industry-card.expanded {
+    min-height: auto; /* Allow card to expand based on content */
+  }
+  
+  /* Ensure only this card's content expands, not others */
+  .industry-card .industry-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    opacity: 0;
+    padding-top: 10px;
+  }
+  
+  /* Target only the expanded card's content, not others */
+  .industry-card.expanded .industry-card-content {
+    max-height: 500px;
+    opacity: 1;
+  }
+  
+  /* Block any potential inherited transitions */
+  .industry-card * {
+    transition: none;
+  }
+  
+  /* Restore specific transitions we want */
+  .industry-card .industry-card-content,
+  .industry-card .toggle-indicator,
+  .industry-card.expanded .industry-card-content,
+  .industry-card.expanded .toggle-indicator {
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.3s ease,
+                transform 0.3s ease;
+  }
+  
+  /* Toggle indicator should be part of this card only */
+  .industry-card .toggle-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(0deg);
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Industry-specific toggle colors - applied directly without inheritance */
+  .industry-card:nth-child(1) .toggle-indicator {
+    border-color: rgba(255, 223, 77, 0.2);
+  }
+  
+  .industry-card:nth-child(2) .toggle-indicator {
+    border-color: rgba(135, 209, 86, 0.2);
+  }
+  
+  .industry-card:nth-child(3) .toggle-indicator {
+    border-color: rgba(239, 89, 0, 0.2);
+  }
+  
+  .industry-card:nth-child(4) .toggle-indicator {
+    border-color: rgba(255, 223, 77, 0.2);
+  }
+  
+  /* Explicitly set the transform for the toggle when expanded */
+  .industry-card.expanded .toggle-indicator {
+    transform: rotate(45deg);
+  }
+
+  
