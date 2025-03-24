@@ -1,4 +1,6 @@
-/* Complete rebuild of hero section CSS */
+/* Ultra simple hero fix - fixes all issues */
+
+/* Base styles - unchanged */
 .hero {
     height: 100vh;
     position: relative;
@@ -27,9 +29,9 @@
     z-index: 1;
 }
 
-/* Logo container - fixed in center */
+/* Logo container - ALWAYS absolute, never fixed */
 .logo-container {
-    position: absolute;
+    position: absolute; /* ALWAYS absolute */
     top: 0;
     left: 0;
     width: 100%;
@@ -48,9 +50,9 @@
     height: auto;
 }
 
-/* Text content container - initially hidden */
+/* Text content container - ALWAYS absolute, never fixed */
 .content-container {
-    position: absolute;
+    position: absolute; /* ALWAYS absolute */
     top: 0;
     left: 0;
     width: 100%;
@@ -93,7 +95,7 @@
     align-self: flex-start;
 }
 
-/* States for animation */
+/* States for animation - just control opacity, not position */
 .hero.text-visible .logo-container {
     opacity: 0;
     pointer-events: none;

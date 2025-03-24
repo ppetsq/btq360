@@ -36,111 +36,81 @@ function handleScrollAnimation() {
     });
 }
 
-/**
- * Hero section animation - complete rebuild
- */
+// Hero with two-stage scroll behavior
 document.addEventListener('DOMContentLoaded', function() {
-    // Elements with new structure
-    const heroSection = document.querySelector('.hero');
+    // Get elements
+    const hero = document.querySelector('.hero');
     const logoContainer = document.getElementById('hero-logo-container');
     const contentContainer = document.getElementById('hero-content-container');
-    const heroButton = document.querySelector('.hero-cta');
-    const body = document.body;
     
-    // Animation state
-    let animationComplete = false;
-    let animationInProgress = false;
-    
-    // Function to reveal the content
-    function revealContent() {
-        // Don't do anything if animation is already in progress
-        if (animationInProgress || animationComplete) return;
+    if (hero && logoContainer && contentContainer) {
+        let transitionTriggered = false;
+        let scrollingEnabled = false;
+        let autoTransitionTimer;
         
-        // Set flag to indicate animation is in progress
-        animationInProgress = true;
-        
-        // Temporarily disable scrolling
-        body.style.overflow = 'hidden';
-        
-        // Add class to trigger transitions
-        heroSection.classList.add('text-visible');
-        
-        // Re-enable scrolling after animation completes
-        setTimeout(() => {
-            body.style.overflow = '';
-            animationComplete = true;
-            animationInProgress = false;
-        }, 800);
-    }
-    
-    // Scroll handler
-    const scrollHandler = function(e) {
-        // If animation is already complete, allow normal scrolling
-        if (animationComplete) return;
-        
-        // Prevent default scroll
-        e.preventDefault();
-        
-        // Trigger the reveal animation
-        revealContent();
-        
-        // Return to top to ensure hero section stays visible during animation
-        window.scrollTo(0, 0);
-    };
-    
-    // Add wheel event listener for more precise scroll control
-    window.addEventListener('wheel', scrollHandler, { passive: false });
-    
-    // Touch events for mobile
-    window.addEventListener('touchmove', function(e) {
-        if (!animationComplete) {
-            e.preventDefault();
-            revealContent();
-        }
-    }, { passive: false });
-    
-    // Click handler for hero section
-    heroSection.addEventListener('click', function(e) {
-        // Don't proceed if we clicked the CTA button
-        if (e.target.closest('.hero-cta')) return;
-        
-        if (!animationComplete) {
-            e.preventDefault();
-            revealContent();
-        }
-    });
-    
-    // Set timeout for auto-reveal after 5 seconds
-    setTimeout(function() {
-        if (!animationComplete) {
-            revealContent();
-        }
-    }, 5000);
-    
-    // Setup CTA button to scroll to next section
-    if (heroButton) {
-        heroButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // If animation isn't complete, reveal content first
-            if (!animationComplete) {
-                revealContent();
+        // Function to show content instead of logo
+        function showContent(enableScrolling = false) {
+            if (!transitionTriggered) {
+                transitionTriggered = true;
+                hero.classList.add('text-visible');
+                clearTimeout(autoTransitionTimer);
                 
-                // Wait for animation to complete before scrolling
-                setTimeout(() => {
-                    const nextSection = document.querySelector('.industries');
-                    if (nextSection) {
-                        nextSection.scrollIntoView({behavior: 'smooth'});
-                    }
-                }, 800);
-            } else {
-                // Animation is complete, just scroll
-                const nextSection = document.querySelector('.industries');
-                if (nextSection) {
-                    nextSection.scrollIntoView({behavior: 'smooth'});
-                }
+                // Enable scrolling if requested (for click or timeout)
+                scrollingEnabled = enableScrolling;
+            }
+        }
+        
+        // 1. Automatic transition after 5 seconds - enables scrolling immediately
+        autoTransitionTimer = setTimeout(function() {
+            showContent(true); // Enable scrolling right away
+        }, 5000);
+        
+        // 2. Click to transition - enables scrolling immediately
+        hero.addEventListener('click', function() {
+            showContent(true); // Enable scrolling right away
+        });
+        
+        // 3. First scroll attempt - prevent actual scrolling
+        function handleFirstScroll(e) {
+            if (!transitionTriggered) {
+                // Prevent actual scrolling for the first wheel/touch event
+                e.preventDefault();
+                // Show content but don't enable scrolling yet
+                showContent(false);
+                
+                // After transition completes, enable scrolling
+                setTimeout(function() {
+                    scrollingEnabled = true;
+                }, 800); // Match transition duration
+            }
+        }
+        
+        // Add wheel event with passive: false to allow preventDefault
+        window.addEventListener('wheel', handleFirstScroll, { passive: false });
+        
+        // For touch devices
+        window.addEventListener('touchmove', handleFirstScroll, { passive: false });
+        
+        // 4. Set up scroll blocking for all scroll events
+        window.addEventListener('wheel', function(e) {
+            // If transition happened but scrolling not yet enabled, prevent scroll
+            if (transitionTriggered && !scrollingEnabled) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        window.addEventListener('touchmove', function(e) {
+            // If transition happened but scrolling not yet enabled, prevent scroll
+            if (transitionTriggered && !scrollingEnabled) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // 5. Keyboard navigation
+        window.addEventListener('keydown', function(e) {
+            if ((e.key === ' ' || e.key === 'Enter') && !transitionTriggered) {
+                showContent(true); // Enable scrolling right away
             }
         });
     }
 });
-
