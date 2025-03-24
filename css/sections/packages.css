@@ -299,3 +299,10 @@
         font-size: 12px;
     }
 }
+
+.package .custom-price {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: 10px;
+}
