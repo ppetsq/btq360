@@ -11,21 +11,19 @@
 }
 
 /* Industries grid with improved mobile spacing */
-/* Change this in your industries CSS file */
 .industries-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
     margin-bottom: 50px;
     position: relative;
-    /* Remove the max-width: 1200px; line or modify it to match header width */
     width: 100%; /* Match header width */
     margin-left: auto;
     margin-right: auto;
     padding: 0; /* Remove the side padding */
 }
 
-/* Also add this class to create a consistent container width */
+/* Consistent container width */
 .container {
     width: 100%;
     max-width: 1200px; /* Set a consistent max-width */
@@ -33,9 +31,9 @@
     padding: 0 40px; /* Consistent padding */
 }
 
-/* Industry card base styles */
+/* Industry card base styles - REMOVED BORDER RADIUS */
 .industry-card {
-    border-radius: 14px;
+    border-radius: 0px; /* Changed from 14px to 0px */
     padding: 22px;
     text-align: left;
     cursor: pointer;
@@ -100,7 +98,7 @@
     box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
 }
 
-/* Card content wrappers */
+/* Card content wrappers - REMOVED BORDER RADIUS */
 .card-preview {
     display: flex;
     flex-direction: column;
@@ -111,7 +109,7 @@
     left: 0;
     width: 100%;
     padding: 22px;
-    border-radius: 14px; /* Added border-radius to match card */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
 .card-header {
@@ -121,12 +119,12 @@
     width: 100%;
     height: 100%;
     position: relative;
-    border-radius: 14px; /* Added border-radius */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
 .title-wrapper {
     margin-top: auto;
-    border-radius: 14px; /* Added border-radius */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
 .card-content {
@@ -137,29 +135,29 @@
     height: 100%;
     position: relative;
     justify-content: flex-end;
-    border-radius: 14px; /* Added border-radius to match card */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
 /* Active state transitions */
 .industry-card.active .card-preview {
     opacity: 0;
     pointer-events: none;
-    border-radius: 14px; /* Maintain border-radius in active state */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
 .industry-card.active .card-content {
     opacity: 1;
-    border-radius: 14px; /* Maintain border-radius in active state */
+    border-radius: 0px; /* Changed from 14px to 0px */
 }
 
-/* Icon styles */
+/* Icon styles - KEPT BORDER RADIUS FOR ICON */
 .industry-icon {
     width: 55px;
     height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 12px; /* Keeping this circular */
     transition: all 0.3s ease;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
@@ -217,7 +215,7 @@
     width: 100%;
 }
 
-/* Completely redesigned toggle button */
+/* Completely redesigned toggle button - KEPT CIRCULAR */
 .expand-toggle {
     width: 24px;
     height: 24px;
@@ -389,9 +387,7 @@
     }
 }
 
-/* Add this to your industries.css file */
-
-/* Industries grid with improved mobile spacing */
+/* Industries grid with fade effect */
 .industries-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -404,7 +400,7 @@
     padding: 0;
 }
 
-/* Add this new rule for the fade effect */
+/* Fade effect */
 .industries-grid:before {
     content: '';
     position: absolute;
@@ -421,11 +417,10 @@
     z-index: 2;
 }
 
-/* Make sure cards appear above the fade */
+/* Make sure cards appear above the fade but don't have rounded corners */
 .industry-card {
     position: relative;
     z-index: 1;
-    /* Other existing styles remain unchanged */
 }
 
 /* Adjust the fade effect for different screen sizes */
