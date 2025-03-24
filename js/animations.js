@@ -36,12 +36,15 @@ function handleScrollAnimation() {
     });
 }
 
-// Hero with two-stage scroll behavior
+// Final polished hero section with smooth animations and scroll-to-next functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Get elements
     const hero = document.querySelector('.hero');
     const logoContainer = document.getElementById('hero-logo-container');
     const contentContainer = document.getElementById('hero-content-container');
+    const heroCta = document.querySelector('.hero-cta');
+    const heroBackground = document.querySelector('.hero-background');
+    const industriesSection = document.querySelector('.industries'); // Next section after hero
     
     if (hero && logoContainer && contentContainer) {
         let transitionTriggered = false;
@@ -59,11 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollingEnabled = enableScrolling;
             }
         }
-        
-        // 1. Automatic transition after 5 seconds - enables scrolling immediately
-        autoTransitionTimer = setTimeout(function() {
-            showContent(true); // Enable scrolling right away
-        }, 5000);
         
         // 2. Click to transition - enables scrolling immediately
         hero.addEventListener('click', function() {
@@ -112,5 +110,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 showContent(true); // Enable scrolling right away
             }
         });
+        
+        // 6. CTA button click - scroll to next section
+        if (heroCta && industriesSection) {
+            heroCta.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent triggering the hero click event
+                
+                // Enable scrolling
+                scrollingEnabled = true;
+                
+                // Show content if not already visible
+                if (!transitionTriggered) {
+                    showContent(true);
+                }
+                
+                // Scroll to the next section
+                setTimeout(function() {
+                    industriesSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            });
+        }
     }
 });
