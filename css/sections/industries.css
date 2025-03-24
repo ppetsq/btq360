@@ -56,7 +56,7 @@
     box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 .industry-card:nth-child(1):hover {
-    box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 
 .industry-card:nth-child(2) {
@@ -69,7 +69,7 @@
     box-shadow: 0 0 15px rgba(135, 209, 86, 0.3);
 }
 .industry-card:nth-child(2):hover {
-    box-shadow: 0 5px 15px rgba(135, 209, 86, 0.1);
+    box-shadow: 0 0 15px rgba(135, 209, 86, 0.3);
 }
 
 .industry-card:nth-child(3) {
@@ -82,7 +82,7 @@
     box-shadow: 0 0 15px rgba(239, 89, 0, 0.3);
 }
 .industry-card:nth-child(3):hover {
-    box-shadow: 0 5px 15px rgba(239, 89, 0, 0.1);
+    box-shadow: 0 0 15px rgba(239, 89, 0, 0.3);
 }
 
 .industry-card:nth-child(4) {
@@ -95,7 +95,7 @@
     box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 .industry-card:nth-child(4):hover {
-    box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 
 /* Card content wrappers - REMOVED BORDER RADIUS */
@@ -150,61 +150,77 @@
     border-radius: 0px; /* Changed from 14px to 0px */
 }
 
-/* Icon styles - KEPT BORDER RADIUS FOR ICON */
+/* Icon styles - Updated to match device-access section */
 .industry-icon {
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px; /* Keeping this circular */
+    border-radius: 14px;
     transition: all 0.3s ease;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
 }
 
+/* Hotel Icon - Yellow */
 .industry-icon-hotel {
     background-color: rgba(255, 223, 77, 0.1);
     border: 1px solid rgba(255, 223, 77, 0.4);
 }
 .industry-icon-hotel svg {
-    stroke: rgba(255, 223, 77, 0.9);
-    fill: none;
-    stroke-width: 1.5;
+    stroke: rgba(255, 223, 77, 0.8);
+    fill: rgba(255, 223, 77, 0.2);
+    width: 32px;
+    height: 32px;
+}
+.industry-icon-hotel:hover {
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 
+/* Venue Icon - Green */
 .industry-icon-venue {
     background-color: rgba(135, 209, 86, 0.1);
     border: 1px solid rgba(135, 209, 86, 0.4);
 }
 .industry-icon-venue svg {
-    stroke: rgba(135, 209, 86, 0.9);
-    fill: none;
-    stroke-width: 1.5;
+    stroke: rgba(135, 209, 86, 0.8);
+    fill: rgba(135, 209, 86, 0.2);
+    width: 32px;
+    height: 32px;
+}
+.industry-icon-venue:hover {
+    box-shadow: 0 0 15px rgba(135, 209, 86, 0.3);
 }
 
+/* Real Estate Icon - Orange */
 .industry-icon-realestate {
     background-color: rgba(239, 89, 0, 0.1);
     border: 1px solid rgba(239, 89, 0, 0.4);
 }
 .industry-icon-realestate svg {
-    stroke: rgba(239, 89, 0, 0.9);
-    fill: none;
-    stroke-width: 1.5;
+    stroke: rgba(239, 89, 0, 0.8);
+    fill: rgba(239, 89, 0, 0.2);
+    width: 32px;
+    height: 32px;
+}
+.industry-icon-realestate:hover {
+    box-shadow: 0 0 15px rgba(239, 89, 0, 0.3);
 }
 
+/* Airbnb Icon - Yellow (similar to the first) */
 .industry-icon-airbnb {
     background-color: rgba(255, 223, 77, 0.1);
     border: 1px solid rgba(255, 223, 77, 0.4);
 }
 .industry-icon-airbnb svg {
-    fill: rgba(255, 223, 77, 0.9);
+    stroke: none; /* No stroke for the Airbnb logo */
+    fill: rgba(255, 223, 77, 0.8);
+    width: 32px;
+    height: 32px;
 }
-
-/* Icon sizing */
-.industry-icon svg {
-    width: 28px;
-    height: 28px;
+.industry-icon-airbnb:hover {
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
 }
 
 /* Card titles and expand indicator */
@@ -411,7 +427,7 @@
     background: radial-gradient(
         circle at center,
         rgba(5, 5, 5, 0) 40%,
-        rgba(5, 5, 5, 0.9) 95%
+        rgba(5, 5, 5, 0.5) 95%
     );
     pointer-events: none;
     z-index: 2;
@@ -429,7 +445,7 @@
         background: radial-gradient(
             circle at center,
             rgba(5, 5, 5, 0) 30%,
-            rgba(5, 5, 5, 0.9) 90%
+            rgba(5, 5, 5, 0.5) 90%
         );
     }
 }
@@ -439,7 +455,7 @@
         background: radial-gradient(
             ellipse at center,
             rgba(5, 5, 5, 0) 40%,
-            rgba(5, 5, 5, 0.9) 95%
+            rgba(5, 5, 5, 0.55) 95%
         );
     }
 }
@@ -468,3 +484,17 @@
     }
 }
 
+.airbnb-icon-svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* This targets the SVG paths inside the object tag */
+.industry-icon-airbnb object {
+    pointer-events: none; /* Makes sure clicks go through to the card */
+}
+
+/* For coloring the SVG, you might need to add !important */
+.industry-icon-airbnb svg path {
+    fill: rgba(255, 223, 77, 0.8) !important;
+}
