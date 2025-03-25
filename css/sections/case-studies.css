@@ -302,7 +302,7 @@
     background: radial-gradient(
         circle at center,
         rgba(10, 10, 10, 0) 30%,
-        rgba(10, 10, 10, 0.7) 100%
+        rgba(10, 10, 10, 1) 100%
     );
     pointer-events: none;
     z-index: 2;
