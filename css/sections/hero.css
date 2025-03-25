@@ -123,3 +123,20 @@
         padding: 0 20px;
     }
 }
+
+/* Add this to your CSS file (animations.css or hero.css) */
+
+/* Reset the cursor for the hero section */
+.hero {
+    cursor: default;
+}
+
+/* Keep pointer cursor for the CTA button */
+.hero-cta {
+    cursor: pointer;
+}
+
+/* Make sure the hero section is still clickable without showing pointer cursor */
+.hero.ready-for-interaction {
+    cursor: default;
+}
