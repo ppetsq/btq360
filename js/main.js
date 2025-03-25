@@ -263,3 +263,53 @@ function initPageAnimations() {
         }, { once: true }); // Only trigger once
     }
 }
+
+// Add this to your main.js or create a new file case-studies.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all case study videos
+    const caseVideos = document.querySelectorAll('.case-video');
+    
+    // For each video, ensure proper loading and playback
+    caseVideos.forEach(video => {
+        // Force load the video
+        video.load();
+        
+        // Try to play the video (handles autoplay restrictions in some browsers)
+        let playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Playback started successfully
+                console.log('Video playback started');
+            })
+            .catch(error => {
+                // Auto-play was prevented
+                console.log('Auto-play was prevented:', error);
+                
+                // Add a play button or user interaction element if needed
+                const caseStudyImage = video.closest('.case-study-image');
+                
+                // Only add play functionality if autoplay fails
+                caseStudyImage.addEventListener('click', function() {
+                    video.play();
+                });
+            });
+        }
+        
+        // Handle video entering viewport for better performance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Video is in viewport - play it
+                    video.play();
+                } else {
+                    // Video is not in viewport - pause it to save resources
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.1 }); // 10% of the video needs to be visible
+        
+        observer.observe(video);
+    });
+});

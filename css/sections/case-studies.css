@@ -37,10 +37,6 @@
     transition: transform 0.3s ease;
 }
 
-.case-study-image:hover {
-    transform: translateY(-5px);
-}
-
 /* Static image styles replacing panorama with 20% zoom */
 .case-panorama {
     position: absolute;
@@ -284,3 +280,95 @@
         color: var(--accent-color);
     }
     
+/* Update for the case studies section */
+
+/* Adding fade effect to the edges of case studies images */
+.case-study-image {
+    position: relative;
+    min-height: 350px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Create a fading effect at the edges (similar to device-access) */
+.case-study-image:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(10, 10, 10, 0) 30%,
+        rgba(10, 10, 10, 0.7) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Update the category badge for a more modern, transparent white style */
+.case-study-category {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the video container */
+.case-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the video covers the container properly */
+    z-index: 1;
+}
+
+/* Remove overlay for video case study */
+.case-study:nth-child(2) .case-overlay {
+    opacity: 0;
+    background-color: transparent;
+}
+
+.case-study:nth-child(2):hover .case-overlay {
+    opacity: 0.3; /* Just a slight overlay on hover */
+}
+
+/* Make "view demo" text more visible on video hover */
+.case-study:nth-child(2):hover .view-demo-text {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile responsiveness adjustments */
+@media (max-width: 768px) {
+    .case-study-image {
+        min-height: 250px;
+    }
+    
+    .case-study-category {
+        font-size: 12px;
+        padding: 5px 10px;
+        top: 15px;
+        right: 15px;
+    }
+}
