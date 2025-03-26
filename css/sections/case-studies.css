@@ -27,28 +27,43 @@
     direction: ltr;
 }
 
-/* Case study image container styles */
+/* Case study image container styles - no rounded corners */
 .case-study-image {
     position: relative;
     min-height: 350px;
-    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-/* Static image styles replacing panorama with 20% zoom */
-.case-panorama {
+/* Fade-out effect at the edges */
+.case-study-image:before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 120%; /* Zoom in 20% */
-    height: 120%; /* Zoom in 20% */
-    background-color: #111;
-    background-size: cover;
-    background-position: center;
-    transition: filter 0.3s ease;
-    transform: translate(-10%, -10%); /* Center the zoomed image */
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(10, 10, 10, 0) 20%,
+        rgba(10, 10, 10, 0.3) 50%,
+        rgba(10, 10, 10, 1) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Video container styles for all case studies */
+.case-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: filter 0.5s ease; /* Removed transform transition */
 }
 
 /* Image overlay styles */
@@ -58,12 +73,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 1;
+    background-color: transparent;
+    opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 3;
 }
 
 /* View demo text that appears on hover */
@@ -77,26 +93,14 @@
     font-weight: 600;
     letter-spacing: 1px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     text-transform: lowercase;
     padding: 12px 30px;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Hover effects for case study image */
-.case-study-image:hover .case-panorama {
-    filter: blur(2px);
-}
-
-.case-study-image:hover .case-overlay {
-    opacity: 0.7;
-}
-
-.case-study-image:hover .view-demo-text {
-    opacity: 1;
+    z-index: 4;
 }
 
 /* Category badge styles */
@@ -104,15 +108,50 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: rgba(255, 223, 77, 0.2);
-    color: #FFDF4D;
-    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 6px 12px;
     border-radius: 4px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     z-index: 10;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+/* Hover effects for desktop */
+@media (min-width: 993px) {
+    /* Video effect on hover - removed scale transform, kept blur */
+    .case-study-image:hover .case-video {
+        /* Removed transform: scale(1.05); */
+        filter: brightness(0.8) blur(2px);
+    }
+    
+    /* Overlay effect on hover */
+    .case-study-image:hover .case-overlay {
+        opacity: 0.3;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Show view demo text on hover */
+    .case-study-image:hover .view-demo-text {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+        font-weight: 500;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Hide category on hover */
+    .case-study-image:hover .case-study-category {
+        opacity: 0;
+    }
 }
 
 /* Content section layout */
@@ -121,11 +160,11 @@
     flex-direction: column;
 }
 
-/* Title styling - removed hover color change */
+/* Title styling */
 .case-study-content h3 {
     font-size: 28px;
     margin-bottom: 15px;
-    color: #E6E6E6; /* Fixed color */
+    color: #E6E6E6;
 }
 
 /* Remove underline from title links */
@@ -141,28 +180,20 @@
     line-height: 1.7;
 }
 
-/* Features list container - first case study */
+/* Features list container styling for all case studies */
+.case-study-features-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    min-width: 280px;
+}
+
+/* Features list container positioning */
 .case-study:nth-child(2) .case-study-features-container {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
     align-self: flex-start; /* Left align for first case study */
-    min-width: 280px;
 }
 
-/* Features list container - second case study */
 .case-study:nth-child(3) .case-study-features-container {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
     align-self: flex-end; /* Right align for second case study */
-    min-width: 280px;
-}
-
-/* Features list container - third case study */
-.case-study:nth-child(4) .case-study-features-container {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    align-self: flex-start; /* Left align for third case study */
-    min-width: 280px;
 }
 
 /* Features title */
@@ -196,32 +227,30 @@
     color: #FFDF4D;
 }
 
-/* Fix for the Share Anywhere section */
-#share-anywhere-img {
-    background-image: url('https://assets.360.petsq.works/btq360/devices-mockup.jpg');
+/* Mobile CTA button that shows only on mobile */
+.mobile-cta {
+    display: none;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: lowercase;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
 }
 
-/* Legacy styles for backward compatibility */
-.case-study-results {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
-}
-
-.result-item {
-    flex: 1;
-}
-
-.result-number {
-    font-size: 36px;
-    font-weight: 700;
-    color: #FFDF4D;
-    margin-bottom: 5px;
-}
-
-.result-label {
-    font-size: 14px;
-    color: #BBBBBB;
+.mobile-cta:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Mobile responsiveness */
@@ -236,17 +265,26 @@
         min-height: 250px;
     }
     
-    /* All features containers align left on mobile */
-    .case-study:nth-child(2) .case-study-features-container,
-    .case-study:nth-child(3) .case-study-features-container,
-    .case-study:nth-child(4) .case-study-features-container {
-        align-self: flex-start;
-        width: 100%;
+    /* Remove hover effects on mobile */
+    .case-overlay, .view-demo-text {
+        display: none;
     }
     
-    .case-study-results {
-        flex-direction: column;
-        gap: 15px;
+    /* Always show categories on mobile */
+    .case-study-category {
+        opacity: 1 !important;
+    }
+    
+    /* Display mobile CTA button */
+    .mobile-cta {
+        display: block;
+    }
+    
+    /* All features containers align left on mobile */
+    .case-study:nth-child(2) .case-study-features-container,
+    .case-study:nth-child(3) .case-study-features-container {
+        align-self: flex-start;
+        width: 100%;
     }
 }
 
@@ -257,112 +295,6 @@
     
     .case-study-image {
         min-height: 200px;
-    }
-}
-
-    /* Additional styles for new elements */
-    .case-study ul.case-study-features {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 0;
-    }
-    
-    .case-study ul.case-study-features li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 8px;
-    }
-    
-    .case-study ul.case-study-features li:before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--accent-color);
-    }
-    
-/* Update for the case studies section */
-
-/* Adding fade effect to the edges of case studies images */
-.case-study-image {
-    position: relative;
-    min-height: 350px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-/* Create a fading effect at the edges (similar to device-access) */
-.case-study-image:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at center,
-        rgba(10, 10, 10, 0) 30%,
-        rgba(10, 10, 10, 1) 100%
-    );
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Update the category badge for a more modern, transparent white style */
-.case-study-category {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 10;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Styling for the video container */
-.case-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This ensures the video covers the container properly */
-    z-index: 1;
-}
-
-/* Remove overlay for video case study */
-.case-study:nth-child(2) .case-overlay {
-    opacity: 0;
-    background-color: transparent;
-}
-
-.case-study:nth-child(2):hover .case-overlay {
-    opacity: 0.3; /* Just a slight overlay on hover */
-}
-
-/* Make "view demo" text more visible on video hover */
-.case-study:nth-child(2):hover .view-demo-text {
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: white;
-    font-weight: 500;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Mobile responsiveness adjustments */
-@media (max-width: 768px) {
-    .case-study-image {
-        min-height: 250px;
     }
     
     .case-study-category {
