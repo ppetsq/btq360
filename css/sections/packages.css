@@ -63,19 +63,16 @@
 }
 
 .package:nth-child(1):hover {
-    transform: translateY(-5px);
     border-color: rgba(135, 209, 86, 0.3);
     box-shadow: 0 5px 15px rgba(135, 209, 86, 0.1);
 }
 
 .package:nth-child(2):hover {
-    transform: translateY(-5px);
     border-color: rgba(255, 223, 77, 0.3);
     box-shadow: 0 5px 15px rgba(255, 223, 77, 0.1);
 }
 
 .package:nth-child(3):hover {
-    transform: translateY(-5px);
     border-color: rgba(239, 89, 0, 0.3);
     box-shadow: 0 5px 15px rgba(239, 89, 0, 0.1);
 }
@@ -298,4 +295,11 @@
         padding: 8px 12px;
         font-size: 12px;
     }
+}
+
+.package .custom-price {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: 10px;
 }

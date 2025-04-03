@@ -14,14 +14,17 @@ function setupPanorama(containerId, imageUrl) {
     
     // Create scene, camera and renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / panoramaContainer.clientHeight, 0.1, 1000);
+    
+    // Special handling for founder section - use more zoom (lower FOV value)
+    const fov = containerId === 'founder-panorama-container' ? 35 : 75;
+    const camera = new THREE.PerspectiveCamera(fov, 16/9, 0.1, 1000);
     
     const renderer = new THREE.WebGLRenderer({ 
         alpha: true, 
         antialias: true,
         preserveDrawingBuffer: true // Prevents flashing on resize
     });
-    renderer.setSize(window.innerWidth, panoramaContainer.clientHeight);
+    renderer.setSize(panoramaContainer.clientWidth, panoramaContainer.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     panoramaContainer.appendChild(renderer.domElement);
     
@@ -35,16 +38,34 @@ function setupPanorama(containerId, imageUrl) {
     textureLoader.load(
         imageUrl, 
         function(texture) {
-            // Apply a slight blur to the texture for aesthetic effect
-            texture.minFilter = THREE.LinearFilter;
-            texture.magFilter = THREE.LinearFilter;
-            
-            const material = new THREE.MeshBasicMaterial({ 
-                map: texture
-            });
-            
-            const sphere = new THREE.Mesh(geometry, material);
-            scene.add(sphere);
+            // Check if this is the founder section to apply more blur
+            if (containerId === 'founder-panorama-container') {
+                // Apply more blur to the texture for the founder section
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
+                
+                // Create a blur effect using THREE.ShaderMaterial
+                const blurMaterial = new THREE.MeshBasicMaterial({ 
+                    map: texture,
+                    // Increase opacity of the material to create a soft blur effect
+                    opacity: 0.6,
+                    transparent: true
+                });
+                
+                const sphere = new THREE.Mesh(geometry, blurMaterial);
+                scene.add(sphere);
+            } else {
+                // Regular panorama with standard settings
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
+                
+                const material = new THREE.MeshBasicMaterial({ 
+                    map: texture
+                });
+                
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+            }
             
             // Start animation immediately
             animate();
@@ -71,7 +92,7 @@ function setupPanorama(containerId, imageUrl) {
     
     // Handle window resize for smooth transitions
     function handleResize() {
-        const width = window.innerWidth;
+        const width = panoramaContainer.clientWidth;
         const height = panoramaContainer.clientHeight;
         
         // Update camera

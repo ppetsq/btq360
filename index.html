@@ -46,44 +46,13 @@
     <link rel="stylesheet" href="css/sections/case-studies.css">
     <link rel="stylesheet" href="css/sections/device-access.css">
     
-    <style>
-    /* Additional styles for new elements */
-    .case-study ul.case-study-features {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 0;
-    }
-    
-    .case-study ul.case-study-features li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 8px;
-    }
-    
-    .case-study ul.case-study-features li:before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--accent-color);
-    }
-    
-    .package .custom-price {
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: var(--accent-color);
-        margin-top: 10px;
-    }
-    
-    #share-anywhere-image {
-        background-color: rgba(0,0,0,0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 300px;
-    }
-    </style>
 </head>
 <body>
+
+<!-- Add this right after the opening <body> tag in index.html -->
+    <div id="page-preloader"></div>
+
+    <!-- 1. HEADER -->
     <header id="site-header">
         <div class="container">
             <div class="header-content">
@@ -101,171 +70,172 @@
     </header>
     <div class="header-spacer"></div>
     
-    <section class="hero">
-        <div class="hero-background" id="panorama-container">
-            <!-- 360° panorama will be injected here by JavaScript -->
-        </div>
+<!-- 2. HERO - Complete rebuild -->
+<section class="hero">
+    <div class="hero-background" id="panorama-container">
+        <!-- 360° panorama will be injected here by JavaScript -->
+    </div>
+    
+    <!-- Separate container for logo -->
+    <div class="logo-container" id="hero-logo-container">
+        <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo" class="hero-logo-img">
+    </div>
+    
+    <!-- Separate container for text content -->
+    <div class="content-container" id="hero-content-container">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-logo fade-in">
-                    <img src="https://assets.360.petsq.works/btq360/btq360-logo-white.png" alt="boutique360 logo">
-                </div>
-                <p class="hero-tagline fade-in delay-200"><b>immersive 360° solutions for spaces worth experiencing</b><br>our interactive, high-quality virtual tours eliminate doubt and boost direct bookings. designed for independent spaces, simple to implement, ready in days.</p>
-                <a href="/demo" class="cta-button fade-in delay-400">see demo</a>
+            <div class="text-wrapper">
+                <p class="hero-tagline"><b>immersive 360° solutions for spaces worth experiencing</b><br>our interactive, high-quality virtual tours eliminate doubt and boost direct bookings. designed for independent spaces, simple to implement, ready in days.</p>
+                <a href="#" class="hero-cta cta-button">learn more</a>
             </div>
         </div>
-    </section>
-
-<!-- Updated Industries Section with Foldable Cards -->
-<section class="industries">
-    <div class="container">
-        <h2 class="fade-in">360° use cases</h2>
-        
-        <div class="industries-grid">
-            <!-- Hospitality Card -->
-            <div class="industry-card fade-in delay-100">
-                <div class="industry-icon industry-icon-hotel">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19,7H11V14H3V5H1V20H3V17H21V20H23V11A4,4 0 0,0 19,7M7,13A3,3 0 0,0 10,10A3,3 0 0,0 7,7A3,3 0 0,0 4,10A3,3 0 0,0 7,13Z" />
-                    </svg>
-                </div>
-                <h3>hospitality</h3>
-                <p>don't let your guests do their research on tripadvisor or booking.com. 360° tours capture attention and differentiate, leading to more direct bookings and fewer price-based decisions.</p>
-            </div>
-            
-            <!-- Event Venues Card -->
-            <div class="industry-card fade-in delay-200">
-                <div class="industry-icon industry-icon-venue">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="2" y="2" rx="2" ry="2" width="20" height="20" fill="none"/>
-                        <path d="M9,9H15V15H9z M7,17h10V7H7z"/>
-                    </svg>
-                </div>
-                <h3>event venues</h3>
-                <p>event planners need to visualize possibilities before contacting you. 360° tours showcase your space's versatility with different layouts and lighting configurations, simplifying the process for planners and generating more qualified inquiries for you.</p>
-            </div>
-            
-            <!-- Real Estate Card -->
-            <div class="industry-card fade-in delay-300">
-                <div class="industry-icon industry-icon-realestate">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,3L2,12H5V20H19V12H22L12,3M12,8.75A2.25,2.25 0 0,1 14.25,11A2.25,2.25 0 0,1 12,13.25A2.25,2.25 0 0,1 9.75,11A2.25,2.25 0 0,1 12,8.75M12,15C13.5,15 16.5,15.75 16.5,17.25V18H7.5V17.25C7.5,15.75 10.5,15 12,15Z" />
-                    </svg>
-                </div>
-                <h3>real estate</h3>
-                <p>buyers research extensively online before viewing in person. virtual tours let potential buyers experience properties on their own devices, eliminating wasted viewings and extending your reach to out-of-town buyers.</p>
-            </div>
-            
-                            <!-- Airbnb Hosts Card with Updated Icon -->
-            <div class="industry-card fade-in delay-400">
-                <div class="industry-icon industry-icon-airbnb">
-                    <!-- Updated Airbnb logo with simpler styling -->
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.05c1.3 0 2.35 1.06 2.35 2.35 0 1.3-1.05 2.35-2.35 2.35-1.3 0-2.35-1.05-2.35-2.35 0-1.29 1.05-2.35 2.35-2.35zm0 9.5c2.7-3.39 3.76-5.2 3.76-7.15A3.75 3.75 0 0 0 12 .65 3.75 3.75 0 0 0 8.24 4.4c0 1.95 1.06 3.76 3.76 7.15zm7.84-1.83a.93.93 0 0 0-1.3-.28c-.85.56-1.83.84-2.82.84-.99 0-1.97-.28-2.82-.83l-.04-.03a5.08 5.08 0 0 0-5.6 0c-.85.55-1.83.83-2.82.83-.99 0-1.97-.28-2.82-.84a.93.93 0 0 0-1.3.28.93.93 0 0 0 .28 1.3c1.1.73 2.37 1.1 3.67 1.11a6.82 6.82 0 0 0 3.73-1.1l.04-.03a3.23 3.23 0 0 1 3.53 0l.04.03a6.82 6.82 0 0 0 3.73 1.1c1.3 0 2.57-.38 3.67-1.1a.93.93 0 0 0 .28-1.3z"/>
-                    </svg>
-                </div>
-                <h3>airbnb hosts</h3>
-                <p>stand out in a sea of identical listings. while other galleries show flat photos, your QR code leads to an immersive 360° experience that signals quality and attention to detail, attracting guests willing to pay premium rates.</p>
-            </div>
-        </div>
-        
-        <p class="industries-cta fade-in delay-500"><b>and more...</b> from restaurants and yoga studios to coworking spaces and boutique shops – any space with real character. our 360° solutions capture what makes your location unique.</p>
     </div>
 </section>
     
-    <section class="concept">
+    <!-- 4. USE CASES (formerly industries) -->
+    <section class="industries">
         <div class="container">
-            <h2 class="fade-in">our process</h2>
+            <h2 class="fade-in">360° use cases</h2>
             
-            <div class="process-steps">
-                <div class="process-step fade-in delay-100">
-                    <div class="step-number">01</div>
-                    <h3>consultation</h3>
-                    <p>we begin by understanding your property's unique features and identifying which viewpoints and lighting scenarios will showcase your space best.</p>
+            <div class="industries-grid">
+                <!-- Hospitality Card -->
+                <div class="industry-card fade-in delay-100">
+                    <div class="expand-toggle"></div>
+                    <div class="card-preview">
+                        <div class="card-header">
+                            <div class="industry-icon industry-icon-hotel">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19,7H11V14H3V5H1V20H3V17H21V20H23V11A4,4 0 0,0 19,7M7,13A3,3 0 0,0 10,10A3,3 0 0,0 7,7A3,3 0 0,0 4,10A3,3 0 0,0 7,13Z" />
+                                </svg>
+                            </div>
+                            <div class="title-wrapper">
+                                <div class="title-container">
+                                    <h3>hospitality</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>hospitality</h3>
+                        <p>don't let your guests do their research on tripadvisor or booking.com. 360° tours capture attention and differentiate, leading to more direct bookings and fewer price-based decisions.</p>
+                    </div>
                 </div>
                 
-                <div class="process-step fade-in delay-200">
-                    <div class="step-number">02</div>
-                    <h3>capture</h3>
-                    <p>our specialists visit your location in person to capture high-resolution 360° images or videos using professional equipment, ensuring every detail is preserved.</p>
+                <!-- Event Venues Card -->
+                <div class="industry-card fade-in delay-200">
+                    <div class="expand-toggle"></div>
+                    <div class="card-preview">
+                        <div class="card-header">
+                            <div class="industry-icon industry-icon-venue">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <rect x="7" y="7" width="10" height="10" />
+                                    <path d="M5 12h2 M17 12h2 M12 5v2 M12 17v2" />
+                                </svg>
+                            </div>
+                            <div class="title-wrapper">
+                                <div class="title-container">
+                                    <h3>event venues</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>event venues</h3>
+                        <p>360° tours showcase your space's versatility with different layouts and lighting, generating more qualified inquiries by helping planners visualize possibilities before contacting you.</p>
+                    </div>
                 </div>
                 
-                <div class="process-step fade-in delay-300">
-                    <div class="step-number">03</div>
-                    <h3>enhancement</h3>
-                    <p>we process the materials and build interactive elements, optimize for all devices, and ensure seamless navigation between viewpoints.</p>
+                <!-- Real Estate Card -->
+                <div class="industry-card fade-in delay-300">
+                    <div class="expand-toggle"></div>
+                    <div class="card-preview">
+                        <div class="card-header">
+                            <div class="industry-icon industry-icon-realestate">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path d="M3 12l9-9 9 9" />
+                                    <path d="M5 10v10h14V10" />
+                                    <rect x="9" y="14" width="6" height="6" />
+                                    <path d="M9 8h6" />
+                                </svg>
+                            </div>
+                            <div class="title-wrapper">
+                                <div class="title-container">
+                                    <h3>real estate</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>real estate</h3>
+                        <p>buyers research extensively online before viewing in person. virtual tours let potential buyers experience properties on their own devices, eliminating wasted viewings and extending your reach to out-of-town buyers.</p>
+                    </div>
                 </div>
                 
-                <div class="process-step fade-in delay-400">
-                    <div class="step-number">04</div>
-                    <h3>live</h3>
-                    <p>we deliver the final product with simple implementation instructions and full technical support for integration into your booking system, website, and marketing materials.</p>
+                <!-- Airbnb Hosts Card -->
+                <div class="industry-card fade-in delay-400">
+                    <div class="expand-toggle"></div>
+                    <div class="card-preview">
+                        <div class="card-header">
+                            <div class="industry-icon industry-icon-airbnb">
+                                <object type="image/svg+xml" data="https://assets.360.petsq.works/airbnb.svg" width="28" height="28" class="airbnb-icon-svg"></object>
+                            </div>
+                            <div class="title-wrapper">
+                                <div class="title-container">
+                                    <h3>airbnb hosts</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>airbnb hosts</h3>
+                        <p>stand out in a sea of identical listings. while other galleries show flat photos, your QR code leads to an immersive 360° experience that signals quality and attention to detail, attracting guests willing to pay premium rates.</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="process-summary fade-in delay-500">
-                <p><span style="color: #E6E6E6;"><b>14-day delivery, zero hassle.</b></span> our turnkey solution includes technical support and customizations – everything you need to showcase your property professionally and in alignment with your brand. from capture to driving more business in less than two weeks.</p>
-            </div>
+            <p class="industries-cta fade-in delay-500"><b>and more...</b> from restaurants and yoga studios to coworking spaces and boutique shops – any space with real character can benefit from 360° solutions.</p>
         </div>
     </section>
     
-    <section class="experience">
-        <div class="experience-background" id="experience-panorama-container">
-            <!-- 360° panorama will be injected here by JavaScript -->
+<!-- 3. PROBLEM & SOLUTION (with highlighted words) -->
+<section class="founder-quote">
+    <div class="founder-background" id="founder-panorama-container">
+        <!-- 360° panorama will be injected here by JavaScript -->
+    </div>
+    <div class="founder-overlay"></div>
+    <div class="container">
+        <div class="founder-box fade-in">
+            <blockquote>show the <span class="highlight-space">space</span>, remove the <span class="highlight-doubt">doubt</span>, close the <span class="highlight-deal">deal</span></blockquote>
         </div>
-        <div class="experience-overlay"></div>
-        <div class="container">
-            <h2 class="fade-in">trusted by</h2>
-            <div class="client-logos-container scale-in delay-100">
-                <div class="client-logos">
-                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
-                    <!-- Duplicate logos for infinite scroll effect -->
-                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
-                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
-                </div>
-            </div>
-            <div class="experience-text-container">
-                <p class="experience-text fade-in delay-200">studies show that interactive 360° visualizations can increase booking rates by <span class="stat-highlight">up to 67%*</span>. we bring these results to independent spaces with character.</p>
-            </div>
-            <span class="citation fade-in delay-300">*source: <a href="https://thevivestia.com/hospitality-in-360-degrees-virtual-tours-influence-on-hotel-marketing/" target="_blank" style="color: #777777; text-decoration: underline;">thevivestia.com</a></span>
-        </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Our Work Section HTML Structure -->
+<!-- 5. WORK SHOWCASE (formerly case-studies) -->
 <section class="case-studies">
     <div class="container">
         <h2 class="fade-in">our work</h2>
         
         <!-- First Case Study: The Overlook Hotel -->
         <div class="case-study fade-in delay-100">
-            <!-- Image Section (with hover effects) -->
+            <!-- Video Section -->
             <a href="/demo" class="case-study-image">
-                <div class="case-panorama" style="background-image: url('https://assets.360.petsq.works/preview/overlook-preview-on.jpg');"></div>
+                <!-- Using the same video as second case study -->
+                <video class="case-video" autoplay loop muted playsinline>
+                    <source src="https://assets.360.petsq.works/preview/ovrlk-preview.mp4" type="video/mp4">
+                </video>
                 <div class="case-overlay"></div>
-                <div class="view-demo-text">view demo</div>
-                <div class="case-study-category">360° images</div>
+                <div class="view-demo-text">see demo</div>
+                <div class="case-study-category">the overlook hotel</div>
             </a>
             
-            <!-- Content Section (two-column layout) -->
+            <!-- Content Section -->
             <div class="case-study-content">
                 <!-- Title and Description Block -->
-                <a href="/demo"><h3>The Overlook Hotel</h3></a>
+                <a href="/demo"><h3>360° images</h3></a>
                 <p>A basic version of a <b>virtual tour with images</b> in a hotel room. Including four different lighting scenes with smooth transitions, branding elements, auto-rotation toggle, and show/hide user interface functionality.</p>
                 
-                <!-- Features Block (right-aligned) -->
+                <!-- Features Block -->
                 <div class="case-study-features-container">
                     <span class="features-title">great for:</span>
                     <ul class="case-study-features">
@@ -274,26 +244,31 @@
                         <li>showing the space without people</li>
                     </ul>
                 </div>
+                
+                <!-- Mobile CTA - only shows on mobile -->
+                <a href="/demo" class="mobile-cta">see demo</a>
             </div>
         </div>
         
         <!-- Second Case Study: Van 'T Hof 360° experience -->
         <div class="case-study reverse fade-in delay-300">
-            <!-- Image Section (with hover effects) -->
-            <a href="#contact" class="case-study-image">
-                <div class="case-panorama" style="background-image: url('https://assets.360.petsq.works/preview/vanthof-preview.jpg');"></div>
+            <!-- Video Section -->
+            <a href="https://vanthoffoodgroup.com/360o-experience/" class="case-study-image">
+                <video class="case-video" autoplay loop muted playsinline>
+                    <source src="https://assets.360.petsq.works/preview/vth-preview.mp4" type="video/mp4">
+                </video>
                 <div class="case-overlay"></div>
-                <div class="view-demo-text">inquire now</div>
-                <div class="case-study-category">360° videos</div>
+                <div class="view-demo-text">see demo</div>
+                <div class="case-study-category">van 't hof foodgroup</div>
             </a>
             
-            <!-- Content Section (two-column layout) -->
+            <!-- Content Section -->
             <div class="case-study-content">
                 <!-- Title and Description Block -->
-                <a href="#contact"><h3>Van 'T Hof 360° experience</h3></a>
+                <a href="https://vanthoffoodgroup.com/360o-experience/"><h3>360° videos</h3></a>
                 <p>A basic version of a <b>virtual tour with videos</b> in a production line of a Dutch spring roll manufacturing company Van 'T Hof. Including five different viewpoints with smooth transitions, branding elements, auto-rotation toggle, and show/hide user interface functionality.</p>
                 
-                <!-- Features Block (right-aligned) -->
+                <!-- Features Block -->
                 <div class="case-study-features-container">
                     <span class="features-title">great for:</span>
                     <ul class="case-study-features">
@@ -302,12 +277,15 @@
                         <li>showing the space with people</li>
                     </ul>
                 </div>
+                
+                <!-- Mobile CTA - only shows on mobile -->
+                <a href="https://vanthoffoodgroup.com/360o-experience/" class="mobile-cta">see demo</a>
             </div>
         </div>
     </div>
 </section>
     
-<!-- Device Access Section with Icon Grid -->
+<!-- 7. MULTI-DEVICE ACCESS (formerly device-access) -->
 <section class="device-access">
     <div class="container">
         <h2 class="fade-in">share <span class="highlight-anywhere">anywhere</span></h2>
@@ -413,65 +391,158 @@
     </div>
 </section>
 
-    <section class="our-story">
+    <!-- 6. BENEFITS (formerly experience) -->
+    <section class="experience">
+        <div class="experience-background" id="experience-panorama-container">
+            <!-- 360° panorama will be injected here by JavaScript -->
+        </div>
+        <div class="experience-overlay"></div>
         <div class="container">
-            <h2 class="fade-in">our story</h2>
+            <h2 class="fade-in">proven results</h2>
+            <div class="experience-text-container">
+                <p class="experience-text fade-in delay-200">studies show that interactive 360° visualizations can increase booking rates by <span class="stat-highlight">up to 67%*</span>. we bring these results to independent spaces with character.</p>
+            </div>
+            <span class="citation fade-in delay-300">*source: <a href="https://thevivestia.com/hospitality-in-360-degrees-virtual-tours-influence-on-hotel-marketing/" target="_blank" style="color: #777777; text-decoration: underline;">thevivestia.com</a></span>
+        </div>
+    </section>
+    
+    <!-- 8. HOW IT WORKS (formerly concept) -->
+    <section class="concept">
+        <div class="container">
+            <h2 class="fade-in">our process</h2>
             
-            <div class="story-content">
-                <div class="story-timeline fade-in delay-100">
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <div class="icon-container">
-                                <span class="material-icon">💡</span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>the concept</h3>
-                            <p>while working in hospitality tech, we needed to showcase the dramatic impact of well-designed lighting scenes in hotel rooms. the challengen was how could we show this online?</p>
-                        </div>
+            <div class="process-steps">
+                <div class="process-step fade-in delay-100">
+                    <div class="step-number">01</div>
+                    <h3>consultation</h3>
+                    <p>we begin by understanding your property's unique features and identifying which viewpoints and lighting scenarios will showcase your space best.</p>
+                </div>
+                
+                <div class="process-step fade-in delay-200">
+                    <div class="step-number">02</div>
+                    <h3>capture</h3>
+                    <p>our specialists visit your location in person to capture high-resolution 360° images or videos using professional equipment, ensuring every detail is preserved.</p>
+                </div>
+                
+                <div class="process-step fade-in delay-300">
+                    <div class="step-number">03</div>
+                    <h3>enhancement</h3>
+                    <p>we process the materials and build interactive elements, optimize for all devices, and ensure seamless navigation between viewpoints.</p>
+                </div>
+                
+                <div class="process-step fade-in delay-400">
+                    <div class="step-number">04</div>
+                    <h3>live</h3>
+                    <p>we deliver the final product with simple implementation instructions and full technical support for integration into your booking system, website, and marketing materials.</p>
+                </div>
+            </div>
+            
+            <div class="process-summary fade-in delay-500">
+                <p><span style="color: #E6E6E6;"><b>14-day delivery, zero hassle.</b></span> our turnkey solution includes technical support and customizations – everything you need to showcase your property professionally and in alignment with your brand. from capture to driving more business in less than two weeks.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 9. PACKAGES & PRICING -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <div class="packages-header">
+                <h2 class="fade-in">360° virtual tour packages</h2>
+                <div class="discount-tag fade-in delay-100">-30%</div>
+            </div>
+            
+            <div class="package-container">
+                <div class="package fade-in delay-100" onclick="window.location.href='#contact';">
+                    <h3>360° image tour</h3>
+                    <div class="package-price">
+                        <div class="original-price">€1,200</div>
+                        <div class="discounted-price">€840</div>
                     </div>
-                    
-                    <div class="timeline-item fade-in delay-200">
-                        <div class="timeline-icon">
-                            <div class="icon-container">
-                                <span class="material-icon">🔍</span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>the insight</h3>
-                            <p>we realized that many carefully designed spaces look incredible in person, but photos fail to capture the experience. this disconnect sends potential customers to third-party review sites, taking them away from your carefully crafted brand experience.</p>
-                        </div>
+                    <ul class="package-features">
+                        <li>1 viewpoint</li>
+                        <li>up to four lighting scenarios</li>
+                        <li>basic website integration</li>
+                        <li>basic branding elements</li>
+                        <li>3-month hosting</li>
+                    </ul>
+                    <div class="package-ideal">
+                        <span>Ideal for:</span> small spaces, single rooms, boutique hoteliers, airbnb hosts, real estate
                     </div>
-                    
-                    <div class="timeline-item fade-in delay-300">
-                        <div class="timeline-icon">
-                            <div class="icon-container">
-                                <span class="material-icon">🚀</span>
-                            </div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>the solution</h3>
-                            <p>since 2020, we've been developing 360° technology and shooting hotels across Europe. now we're making our expertise available to businesses beyond hospitality. our mission is to help distinctive independent spaces showcase their unique atmosphere and connect with customers before they even visit.</p>
-                        </div>
+                </div>
+                
+                <div class="package fade-in delay-200" onclick="window.location.href='#contact';">
+                    <h3>360° video tour</h3>
+                    <div class="package-price">
+                        <div class="original-price">€2,800</div>
+                        <div class="discounted-price">€1,960</div>
                     </div>
+                    <ul class="package-features">
+                        <li>3-5 viewpoints</li>
+                        <li>up to four lighting/setup scenarios each</li>
+                        <li>full integration support</li>
+                        <li>custom branding elements</li>
+                        <li>6-month hosting</li>
+                    </ul>
+                    <div class="package-ideal">
+                        <span>Ideal for:</span> large spaces, event venues, luxury properties, amenities, atmosphere
+                    </div>
+                </div>
+                
+                <div class="package fade-in delay-300" onclick="window.location.href='#contact';">
+                    <h3>360° custom tour</h3>
+                    <div class="package-price">
+                        <div class="custom-price">custom pricing</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>completely tailored and unique 360° experience</li>
+                        <li>full integration support</li>
+                        <li>custom branding elements</li>
+                        <li>custom interactive elements</li>
+                        <li>12-month hosting</li>
+                    </ul>
+                    <div class="package-ideal">
+                        <span>Ideal for:</span> any business looking to grow and differentiate
+                    </div>
+                </div>
+            </div>
+            <div class="vat-notice">all prices shown are excluding vat and valid until 30th of April 2025</div>
+            <p class="packages-note fade-in delay-400">contact us for tailored solutions for your specific space and requirements.</p>
+        </div>
+    </section>
+    
+    <!-- 10. TRUST SIGNALS -->
+    <section class="experience">
+        <div class="experience-background" id="experience-panorama-container">
+            <!-- 360° panorama will be injected here by JavaScript -->
+        </div>
+        <div class="experience-overlay"></div>
+        <div class="container">
+            <h2 class="fade-in">trusted by</h2>
+            <div class="client-logos-container scale-in delay-100">
+                <div class="client-logos">
+                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
+                    <!-- Duplicate logos for infinite scroll effect -->
+                    <img src="https://assets.360.petsq.works/btq360/refs/marriott.png" alt="Marriott" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/scandic.png" alt="Scandic" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/lapland.png" alt="Lapland Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/radisson.png" alt="Radisson" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/sokos.png" alt="Sokos Hotels" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/valo.png" alt="Valo Hotel" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/bobw.png" alt="Best of Both Worlds" class="client-logo">
+                    <img src="https://assets.360.petsq.works/btq360/refs/cuber.png" alt="Cuber" class="client-logo">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="founder-quote">
-        <div class="founder-background" id="founder-panorama-container">
-            <!-- 360° panorama will be injected here by JavaScript -->
-        </div>
-        <div class="founder-overlay"></div>
-        <div class="container">
-            <div class="founder-box fade-in">
-                <h3>why this matters?</h3>
-                <blockquote>great spaces get overlooked because flat photos don't tell the full story. we're giving your audience the confidence to book.</blockquote>
-            </div>
-        </div>
-    </section>
-    
+    <!-- 11. FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <h2 class="fade-in">frequently asked questions</h2>
@@ -537,69 +608,33 @@
             </div>
         </div>
     </section>
-    
-    <section class="packages" id="packages">
+
+    <!-- 12. CALL TO ACTION -->
+    <section class="pre-launch">
         <div class="container">
-            <div class="packages-header">
-                <h2 class="fade-in">360° virtual tour packages</h2>
-                <div class="discount-tag fade-in delay-100">-30%</div>
-            </div>
-            
-            <div class="package-container">
-                <div class="package fade-in delay-100" onclick="window.location.href='#contact';">
-                    <h3>360° image tour</h3>
-                    <div class="package-price">
-                        <div class="original-price">€1,200</div>
-                        <div class="discounted-price">€840</div>
+            <div class="pre-launch-content">
+                <div class="pre-launch-info">
+                    <h2 class="fade-in">limited time offer</h2>
+                    <p class="pre-launch-text fade-in delay-100">boutique360 pre-launch pricing is available exclusively for all orders received before the end of april 2025. redeem your discount by submitting your email address at the end of this page.</p>
+                </div>
+                <div class="countdown scale-in delay-200">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-days">00</div>
+                        <div class="countdown-label">Days</div>
                     </div>
-                    <ul class="package-features">
-                        <li>1 viewpoint</li>
-                        <li>up to four lighting scenarios</li>
-                        <li>basic website integration</li>
-                        <li>basic branding elements</li>
-                        <li>3-month hosting</li>
-                    </ul>
-                    <div class="package-ideal">
-                        <span>Ideal for:</span> small spaces, single rooms, boutique hoteliers, airbnb hosts, real estate
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdown-seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
                     </div>
                 </div>
-                
-                <div class="package fade-in delay-200" onclick="window.location.href='#contact';">
-                    <h3>360° video tour</h3>
-                    <div class="package-price">
-                        <div class="original-price">€2,800</div>
-                        <div class="discounted-price">€1,960</div>
-                    </div>
-                    <ul class="package-features">
-                        <li>3-5 viewpoints</li>
-                        <li>up to four lighting/setup scenarios each</li>
-                        <li>full integration support</li>
-                        <li>custom branding elements</li>
-                        <li>6-month hosting</li>
-                    </ul>
-                    <div class="package-ideal">
-                        <span>Ideal for:</span> large spaces, event venues, luxury properties, amenities, atmosphere
-                    </div>
-                </div>
-                
-                <div class="package fade-in delay-300" onclick="window.location.href='#contact';">
-                    <h3>360° custom tour</h3>
-                    <div class="package-price">
-                        <div class="custom-price">custom pricing</div>
-                    </div>
-                    <ul class="package-features">
-                        <li>completely tailored and unique 360° experience</li>
-                        <li>full integration support</li>
-                        <li>custom branding elements</li>
-                        <li>custom interactive elements</li>
-                        <li>12-month hosting</li>
-                    </ul>
-                    <div class="package-ideal">
-                        <span>Ideal for:</span> any business looking to grow and differentiate
-                    </div>
-                </div>
-            </div>
-            <div class="vat-notice">all prices shown are excluding vat and valid until 30th of April 2025
             </div>
         </div>
     </section>
@@ -614,9 +649,65 @@
                 </div>
                 <button type="submit" class="cta-button">send</button>
             </form>
+            
+            <div id="thank-you" class="form-success">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 12l3 3 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>thank you! we'll be in touch soon.</p>
+            </div>
         </div>
     </section>
 
+    <!-- 13. OUR STORY -->
+    <section class="our-story">
+        <div class="container">
+            <h2 class="fade-in">our story</h2>
+            
+            <div class="story-content">
+                <div class="story-timeline fade-in delay-100">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">💡</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the concept</h3>
+                            <p>while working in hospitality tech, we needed to showcase the dramatic impact of well-designed lighting scenes in hotel rooms. the challengen was how could we show this online?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in delay-200">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">🔍</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the insight</h3>
+                            <p>we realized that many carefully designed spaces look incredible in person, but photos fail to capture the experience. this disconnect sends potential customers to third-party review sites, taking them away from your carefully crafted brand experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item fade-in delay-300">
+                        <div class="timeline-icon">
+                            <div class="icon-container">
+                                <span class="material-icon">🚀</span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>the solution</h3>
+                            <p>since 2020, we've been developing 360° technology and shooting hotels across Europe. now we're making our expertise available to businesses beyond hospitality. our mission is to help distinctive independent spaces showcase their unique atmosphere and connect with customers before they even visit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. FOOTER -->
     <footer>
         <div class="container">
             <div class="copyright">

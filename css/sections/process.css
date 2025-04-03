@@ -26,10 +26,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.process-step:hover {
-    transform: translateY(-5px);
-}
-
 /* Step 1 - Yellow accents */
 .process-step:nth-child(1) .step-number {
     color: rgba(255, 223, 77, 0.2); /* Yellow */

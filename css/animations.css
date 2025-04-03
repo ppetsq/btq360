@@ -52,3 +52,71 @@
         transform: translateX(-50%);
     }
 }
+/* Add this to animations.css */
+
+/* Preloader Styles */
+#page-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: 1; /* Below the logo but above other content */
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+#page-preloader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Fix for scrollbar appearing */
+html {
+    overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
+    scrollbar-width: thin; /* For Firefox */
+}
+
+body {
+    overflow: hidden; /* Initially hidden */
+}
+
+body.content-loaded {
+    overflow: visible; /* Show content when loaded */
+}
+
+/* Make sure hero logo is visible immediately with higher z-index */
+.logo-container {
+    z-index: 2 !important; /* Higher than preloader */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.8s ease !important; /* Smooth transition */
+    animation: logoFadeIn 1.2s ease forwards; /* Fade in animation */
+}
+
+@keyframes logoFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Fix for logo transition when text becomes visible */
+.hero.text-visible .logo-container {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Panorama starts hidden */
+.hero-background {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.hero-background.visible {
+    opacity: 1;
+}

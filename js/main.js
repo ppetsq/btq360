@@ -189,3 +189,127 @@ function initHeaderScroll() {
     // Initialize header state
     handleHeaderScroll();
 }
+// Add this to main.js or create a new file called preloader.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const preloader = document.getElementById('page-preloader');
+    const panoramaBackground = document.querySelector('.hero-background');
+    const heroSection = document.querySelector('.hero');
+    const logoContainer = document.querySelector('.logo-container');
+    
+    // Ensure logo is visible (as a fallback)
+    if (logoContainer) {
+        // Force repaint to ensure animation runs properly
+        void logoContainer.offsetWidth; 
+    }
+    
+    // Fade in the panorama and fade out the preloader after logo animation
+    setTimeout(function() {
+        // Fade in the panorama
+        if (panoramaBackground) {
+            panoramaBackground.classList.add('visible');
+        }
+        
+        // Fade out the preloader
+        if (preloader) {
+            preloader.classList.add('fade-out');
+        }
+        
+        // Allow scrolling and initialize animations after transition completes
+        setTimeout(function() {
+            document.body.classList.add('content-loaded');
+            initPageAnimations();
+        }, 1500);
+    }, 1000); // Slightly longer delay to allow logo to fade in first
+});
+
+// Function to initialize all page animations
+function initPageAnimations() {
+    // Animate elements with fade-in class
+    const fadeElements = document.querySelectorAll('.fade-in, .scale-in');
+    
+    // Set up intersection observer for animation triggers
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Observe all fade elements
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Set up hero section interaction
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        // Show text on click
+        heroSection.addEventListener('click', function() {
+            heroSection.classList.add('text-visible');
+        });
+        
+        // Show text on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 10) { // Start revealing after minimal scroll
+                heroSection.classList.add('text-visible');
+            }
+        }, { once: true }); // Only trigger once
+    }
+}
+
+// Add this to your main.js or create a new file case-studies.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all case study videos
+    const caseVideos = document.querySelectorAll('.case-video');
+    
+    // For each video, ensure proper loading and playback
+    caseVideos.forEach(video => {
+        // Force load the video
+        video.load();
+        
+        // Try to play the video (handles autoplay restrictions in some browsers)
+        let playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Playback started successfully
+                console.log('Video playback started');
+            })
+            .catch(error => {
+                // Auto-play was prevented
+                console.log('Auto-play was prevented:', error);
+                
+                // Add a play button or user interaction element if needed
+                const caseStudyImage = video.closest('.case-study-image');
+                
+                // Only add play functionality if autoplay fails
+                caseStudyImage.addEventListener('click', function() {
+                    video.play();
+                });
+            });
+        }
+        
+        // Handle video entering viewport for better performance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Video is in viewport - play it
+                    video.play();
+                } else {
+                    // Video is not in viewport - pause it to save resources
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.1 }); // 10% of the video needs to be visible
+        
+        observer.observe(video);
+    });
+});
