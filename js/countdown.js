@@ -8,7 +8,7 @@
  * Calculates time remaining until the deadline and animates the display
  */
 function updateCountdown() {
-    const endDate = new Date("March 31, 2025 23:59:59").getTime();
+    const endDate = new Date("April 30, 2025 23:59:59").getTime();
     const now = new Date().getTime();
     const timeLeft = endDate - now;
     
