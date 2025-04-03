@@ -643,9 +643,14 @@
         <div class="container">
             <h2 class="fade-in">redeem your discount</h2>
             <p class="contact-note fade-in delay-200">leave your email address and we'll reach out within 24 hours to discuss your vision.</p>
-            <form action="https://formspree.io/f/xqapkqqk" method="POST" class="contact-form fade-in delay-100">
+            
+            <form action="https://formspree.io/f/xqapkqqk" method="POST" class="contact-form fade-in delay-100" id="email-form">
                 <div class="form-group">
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="your email" required>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I agree to be contacted about boutique360 services</label>
                 </div>
                 <button type="submit" class="cta-button">send</button>
             </form>
