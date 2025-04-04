@@ -15,20 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize the interactive panorama with user controls
  */
 function initInteractivePanorama() {
-    // Image paths for different lighting scenarios
-    const images = {
-        day: "https://assets.360.petsq.works/Overlook/overlook_day_fixed.jpg",
-        evening: "https://assets.360.petsq.works/Overlook/overlook_evening.jpg",
-        night: "https://assets.360.petsq.works/Overlook/overlook_night2.jpg",
-        off: "https://assets.360.petsq.works/Overlook/overlook_off.jpg"
-    };
+    // Image path - same as hero but no blur effect
+    const panoramaImage = "https://assets.360.petsq.works/union/union-eve.jpg";
     
     // Get the container and control buttons
     const container = document.getElementById('interactive-panorama-container');
     const zoomInBtn = document.getElementById('zoom-in-btn');
     const zoomOutBtn = document.getElementById('zoom-out-btn');
     const autoRotateBtn = document.getElementById('auto-rotate-btn');
-    const roomOptions = document.querySelectorAll('.room-option');
     
     // State variables
     let scene, camera, renderer, sphere;
@@ -42,7 +36,6 @@ function initInteractivePanorama() {
     let windowHalfX = container.clientWidth / 2;
     let windowHalfY = container.clientHeight / 2;
     let phi = 0, theta = 0;
-    let currentImage = 'day'; // Default image
     
     // Setup the scene, camera, and renderer
     function initScene() {
@@ -71,14 +64,7 @@ function initInteractivePanorama() {
     }
     
     // Load the panorama texture
-    function loadPanorama(imagePath) {
-        // If sphere already exists, remove it
-        if (sphere) {
-            scene.remove(sphere);
-            sphere.geometry.dispose();
-            sphere.material.dispose();
-        }
-        
+    function loadPanorama() {
         // Create sphere geometry
         const geometry = new THREE.SphereGeometry(500, 60, 40);
         geometry.scale(-1, 1, 1); // Invert the sphere so texture shows on inside
@@ -86,7 +72,7 @@ function initInteractivePanorama() {
         // Load texture
         const textureLoader = new THREE.TextureLoader();
         textureLoader.load(
-            imagePath,
+            panoramaImage,
             function(texture) {
                 const material = new THREE.MeshBasicMaterial({
                     map: texture
@@ -136,21 +122,6 @@ function initInteractivePanorama() {
         if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn, false);
         if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut, false);
         if (autoRotateBtn) autoRotateBtn.addEventListener('click', toggleAutoRotate, false);
-        
-        // Room switcher
-        roomOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const imageType = this.getAttribute('data-image');
-                if (imageType && images[imageType]) {
-                    currentImage = imageType;
-                    loadPanorama(images[imageType]);
-                    
-                    // Update active state
-                    roomOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
     }
     
     // Mouse down event handler
@@ -323,7 +294,7 @@ function initInteractivePanorama() {
     // Initialize everything
     function init() {
         initScene();
-        loadPanorama(images[currentImage]);
+        loadPanorama();
         setupInteraction();
         animate();
         
