@@ -24,12 +24,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.live-preview-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 223, 77, 0.4);
-}
-
 /* Controls for the panorama */
 .panorama-controls {
     position: absolute;

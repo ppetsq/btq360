@@ -28,7 +28,7 @@ function initInteractivePanorama() {
     let scene, camera, renderer, sphere;
     let isUserInteracting = false;
     let isAutoRotating = true;
-    let autoRotateSpeed = 0.0005; // Slower than the hero section for better control
+    let autoRotateSpeed = 0.0003; // Slower auto-rotation for better control
     let mouseX = 0, mouseY = 0;
     let mouseXOnMouseDown = 0, mouseYOnMouseDown = 0;
     let targetRotationX = 0, targetRotationY = 0;
@@ -37,6 +37,14 @@ function initInteractivePanorama() {
     let windowHalfY = container.clientHeight / 2;
     let phi = 0, theta = 0;
     
+    // Camera constraints - these control how much you can zoom
+    const MIN_FOV = 30; // Larger number = less zoom in (more restrictive)
+    const MAX_FOV = 70; // Smaller number = less zoom out (more restrictive)
+    // Change these values to adjust your zoom limits
+    
+    // Rotation sensitivity - higher = stiffer controls
+    const ROTATION_SENSITIVITY = 0.005; // Reduce this value for stiffer controls
+    
     // Setup the scene, camera, and renderer
     function initScene() {
         // Create scene
@@ -44,7 +52,7 @@ function initInteractivePanorama() {
         
         // Create camera
         camera = new THREE.PerspectiveCamera(
-            75, 
+            70, // Starting FOV - smaller = more zoomed in
             container.clientWidth / container.clientHeight, 
             0.1, 
             1000
@@ -148,11 +156,13 @@ function initInteractivePanorama() {
         mouseX = event.clientX - windowHalfX;
         mouseY = event.clientY - windowHalfY;
         
-        targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02;
-        targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.02;
+        // Using the sensitivity factor to make controls stiffer
+        targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * ROTATION_SENSITIVITY;
+        targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * ROTATION_SENSITIVITY;
         
         // Limit vertical rotation to prevent flipping
-        targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 2), -Math.PI / 2);
+        // More restrictive to prevent unnatural camera angles
+        targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 3), -Math.PI / 3);
     }
     
     // Mouse up event handler
@@ -190,11 +200,13 @@ function initInteractivePanorama() {
             mouseX = event.touches[0].pageX - windowHalfX;
             mouseY = event.touches[0].pageY - windowHalfY;
             
-            targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05;
-            targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.05;
+            // Touch movements should be slightly more sensitive than mouse
+            // but still stiffer than before
+            targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * ROTATION_SENSITIVITY * 1.5;
+            targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * ROTATION_SENSITIVITY * 1.5;
             
             // Limit vertical rotation
-            targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 2), -Math.PI / 2);
+            targetRotationY = Math.max(Math.min(targetRotationY, Math.PI / 3), -Math.PI / 3);
         }
     }
     
@@ -212,21 +224,26 @@ function initInteractivePanorama() {
         
         const delta = event.deltaY > 0 ? 1 : -1;
         
+        // Smaller increments for smoother zoom
         // Adjust field of view (zoom)
-        camera.fov += delta * 2;
-        camera.fov = Math.max(30, Math.min(90, camera.fov)); // Limit FOV between 30 and 90
+        camera.fov += delta * 1.5;
+        
+        // Apply zoom limits
+        camera.fov = Math.max(MIN_FOV, Math.min(MAX_FOV, camera.fov));
         camera.updateProjectionMatrix();
     }
     
     // Zoom in function
     function zoomIn() {
-        camera.fov = Math.max(30, camera.fov - 5);
+        // Smaller zoom steps for more control
+        camera.fov = Math.max(MIN_FOV, camera.fov - 3);
         camera.updateProjectionMatrix();
     }
     
     // Zoom out function
     function zoomOut() {
-        camera.fov = Math.min(90, camera.fov + 5);
+        // Smaller zoom steps for more control
+        camera.fov = Math.min(MAX_FOV, camera.fov + 3);
         camera.updateProjectionMatrix();
     }
     
@@ -274,17 +291,18 @@ function initInteractivePanorama() {
             targetRotationX += autoRotateSpeed;
         }
         
-        // Apply smooth rotation to camera
+        // Apply smooth rotation to camera with more damping for a steadier feel
         camera.position.x = 100 * Math.sin(phi) * Math.cos(theta);
         camera.position.y = 100 * Math.sin(theta);
         camera.position.z = 100 * Math.cos(phi) * Math.cos(theta);
         
         // Update phi and theta based on target rotation with smooth easing
-        phi += (targetRotationX - phi) * 0.1;
-        theta += (targetRotationY - theta) * 0.1;
+        // Slower damping factor (0.05 instead of 0.1) for smoother, stiffer movement
+        phi += (targetRotationX - phi) * 0.05;
+        theta += (targetRotationY - theta) * 0.05;
         
         // Ensure theta stays within bounds
-        theta = Math.max(Math.min(theta, Math.PI / 2 - 0.1), -Math.PI / 2 + 0.1);
+        theta = Math.max(Math.min(theta, Math.PI / 3 - 0.1), -Math.PI / 3 + 0.1);
         
         camera.lookAt(0, 0, 0);
         
