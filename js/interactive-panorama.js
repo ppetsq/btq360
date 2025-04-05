@@ -218,13 +218,15 @@ function initInteractivePanorama() {
         isUserInteracting = false;
     }
     
-    // Mouse wheel event handler for zooming
-    function onDocumentWheel(event) {
+// Mouse wheel event handler for zooming
+function onDocumentWheel(event) {
+    // Check if we're at min/max zoom before preventing default
+    if ((event.deltaY > 0 && camera.fov < MAX_FOV) || 
+        (event.deltaY < 0 && camera.fov > MIN_FOV)) {
         event.preventDefault();
         
         const delta = event.deltaY > 0 ? 1 : -1;
         
-        // Smaller increments for smoother zoom
         // Adjust field of view (zoom)
         camera.fov += delta * 1.5;
         
@@ -232,6 +234,8 @@ function initInteractivePanorama() {
         camera.fov = Math.max(MIN_FOV, Math.min(MAX_FOV, camera.fov));
         camera.updateProjectionMatrix();
     }
+    // If we're at zoom limits, don't prevent default so page scroll works
+}
     
     // Zoom in function
     function zoomIn() {
@@ -266,11 +270,9 @@ function initInteractivePanorama() {
         const hint = container.querySelector('.interaction-hint');
         if (hint) {
             hint.style.opacity = '1';
+            hint.classList.remove('hidden');
             
-            // Hide after 3 seconds
-            setTimeout(() => {
-                hideInteractionHint();
-            }, 3000);
+            // Removed the setTimeout that was automatically hiding the hint
         }
     }
     
@@ -279,6 +281,7 @@ function initInteractivePanorama() {
         const hint = container.querySelector('.interaction-hint');
         if (hint) {
             hint.style.opacity = '0';
+            hint.classList.add('hidden');
         }
     }
     
