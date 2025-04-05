@@ -325,3 +325,209 @@ function initInteractivePanorama() {
     // Start the panorama
     init();
 }
+
+/**
+ * Mobile-specific fixes for the interactive panorama
+ * Add this code at the end of your interactive-panorama.js file
+ */
+
+// Add explicit touch event handling for buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix for mobile button touch events
+    const fixMobileButtonInteraction = function() {
+        const zoomInBtn = document.getElementById('zoom-in-btn');
+        const zoomOutBtn = document.getElementById('zoom-out-btn');
+        const autoRotateBtn = document.getElementById('auto-rotate-btn');
+        
+        // Helper function to add touch events to a button
+        const addTouchEvents = function(button, callback) {
+            if (!button) return;
+            
+            // Add touchstart event (important for mobile)
+            button.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // Prevent default behavior
+                e.stopPropagation(); // Stop event from bubbling up
+                callback(); // Call the button's function
+                
+                // Provide visual feedback
+                this.classList.add('button-active');
+                setTimeout(() => {
+                    this.classList.remove('button-active');
+                }, 200);
+            }, { passive: false });
+        };
+        
+        // Add touch events to each button
+        if (zoomInBtn) {
+            addTouchEvents(zoomInBtn, function() {
+                // Get the camera and adjust FOV
+                const container = document.getElementById('interactive-panorama-container');
+                if (container && container._camera) {
+                    const camera = container._camera;
+                    // Access through the stored reference
+                    camera.fov = Math.max(50, camera.fov - 3);
+                    camera.updateProjectionMatrix();
+                } else {
+                    // Fallback: trigger a click event which the original handler will catch
+                    zoomInBtn.click();
+                }
+            });
+        }
+        
+        if (zoomOutBtn) {
+            addTouchEvents(zoomOutBtn, function() {
+                const container = document.getElementById('interactive-panorama-container');
+                if (container && container._camera) {
+                    const camera = container._camera;
+                    camera.fov = Math.min(90, camera.fov + 3);
+                    camera.updateProjectionMatrix();
+                } else {
+                    zoomOutBtn.click();
+                }
+            });
+        }
+        
+        if (autoRotateBtn) {
+            addTouchEvents(autoRotateBtn, function() {
+                // Just trigger the click event, as the toggle logic is more complex
+                autoRotateBtn.click();
+            });
+        }
+    };
+    
+    // Execute the fix after a small delay to ensure the panorama is initialized
+    setTimeout(fixMobileButtonInteraction, 1000);
+});
+
+// Add CSS styles for better mobile interaction
+document.addEventListener('DOMContentLoaded', function() {
+    // Create a style element
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Increase touch target size */
+        .panorama-control-button {
+            min-width: 44px !important;
+            min-height: 44px !important;
+            /* Important to override any existing styles */
+        }
+        
+        /* Add active state for touch feedback */
+        .button-active,
+        .panorama-control-button:active {
+            transform: scale(0.95) !important;
+            background-color: rgba(255, 223, 77, 0.4) !important;
+            border-color: rgba(255, 223, 77, 0.8) !important;
+        }
+        
+        /* Make sure controls are above other elements */
+        .panorama-controls {
+            z-index: 100 !important;
+            pointer-events: auto !important;
+        }
+        
+        /* Ensure buttons receive events */
+        .panorama-control-button {
+            pointer-events: auto !important;
+        }
+        
+        /* Fix for iOS issues */
+        @supports (-webkit-touch-callout: none) {
+            .panorama-control-button {
+                -webkit-tap-highlight-color: rgba(255, 223, 77, 0.3);
+            }
+        }
+    `;
+    
+    // Append the style element to the head
+    document.head.appendChild(style);
+});
+
+// Modify the initInteractivePanorama function to store a reference to the camera
+// Add this code near the end of your init() function in initInteractivePanorama
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for the panorama to initialize, then patch it
+    setTimeout(function() {
+        const container = document.getElementById('interactive-panorama-container');
+        // Store references to important objects on the container element for access from touch handlers
+        if (container && container.querySelector('canvas') && window.THREE) {
+            const rendererDomElement = container.querySelector('canvas');
+            if (rendererDomElement && rendererDomElement.parentNode && rendererDomElement.parentNode._threeRenderer) {
+                // Try to get the camera from the THREE.js renderer
+                const renderer = rendererDomElement.parentNode._threeRenderer;
+                if (renderer && renderer.camera) {
+                    container._camera = renderer.camera;
+                    console.log('Camera reference stored for mobile interactions');
+                }
+            }
+        }
+    }, 2000); // Wait 2 seconds for everything to initialize
+});
+
+/**
+ * Fix for mobile button active state
+ * Add this code at the end of your interactive-panorama.js file
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix for button active state on mobile
+    const fixButtonActiveState = function() {
+        const buttons = [
+            document.getElementById('zoom-in-btn'),
+            document.getElementById('zoom-out-btn'),
+            document.getElementById('auto-rotate-btn')
+        ];
+        
+        // Add touchend event to remove active state
+        buttons.forEach(button => {
+            if (!button) return;
+            
+            // For touch devices
+            button.addEventListener('touchstart', function(e) {
+                // Add active class or style
+                this.classList.add('active-btn');
+                // Prevent default to avoid double triggers
+                e.preventDefault();
+            }, { passive: false });
+            
+            button.addEventListener('touchend', function() {
+                // Remove active class with a slight delay to ensure visual feedback
+                setTimeout(() => {
+                    this.classList.remove('active-btn');
+                }, 100);
+            });
+            
+            // For mouse devices (just to be thorough)
+            button.addEventListener('mousedown', function() {
+                this.classList.add('active-btn');
+            });
+            
+            button.addEventListener('mouseup', function() {
+                setTimeout(() => {
+                    this.classList.remove('active-btn');
+                }, 100);
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('active-btn');
+            });
+        });
+    };
+    
+    // Add a small style element for the active state
+    const style = document.createElement('style');
+    style.textContent = `
+        .panorama-control-button.active-btn {
+            background-color: rgba(255, 223, 77, 0.4) !important;
+            transform: scale(0.95);
+            transition: all 0.1s ease;
+        }
+        
+        /* Fix for iOS */
+        .panorama-control-button {
+            -webkit-tap-highlight-color: transparent;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Apply the fix
+    setTimeout(fixButtonActiveState, 1000);
+});
