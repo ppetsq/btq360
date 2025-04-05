@@ -43,7 +43,7 @@ function initInteractivePanorama() {
     // Change these values to adjust your zoom limits
     
     // Rotation sensitivity - higher = stiffer controls
-    const ROTATION_SENSITIVITY = 0.005; // Reduce this value for stiffer controls
+    const ROTATION_SENSITIVITY = 0.0015; // Reduce this value for stiffer controls
     
     // Setup the scene, camera, and renderer
     function initScene() {
