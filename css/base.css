@@ -43,13 +43,13 @@ p {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 40px !important;
 }
 
 /* Mobile responsiveness for base styles */
 @media (max-width: 768px) {
     .container {
-        padding: 0 20px;
+        padding: 0 20px !important;
     }
     
     body {
