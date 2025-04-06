@@ -1,6 +1,19 @@
 /* Pre-launch section */
 .pre-launch {
     padding: 80px 0;
+    position: relative; /* Add this */
+    overflow: hidden; /* Add this to contain the background */
+}
+
+/* Add this new block */
+.pre-launch-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5; /* Optional: make the background slightly transparent */
 }
 
 .pre-launch h2 {
@@ -87,4 +100,17 @@
     .countdown-item {
         flex: 1;
     }
+}
+
+.pre-launch-background:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+    pointer-events: none;
 }

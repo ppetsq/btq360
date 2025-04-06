@@ -32,8 +32,8 @@
     min-width: 300px;
     max-width: 380px;
     border: 2px solid rgba(135, 209, 86, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default; /* Changed from cursor: pointer */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Removed transform */
 }
 
 /* Second package (Premium) */
@@ -45,8 +45,8 @@
     min-width: 300px;
     max-width: 380px;
     border: 2px solid rgba(255, 223, 77, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default; /* Changed from cursor: pointer */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Removed transform */
 }
 
 /* Third package (Boutique Complete) */
@@ -58,8 +58,8 @@
     min-width: 300px;
     max-width: 380px;
     border: 2px solid rgba(239, 89, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default; /* Changed from cursor: pointer */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Removed transform */
 }
 
 .package:nth-child(1):hover {
@@ -303,3 +303,4 @@
     color: var(--accent-color);
     margin-top: 10px;
 }
+

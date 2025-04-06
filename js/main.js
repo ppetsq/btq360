@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'panorama-container', image: 'https://assets.360.petsq.works/union/union-eve.jpg' },
         { id: 'experience-panorama-container', image: 'https://assets.360.petsq.works/lapland/lapland-eve.jpg' },
         { id: 'results-panorama-container', image: 'https://assets.360.petsq.works/rotterdam/rotterdam_ug.jpg' },
+        { id: 'pre-launch-panorama-container', image: 'https://assets.360.petsq.works/rotterdam/rotterdam_kubuswoningen.jpg' },
         { id: 'founder-panorama-container', image: 'https://assets.360.petsq.works/lahti/lahti-eve.jpg' }
     ];
     
