@@ -43,7 +43,7 @@ function initInteractivePanorama() {
     // Change these values to adjust your zoom limits
     
     // Rotation sensitivity - higher = stiffer controls
-    const ROTATION_SENSITIVITY = 0.0015; // Reduce this value for stiffer controls
+    const ROTATION_SENSITIVITY = 0.002; // Reduce this value for stiffer controls
     
     // Setup the scene, camera, and renderer
     function initScene() {
@@ -123,7 +123,7 @@ function initInteractivePanorama() {
     function setupInteraction() {
         // Mouse and touch events
         container.addEventListener('mousedown', onDocumentMouseDown, false);
-        container.addEventListener('touchstart', onDocumentTouchStart, false);
+        container.addEventListener('touchstart', onDocumentTouchStart, { passive: false });
         container.addEventListener('wheel', onDocumentWheel, { passive: false });
         
         // Control buttons
@@ -174,23 +174,26 @@ function initInteractivePanorama() {
     }
     
     // Touch start event handler
-    function onDocumentTouchStart(event) {
-        if (event.touches.length === 1) {
-            event.preventDefault();
-            
-            mouseXOnMouseDown = event.touches[0].pageX - windowHalfX;
-            mouseYOnMouseDown = event.touches[0].pageY - windowHalfY;
-            
-            targetRotationXOnMouseDown = targetRotationX;
-            targetRotationYOnMouseDown = targetRotationY;
-            
-            document.addEventListener('touchmove', onDocumentTouchMove, false);
-            document.addEventListener('touchend', onDocumentTouchEnd, false);
-            
-            // Hide interaction hint if visible
-            hideInteractionHint();
-        }
+// Touch start event handler
+function onDocumentTouchStart(event) {
+    if (event.touches.length === 1) {
+        event.preventDefault();
+        
+        mouseXOnMouseDown = event.touches[0].pageX - windowHalfX;
+        mouseYOnMouseDown = event.touches[0].pageY - windowHalfY;
+        
+        targetRotationXOnMouseDown = targetRotationX;
+        targetRotationYOnMouseDown = targetRotationY;
+        
+        // Change this line:
+        document.addEventListener('touchmove', onDocumentTouchMove, { passive: false });
+        // Change this line:
+        document.addEventListener('touchend', onDocumentTouchEnd, { passive: false });
+        
+        // Hide interaction hint if visible
+        hideInteractionHint();
     }
+}
     
     // Touch move event handler
     function onDocumentTouchMove(event) {
@@ -212,8 +215,8 @@ function initInteractivePanorama() {
     
     // Touch end event handler
     function onDocumentTouchEnd() {
-        document.removeEventListener('touchmove', onDocumentTouchMove, false);
-        document.removeEventListener('touchend', onDocumentTouchEnd, false);
+        document.removeEventListener('touchmove', onDocumentTouchMove, { passive: false });
+        document.removeEventListener('touchend', onDocumentTouchEnd, { passive: false });
         
         isUserInteracting = false;
     }
