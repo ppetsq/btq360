@@ -43,34 +43,6 @@
     background: #555;
 }
 
-/* Panorama hotspot styling */
-.panorama-hotspot {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: rgba(255, 223, 77, 0.7);
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    color: #0f0f0f;
-    font-weight: bold;
-    animation: hotspot-pulse 2s infinite;
-    z-index: 20;
-    pointer-events: auto;
-    transition: all 0.3s ease;
-}
-
-.panorama-hotspot:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-    background-color: rgba(255, 223, 77, 0.9);
-}
-
 /* Panorama Container CSS Fixes */
 .founder-background, 
 .experience-background,
