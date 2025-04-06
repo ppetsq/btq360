@@ -1,20 +1,179 @@
-/* Footer */
+/* Updated footer styles in css/sections/footer.css */
 footer {
-    padding: 40px 0;
+    padding: 60px 0;
     border-top: 1px solid rgba(135, 209, 86, 0.1);
     color: #666;
-    text-align: center;
+    background-color: #0a0a0a; /* Slightly darker background for more depth */
 }
 
-footer a {
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #E6E6E6;
+    margin-bottom: 20px;
+    text-transform: lowercase;
+}
+
+.footer-contact {
+    color: #999999;
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    align-self: center; /* Vertically center with logo */
+}
+
+.footer-links a {
+    color: #BBBBBB;
     text-decoration: none;
-    color: inherit;
+    position: relative;
+    transition: color 0.3s ease;
+    font-weight: 300;
+    text-transform: lowercase;
 }
 
-footer a:hover {
-    text-decoration: underline;
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FFDF4D; /* Your accent color */
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #FFDF4D;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-email {
+    color: #BBBBBB;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-email:hover {
+    color: #FFDF4D;
 }
 
 .copyright {
-    font-size: 14px;
+    text-align: center;
+    color: #666;
+    padding-top: 40px;
+    border-top: 1px solid rgba(135, 209, 86, 0.1);
+    margin-top: 40px;
+}
+
+.copyright a {
+    color: #777;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.copyright a:hover {
+    color: #FFDF4D;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .footer-links {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+}/* Updated footer styles in css/sections/footer.css */
+footer {
+    padding: 60px 0;
+    border-top: 1px solid rgba(135, 209, 86, 0.1);
+    color: #666;
+    background-color: #0a0a0a; /* Slightly darker background for more depth */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #E6E6E6;
+    margin-bottom: 20px;
+    text-transform: lowercase;
+}
+
+.footer-contact {
+    color: #999999;
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #BBBBBB;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #FFDF4D;
+}
+
+.copyright {
+    text-align: center;
+    color: #666;
+    padding-top: 40px;
+    border-top: 1px solid rgba(135, 209, 86, 0.1);
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .footer-links {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
 }
