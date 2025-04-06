@@ -264,52 +264,100 @@ function initPageAnimations() {
     }
 }
 
-// Add this to your main.js or create a new file case-studies.js
-
 document.addEventListener('DOMContentLoaded', function() {
     // Get all case study videos
     const caseVideos = document.querySelectorAll('.case-video');
     
-    // For each video, ensure proper loading and playback
+    // For each video, implement a state-based approach to video handling
     caseVideos.forEach(video => {
+        // Make sure video is muted for autoplay
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        
+        // Add metadata to the video element to track state
+        video._state = {
+            playingOrAttempting: false,
+            inViewport: false
+        };
+        
         // Force load the video
         video.load();
         
-        // Try to play the video (handles autoplay restrictions in some browsers)
-        let playPromise = video.play();
+        // Create an intersection observer for viewport detection
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]; // Should only be one entry
+            const wasInViewport = video._state.inViewport;
+            video._state.inViewport = entry.isIntersecting;
+            
+            // Only take action if visibility state changed
+            if (video._state.inViewport && !wasInViewport) {
+                // Coming into view - attempt to play if not already playing
+                if (!video._state.playingOrAttempting) {
+                    attemptPlayback(video);
+                }
+            } else if (!video._state.inViewport && wasInViewport) {
+                // Going out of view - pause if playing
+                video.pause();
+                video._state.playingOrAttempting = false;
+            }
+        }, { threshold: 0.1 });
         
-        if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                // Playback started successfully
-                console.log('Video playback started');
-            })
-            .catch(error => {
-                // Auto-play was prevented
-                console.log('Auto-play was prevented:', error);
-                
-                // Add a play button or user interaction element if needed
-                const caseStudyImage = video.closest('.case-study-image');
-                
-                // Only add play functionality if autoplay fails
-                caseStudyImage.addEventListener('click', function() {
-                    video.play();
-                });
-            });
+        // Start observing the video
+        observer.observe(video);
+        
+        // Initial playback attempt if video is in viewport
+        if (isElementInViewport(video)) {
+            video._state.inViewport = true;
+            attemptPlayback(video);
         }
         
-        // Handle video entering viewport for better performance
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Video is in viewport - play it
-                    video.play();
-                } else {
-                    // Video is not in viewport - pause it to save resources
-                    video.pause();
-                }
+        // Add click-to-play fallback
+        const caseStudyImage = video.closest('.case-study-image');
+        if (caseStudyImage) {
+            caseStudyImage.addEventListener('click', function(e) {
+                // If this is a link, don't interfere with normal behavior
+                if (e.target.tagName === 'A') return;
+                
+                // Only prevent default if we're handling the click for video playback
+                if (!video.paused) return; // Already playing, don't interfere
+                
+                e.preventDefault();
+                e.stopPropagation();
+                attemptPlayback(video);
             });
-        }, { threshold: 0.1 }); // 10% of the video needs to be visible
-        
-        observer.observe(video);
+        }
     });
+    
+    // Function to attempt playback with proper state tracking
+    function attemptPlayback(video) {
+        // Mark that we're attempting playback
+        video._state.playingOrAttempting = true;
+        
+        // Attempt to play
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    // Success - keep state as is
+                    console.log('Video playback started');
+                })
+                .catch(error => {
+                    // Failure - reset state so we can try again
+                    console.log('Playback failed:', error.message);
+                    video._state.playingOrAttempting = false;
+                });
+        }
+    }
+    
+    // Helper function to check if element is in viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 });
