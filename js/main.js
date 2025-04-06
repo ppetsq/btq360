@@ -4,59 +4,34 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize panoramas
-    setupPanorama('panorama-container', 'https://assets.360.petsq.works/union/union-eve.jpg');
-    setupPanorama('experience-panorama-container', 'https://assets.360.petsq.works/lapland/lapland-eve.jpg');
-    setupPanorama('founder-panorama-container', 'https://assets.360.petsq.works/lahti/lahti-eve.jpg');
+    // Initialize all panoramas with a single function
+    const panoramas = [
+        { id: 'panorama-container', image: 'https://assets.360.petsq.works/union/union-eve.jpg' },
+        { id: 'experience-panorama-container', image: 'https://assets.360.petsq.works/lapland/lapland-eve.jpg' },
+        { id: 'results-panorama-container', image: 'https://assets.360.petsq.works/rotterdam/rotterdam_ug.jpg' },
+        { id: 'founder-panorama-container', image: 'https://assets.360.petsq.works/lahti/lahti-eve.jpg' }
+    ];
     
-    // Initialize animations
+    // Initialize everything
+    panoramas.forEach(p => setupPanorama(p.id, p.image));
     initAnimations();
-    
-    // Initialize header scroll effects
     initHeaderScroll();
-    
-    // Initialize countdown
     updateCountdown();
     setInterval(updateCountdown, 1000);
-    
-    // Initialize hover effects
     initHoverEffects();
     
-    // Run initial animation check for elements above the fold
+    // Initialize components
+    if (document.querySelector('.faq')) initFaq();
+    if (document.querySelector('.package-tab')) initPackageTabs();
+    if (document.querySelector('.case-video')) initCaseStudyVideos();
+    
+    // Run initial animation checks
     setTimeout(handleScrollAnimation, 100);
     
-    // Apply animations to hero section immediately without scroll
+    // Apply initial hero animations
     setTimeout(function() {
-        document.querySelectorAll('.hero-content > *').forEach((element) => {
-            element.classList.add('visible');
-        });
+        document.querySelectorAll('.hero-content > *').forEach(el => el.classList.add('visible'));
     }, 300);
-    
-    // Initialize IntersectionObserver for more sophisticated animations if supported
-    if ('IntersectionObserver' in window) {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-        
-        const handleIntersect = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Stop observing once it's visible
-                }
-            });
-        };
-        
-        const observer = new IntersectionObserver(handleIntersect, observerOptions);
-        
-        // Observe all animatable elements
-        const elements = document.querySelectorAll('.fade-in, .scale-in');
-        elements.forEach(element => {
-            observer.observe(element);
-        });
-    }
 });
 
 /**
@@ -69,26 +44,10 @@ function initHoverEffects() {
         pkg.addEventListener('mouseenter', function() {
             // Add subtle pulse animation
             this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease';
-            this.style.transform = 'translateY(-5px)';
         });
         
         pkg.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
-        });
-    });
-    
-    // Logo hover effect
-    const logos = document.querySelectorAll('.logo');
-    logos.forEach(logo => {
-        logo.addEventListener('mouseenter', function() {
-            const img = this.querySelector('img');
-            img.style.transition = 'transform 0.3s ease';
-            img.style.transform = 'scale(1.05)';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            const img = this.querySelector('img');
-            img.style.transform = 'scale(1)';
         });
     });
     
@@ -97,7 +56,8 @@ function initHoverEffects() {
     ctaButtons.forEach(button => {
         button.addEventListener('mouseenter', function() {
             this.style.transition = 'all 0.3s ease';
-            this.style.boxShadow = '0 0 15px rgba(255, 223, 77, 0.25)';
+            this.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.15)';
+            this.style.transform = 'none'; // Prevents any rising effect
         });
         
         button.addEventListener('mouseleave', function() {

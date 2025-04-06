@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><a href="#home" class="nav-link">home</a></li>
                         <li><a href="#use-cases" class="nav-link">use cases</a></li>
                         <li><a href="#references" class="nav-link">references</a></li>
+                        <li><a href="#process" class="nav-link">process</a></li>
                         <li><a href="#packages" class="nav-link">pricing</a></li>
                         <li><a href="#faq" class="nav-link">faq</a></li>
                         <li><a href="#contact" class="nav-link">contact</a></li>
