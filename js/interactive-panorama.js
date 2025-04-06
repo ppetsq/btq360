@@ -28,7 +28,7 @@ function initInteractivePanorama() {
     let scene, camera, renderer, sphere;
     let isUserInteracting = false;
     let isAutoRotating = true;
-    let autoRotateSpeed = 0.0003; // Slower auto-rotation for better control
+    let autoRotateSpeed = 0.001; // Slower auto-rotation for better control
     let mouseX = 0, mouseY = 0;
     let mouseXOnMouseDown = 0, mouseYOnMouseDown = 0;
     let targetRotationX = 0, targetRotationY = 0;
@@ -262,8 +262,10 @@ function onDocumentWheel(event) {
         if (autoRotateBtn) {
             if (isAutoRotating) {
                 autoRotateBtn.classList.add('active');
+                // You don't need to add anything else here - the CSS animation will apply automatically
             } else {
                 autoRotateBtn.classList.remove('active');
+                // Animation stops automatically when class is removed
             }
         }
     }
@@ -304,8 +306,8 @@ function onDocumentWheel(event) {
         
         // Update phi and theta based on target rotation with smooth easing
         // Slower damping factor (0.05 instead of 0.1) for smoother, stiffer movement
-        phi += (targetRotationX - phi) * 0.05;
-        theta += (targetRotationY - theta) * 0.05;
+        phi += (targetRotationX - phi) * 0.5;
+        theta += (targetRotationY - theta) * 0.5;
         
         // Ensure theta stays within bounds
         theta = Math.max(Math.min(theta, Math.PI / 3 - 0.1), -Math.PI / 3 + 0.1);
