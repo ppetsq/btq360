@@ -42,6 +42,9 @@ function setupPanorama(containerId, imageUrl) {
             if (containerId === 'founder-panorama-container') {
                 // Apply more blur to the texture for the founder section
                 texture.minFilter = THREE.LinearFilter;
+                    // Add better texture settings for performance
+                    texture.generateMipmaps = false; // Reduces memory usage
+                    texture.anisotropy = renderer.capabilities.getMaxAnisotropy(); // Improves quality at angles
                 texture.magFilter = THREE.LinearFilter;
                 
                 // Create a blur effect using THREE.ShaderMaterial
