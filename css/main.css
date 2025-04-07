@@ -3,23 +3,6 @@
  * Serves as a central import and for generic styles
  */
 
-/* Contains all cross-site styles not specific to individual sections */
-.ihs-special {
-    color: #FFDF4D;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.ihs-special span {
-    margin-left: 6px;
-    padding: 3px 6px;
-    background-color: rgba(255, 223, 77, 0.2);
-    border-radius: 4px;
-}
-
 /* Section spacers */
 .header-spacer {
     height: 0; /* Adjusted by JS if needed */

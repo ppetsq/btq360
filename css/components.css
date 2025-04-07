@@ -35,14 +35,12 @@
     transition: all 0.3s ease;
     text-transform: lowercase;
     letter-spacing: 1px;
-    backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     border: 0px solid rgba(255, 255, 255, 0.15);
 }
 
 .header-cta:hover {
     background-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
     box-shadow: 0 0 5px rgba(255, 223, 77, 0.15);
 }
 
