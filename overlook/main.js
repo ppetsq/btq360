@@ -13,10 +13,10 @@
 
 // Image paths for different lighting scenarios
 const images = {
-    day: "/assets/images/360/overlook/day.jpg",
-    evening: "/assets/images/360/overlook/evening.jpg",
-    night: "/assets/images/360/overlook/night.jpg",
-    off: "assets/images/360/overlook/off.jpg"
+    day: "/overlook/assets/day.jpg",
+    evening: "/overlook/assets/evening.jpg",
+    night: "/overlook/assets/night.jpg",
+    off: "/overlook/assets/off.jpg"
 };
 
 // Auto-cycling configuration
