@@ -6,11 +6,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all panoramas with a single function
     const panoramas = [
-        { id: 'panorama-container', image: 'https://assets.360.petsq.works/union/union-eve.jpg' },
-        { id: 'experience-panorama-container', image: 'https://assets.360.petsq.works/lapland/lapland-eve.jpg' },
-        { id: 'results-panorama-container', image: 'https://assets.360.petsq.works/rotterdam/rotterdam_ug.jpg' },
-        { id: 'pre-launch-panorama-container', image: 'https://assets.360.petsq.works/rotterdam/rotterdam_kubuswoningen.jpg' },
-        { id: 'founder-panorama-container', image: 'https://assets.360.petsq.works/lahti/lahti-eve.jpg' }
+        { id: 'panorama-container', image: '/assets/images/360/union.jpg' },
+        { id: 'experience-panorama-container', image: '/assets/images/360/lapland.jpg' },
+        { id: 'results-panorama-container', image: '/assets/images/360/rotterdam.jpg' },
+        { id: 'pre-launch-panorama-container', image: '/assets/images/360/kubus.jpg' },
+        { id: 'founder-panorama-container', image: '/assets/images/360/lahti.jpg' }
     ];
     
     // Initialize everything

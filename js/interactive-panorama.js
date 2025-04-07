@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function initInteractivePanorama() {
     // Image path - same as hero but no blur effect
-    const panoramaImage = "https://assets.360.petsq.works/union/union-eve-2.jpg";
+    const panoramaImage = "/assets/images/360/union.jpg";
     
     // Get the container and control buttons
     const container = document.getElementById('interactive-panorama-container');

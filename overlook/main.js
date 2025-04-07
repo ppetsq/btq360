@@ -13,10 +13,10 @@
 
 // Image paths for different lighting scenarios
 const images = {
-    day: "https://assets.360.petsq.works/Overlook/overlook_day_fixed.jpg",
-    evening: "https://assets.360.petsq.works/Overlook/overlook_evening.jpg",
-    night: "https://assets.360.petsq.works/Overlook/overlook_night2.jpg",
-    off: "https://assets.360.petsq.works/Overlook/overlook_off.jpg"
+    day: "/assets/images/360/overlook/day.jpg",
+    evening: "/assets/images/360/overlook/evening.jpg",
+    night: "/assets/images/360/overlook/night.jpg",
+    off: "assets/images/360/overlook/off.jpg"
 };
 
 // Auto-cycling configuration
