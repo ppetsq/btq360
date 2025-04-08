@@ -47,10 +47,6 @@
     border-left-color: rgba(239, 89, 0, 0.4);
 }
 
-.faq-item:hover {
-    transform: translateY(-2px);
-}
-
 .faq-question {
     padding: 18px 22px;
     background-color: #0f0f0f;
