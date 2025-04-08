@@ -53,67 +53,51 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.insertAdjacentHTML('beforeend', navMenuHTML);
     }
 
-    // Smooth scroll to section
-    function smoothScrollToSection(targetId) {
-        const targetSection = document.querySelector(targetId);
-        if (targetSection) {
-            targetSection.scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-    }
-
     // Initialize navigation functionality
     function initNavigation() {
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const navMenu = document.querySelector('.site-navigation');
-        const navOverlay = document.querySelector('.navigation-overlay');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        // Toggle navigation
-        function toggleNavigation(e) {
-            e.preventDefault();
-            
-            // Toggle menu open/closed
+        // Toggle navigation menu open/closed
+        function toggleMenu() {
             navMenu.classList.toggle('open');
             hamburgerMenu.classList.toggle('open');
             
-            // Prevent body scroll when menu is open
             if (navMenu.classList.contains('open')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
             }
         }
-
-        // Handle link clicks
-        function handleLinkClick(e) {
-            e.preventDefault();
-            
-            // Get the href attribute
-            const targetId = e.target.getAttribute('href');
-            
-            // Close navigation menu
-            toggleNavigation(e);
-            
-            // Scroll to section after a short delay to allow menu to close
-            setTimeout(() => {
-                smoothScrollToSection(targetId);
-            }, 300);
-        }
-
-        // Add event listeners
-        if (hamburgerMenu) {
-            hamburgerMenu.addEventListener('click', toggleNavigation);
-        }
         
-        if (navOverlay) {
-            navOverlay.addEventListener('click', toggleNavigation);
+        // Close the navigation menu
+        function closeMenu() {
+            navMenu.classList.remove('open');
+            hamburgerMenu.classList.remove('open');
+            document.body.style.overflow = '';
         }
 
-        // Close navigation when a link is clicked
+        // Handle hamburger menu click
+        if (hamburgerMenu) {
+            hamburgerMenu.addEventListener('click', toggleMenu);
+        }
+
+        // Handle navigation overlay click
+        const navOverlay = document.querySelector('.navigation-overlay');
+        if (navOverlay) {
+            navOverlay.addEventListener('click', closeMenu);
+        }
+
+        // Handle navigation link clicks
         navLinks.forEach(link => {
-            link.addEventListener('click', handleLinkClick);
+            link.addEventListener('click', function(e) {
+                // Close the menu when a link is clicked
+                closeMenu();
+                
+                // Let the browser handle the hash navigation naturally
+                // The key change: NOT preventing default behavior for hash links
+            });
         });
     }
 
