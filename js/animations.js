@@ -50,10 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
         let transitionTriggered = false;
         let scrollingEnabled = false;
         let autoTransitionTimer;
+
+        let interactionsAllowed = false;
+        window.addEventListener('load', function() {
+            setTimeout(function(){
+                interactionsAllowed = true;
+            }, 1500); // Adjust delay (in ms) to match your fade-in timing (logo + panorama)
+        });
         
         // Function to show content instead of logo
         function showContent(enableScrolling = false) {
-            if (!transitionTriggered) {
+            if (!transitionTriggered && interactionsAllowed) { 
                 transitionTriggered = true;
                 hero.classList.add('text-visible');
                 clearTimeout(autoTransitionTimer);
@@ -70,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 3. First scroll attempt - prevent actual scrolling
         function handleFirstScroll(e) {
-            if (!transitionTriggered) {
+            if (!transitionTriggered || !interactionsAllowed) {
                 // Prevent actual scrolling for the first wheel/touch event
                 e.preventDefault();
                 // Show content but don't enable scrolling yet
@@ -92,21 +99,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // 4. Set up scroll blocking for all scroll events
         window.addEventListener('wheel', function(e) {
             // If transition happened but scrolling not yet enabled, prevent scroll
-            if (transitionTriggered && !scrollingEnabled) {
+            if ((transitionTriggered && !scrollingEnabled) || !interactionsAllowed) {
                 e.preventDefault();
             }
         }, { passive: false });
         
         window.addEventListener('touchmove', function(e) {
             // If transition happened but scrolling not yet enabled, prevent scroll
-            if (transitionTriggered && !scrollingEnabled) {
+            if ((transitionTriggered && !scrollingEnabled) || !interactionsAllowed) {
                 e.preventDefault();
             }
         }, { passive: false });
         
         // 5. Keyboard navigation
         window.addEventListener('keydown', function(e) {
-            if ((e.key === ' ' || e.key === 'Enter') && !transitionTriggered) {
+            if ((e.key === ' ' || e.key === 'Enter') && !transitionTriggered && interactionsAllowed) {
                 showContent(true); // Enable scrolling right away
             }
         });
@@ -121,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollingEnabled = true;
                 
                 // Show content if not already visible
-                if (!transitionTriggered) {
+                if (!transitionTriggered && interactionsAllowed) {
                     showContent(true);
                 }
                 

@@ -2,7 +2,7 @@
 
 /* Base styles - unchanged */
 .hero {
-    height: 100vh;
+    height: 100svh;
     position: relative;
     overflow: hidden;
     cursor: pointer;
