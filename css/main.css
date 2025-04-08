@@ -43,3 +43,7 @@
 canvas {
     object-fit: cover; /* Cover the container while maintaining aspect ratio */
 }
+
+.anchor-offset {
+    scroll-margin-top: 60px; /* your offset value */
+  }
