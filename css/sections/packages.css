@@ -306,3 +306,23 @@
     margin-top: 10px;
 }
 
+.package-cta {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: block; /* Change from inline-block to block */
+    width: fit-content; /* Make it only as wide as needed */
+    padding: 12px 25px;
+    font-size: 14px;
+    margin-left: auto; /* Center the button */
+    margin-right: auto; /* Center the button */
+    /* Override the hover styles */
+    transition: background-color 0.3s ease;
+    transform: none !important; /* Prevent any transform on hover */
+    box-shadow: none !important; /* Prevent any shadow on hover */
+}
+
+.package-cta:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Subtle hover effect */
+    transform: none !important; /* Force override any inherited transform */
+    box-shadow: none !important; /* Force override any inherited box-shadow */
+}
