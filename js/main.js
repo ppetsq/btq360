@@ -21,9 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateCountdown, 1000);
     initHoverEffects();
     
-    // Initialize components
-    if (document.querySelector('.package-tab')) initPackageTabs();
-    
     // Run initial animation checks
     setTimeout(handleScrollAnimation, 100);
     
