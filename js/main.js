@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initHoverEffects();
     
     // Initialize components
-    if (document.querySelector('.faq')) initFaq();
     if (document.querySelector('.package-tab')) initPackageTabs();
-    if (document.querySelector('.case-video')) initCaseStudyVideos();
     
     // Run initial animation checks
     setTimeout(handleScrollAnimation, 100);
