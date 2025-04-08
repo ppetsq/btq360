@@ -8,13 +8,15 @@
 
 .packages-header {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 60px;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
 .packages h2 {
     margin-bottom: 0;
+    text-align: center;
 }
 
 .package-container {
