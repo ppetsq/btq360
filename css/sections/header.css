@@ -263,16 +263,16 @@ header.visible {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .logo img {
-        height: 30px;
+        height: 36px;
     }
     
     .header-content {
-        padding: 12px 0;
+        padding: 18px 0;
     }
 
     .hamburger-menu {
-        width: 20px;
-        height: 16px;
+        width: 24px;
+        height: 18px;
     }
 
     .navigation-content {
@@ -297,11 +297,11 @@ header.visible {
 
 @media (max-width: 480px) {
     .header-content {
-        padding: 10px 0;
+        padding: 18px 0;
     }
     
     .logo img {
-        height: 26px;
+        height: 36px;
     }
     
     .header-right {
@@ -318,3 +318,8 @@ header.visible {
     }
 }
 
+.logo a {
+    display: block;
+    text-decoration: none; /* Remove underline */
+    outline: none; /* Remove focus outline */
+}
