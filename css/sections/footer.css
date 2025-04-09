@@ -177,3 +177,40 @@ footer {
         align-items: center;
     }
 }
+
+.footer-language-switcher {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.footer-language-switcher a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-language-switcher .divider {
+    color: white;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.footer-language-switcher .active {
+    color: white;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.footer-language-switcher .inactive {
+    color: white;
+    opacity: 0.5;
+}
+
+.footer-language-switcher .inactive:hover {
+    color: #FFDF4D;
+    opacity: 1;
+}
