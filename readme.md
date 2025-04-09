@@ -66,8 +66,8 @@ boutique360/
 │   ├── interactive-panorama.js # Interactive panorama controls
 │   └── navigation.js          # Navigation functionality
 └── assets/
-    ├── images/                # Images and graphics
-    │   ├── 360/               # 360° panorama images
-    │   ├── logos/             # Logo files
-    │   └── icons/             # Icon assets
-    └── videos/                # Video previews of panoramas
+├── images/                # Images and graphics
+│   ├── 360/               # 360° panorama images
+│   ├── logos/             # Logo files
+│   └── icons/             # Icon assets
+└── videos/                # Video previews of panoramas
