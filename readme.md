@@ -4,10 +4,10 @@
 
 boutique360 provides interactive, high-quality virtual tours that eliminate doubt and boost direct bookings. our solutions are designed for independent spaces with character, simple to implement, and ready in days.
 
-High-quality 360° visualization - Showcase your space from every angle
-Multiple lighting scenarios - Demonstrate different moods and settings
-Cross-platform compatibility - Works seamlessly on all devices
-Easy integration - Simple embedding on websites and sharing via QR codes
+- **high-quality 360° visualization** - showcase your space from every angle
+- **multiple lighting scenarios** - demonstrate different moods and settings
+- **cross-platform compatibility** - works seamlessly on all devices
+- **easy integration** - simple embedding on websites and sharing via QR codes
 
 ## license
 
