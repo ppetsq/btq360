@@ -33,32 +33,43 @@
 }
 
 .client-logos-container {
-    position: relative;
     overflow: hidden;
-    margin-bottom: 0px;
     width: 100%;
+    position: relative;
     height: 60px;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .client-logos {
     display: flex;
-    position: absolute;
-    animation: scroll 30s linear infinite;
+    align-items: center;
     width: max-content;
-    gap: 50px;
+}
+
+.logos-slide {
+    display: flex;
+    align-items: center;
+    animation: scroll-logos 30s linear infinite;
+    animation-play-state: running;
 }
 
 .client-logo {
     height: 45px;
+    flex-shrink: 0;
+    margin: 0 25px;
     opacity: 0.9;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .client-logo:hover {
-    opacity: 1;
     transform: scale(1.1);
+    opacity: 1;
+}
+
+@keyframes scroll-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
 .experience-text {
@@ -80,3 +91,10 @@
     max-width: 500px;
     margin: 0 auto;
 }
+
+@media (hover: none) and (pointer: coarse) {
+    .client-logo:hover {
+      transform: none !important;
+      opacity: 0.9 !important;
+    }
+  }

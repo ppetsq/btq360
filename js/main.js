@@ -60,32 +60,38 @@ function initHoverEffects() {
             this.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
         });
     });
-    
-    // Enhanced client logo hover effect
-    const clientLogos = document.querySelectorAll('.client-logo');
-    clientLogos.forEach(logo => {
-        logo.addEventListener('mouseenter', function() {
-            // Pause the animation when hovering over a logo
-            const logoContainer = document.querySelector('.client-logos');
-            logoContainer.style.animationPlayState = 'paused';
-            
-            // Highlight the hovered logo
-            this.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-            this.style.transform = 'scale(1.1)';
-            this.style.opacity = '1';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            // Resume the animation
-            const logoContainer = document.querySelector('.client-logos');
-            logoContainer.style.animationPlayState = 'running';
-            
-            // Reset the logo
-            this.style.transform = 'scale(1)';
-            this.style.opacity = '0.9';
-        });
-    });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const logosSlide = document.querySelector('.logos-slide');
+    const clientLogos = document.querySelectorAll('.client-logo');
+  
+    if (!logosSlide || clientLogos.length === 0) return;
+  
+    const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  
+    if (isMobile) {
+      // On mobile: no pause/resume interactions, just scroll
+      logosSlide.style.animationPlayState = 'running';
+      return;
+    }
+  
+    let hoverCount = 0;
+  
+    clientLogos.forEach(logo => {
+      logo.addEventListener('mouseenter', () => {
+        hoverCount++;
+        logosSlide.style.animationPlayState = 'paused';
+      });
+  
+      logo.addEventListener('mouseleave', () => {
+        hoverCount = Math.max(0, hoverCount - 1);
+        if (hoverCount === 0) {
+          logosSlide.style.animationPlayState = 'running';
+        }
+      });
+    });
+  });
 
 /**
  * Initialize header scroll effects
