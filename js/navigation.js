@@ -23,33 +23,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Create navigation menu
     function createNavigationMenu() {
-        // Check if navigation already exists
         if (document.querySelector('.site-navigation')) return;
-
+    
+        const isDutch = window.location.pathname.includes('/nl');
+        
+        const navTexts = isDutch
+            ? {
+                home: 'home',
+                useCases: 'toepassingen',
+                references: 'klanten',
+                process: 'proces',
+                pricing: 'prijzen',
+                faq: 'faq',
+                contact: 'contact',
+                offer: '30% korting tot 30 april'
+            }
+            : {
+                home: 'home',
+                useCases: 'use cases',
+                references: 'references',
+                process: 'process',
+                pricing: 'pricing',
+                faq: 'faq',
+                contact: 'contact',
+                offer: '30% off until 30th april'
+            };
+    
         const navMenuHTML = `
             <nav class="site-navigation">
                 <div class="navigation-overlay"></div>
                 <div class="navigation-content">
                     <ul class="nav-menu">
-                        <li><a href="#home" class="nav-link">home</a></li>
-                        <li><a href="#use-cases" class="nav-link">use cases</a></li>
-                        <li><a href="#references" class="nav-link">references</a></li>
-                        <li><a href="#process" class="nav-link">process</a></li>
-                        <li><a href="#packages" class="nav-link">pricing</a></li>
-                        <li><a href="#faq" class="nav-link">faq</a></li>
-                        <li><a href="#contact" class="nav-link">contact</a></li>
+                        <li><a href="#home" class="nav-link">${navTexts.home}</a></li>
+                        <li><a href="#use-cases" class="nav-link">${navTexts.useCases}</a></li>
+                        <li><a href="#references" class="nav-link">${navTexts.references}</a></li>
+                        <li><a href="#process" class="nav-link">${navTexts.process}</a></li>
+                        <li><a href="#packages" class="nav-link">${navTexts.pricing}</a></li>
+                        <li><a href="#faq" class="nav-link">${navTexts.faq}</a></li>
+                        <li><a href="#contact" class="nav-link">${navTexts.contact}</a></li>
                     </ul>
                     <div class="nav-cta-section">
                         <div class="nav-special-offer">
-                            <span>30% off until 30th april</span>
+                            <span>${navTexts.offer}</span>
                         </div>
                     </div>
                 </div>
             </nav>
         `;
-        
+    
         document.body.insertAdjacentHTML('beforeend', navMenuHTML);
     }
 
