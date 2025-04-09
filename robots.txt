@@ -1,0 +1,10 @@
+# robots.txt for boutique360
+
+User-agent: *
+Allow: /
+
+# Block any temporary or development areas
+Disallow: /meta/
+
+# Sitemap location
+Sitemap: https://btq360.petsq.works/sitemap.xml
