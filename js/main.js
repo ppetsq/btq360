@@ -3,6 +3,19 @@
  * Initializes all components when the DOM is loaded
  */
 
+// Language redirection logic (only on first visit)
+if (!sessionStorage.getItem('langRedirected')) {
+    const userLang = navigator.language || navigator.userLanguage;
+
+    if (userLang.toLowerCase().startsWith('nl')) {
+        if (!window.location.pathname.startsWith('/nl')) {
+            window.location.href = '/nl/';
+        }
+    }
+
+    sessionStorage.setItem('langRedirected', 'true');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all panoramas with a single function
     const panoramas = [
