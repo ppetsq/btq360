@@ -17,6 +17,8 @@ Easy integration - Simple embedding on websites and sharing via QR codes
 
 hello@petsq.works
 
+## structure
+
 boutique360/
 ├── index.html                 # Main HTML document
 ├── nl/
