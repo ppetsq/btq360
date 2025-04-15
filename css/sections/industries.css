@@ -43,6 +43,8 @@
     min-height: 160px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 /* Card color styles */
@@ -148,6 +150,53 @@
 .industry-card.active .card-content {
     opacity: 1;
     border-radius: 0px; /* Changed from 14px to 0px */
+}
+
+/* FIX: Improve transition by making the background fade transition smooth */
+.industry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.industry-card.active {
+    z-index: 5; /* Higher than the fade overlay */
+}
+
+.industry-card.active::before {
+    opacity: 1;
+    z-index: 3;
+}
+
+/* FIX: Smooth transition for content visibility */
+.card-content {
+    z-index: 4; /* Above the background but below the toggle */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-content h3, 
+.card-content p {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.industry-card.active .card-content {
+    opacity: 1;
+}
+
+.industry-card.active .card-content h3 {
+    color: #ffffff;
+}
+
+.industry-card.active .card-content p {
+    color: #DDDDDD;
 }
 
 /* Icon styles - Updated to match device-access section */
@@ -346,22 +395,58 @@
     color: #FFFFFF;
 }
 
-/* Responsive breakpoints with improved mobile spacing */
+/* Industries grid with fade effect */
+.industries-grid:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(5, 5, 5, 0) 40%,
+        rgba(5, 5, 5, 0.5) 95%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Adjust the fade effect for different screen sizes */
 @media (max-width: 1200px) {
     .industries-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
+    
+    .industries-grid:before {
+        background: radial-gradient(
+            circle at center,
+            rgba(5, 5, 5, 0) 30%,
+            rgba(5, 5, 5, 0.5) 90%
+        );
+    }
 }
 
 @media (max-width: 768px) {
     .industries-grid {
-        grid-template-columns: 1fr;
-        max-width: 100%; /* Use full container width */
+        grid-template-columns: 1fr; /* Force single column layout */
+        width: 100%;
+        max-width: 100%;
+        gap: 20px;
         padding: 0 0px; /* Reduced padding on mobile */
     }
     
+    .industries-grid:before {
+        background: radial-gradient(
+            ellipse at center,
+            rgba(5, 5, 5, 0) 40%,
+            rgba(5, 5, 5, 0.55) 95%
+        );
+    }
+    
     .industry-card {
+        width: 100%;
         min-height: 170px;
     }
 }
@@ -400,79 +485,6 @@
     
     .card-content p {
         font-size: 13px;
-    }
-}
-
-/* Industries grid with fade effect */
-.industries-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 50px;
-    position: relative; /* Important for the fade effect */
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-}
-
-/* Fade effect */
-.industries-grid:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at center,
-        rgba(5, 5, 5, 0) 40%,
-        rgba(5, 5, 5, 0.5) 95%
-    );
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Make sure cards appear above the fade but don't have rounded corners */
-.industry-card {
-    position: relative;
-    z-index: 1;
-}
-
-/* Adjust the fade effect for different screen sizes */
-@media (max-width: 1200px) {
-    .industries-grid:before {
-        background: radial-gradient(
-            circle at center,
-            rgba(5, 5, 5, 0) 30%,
-            rgba(5, 5, 5, 0.5) 90%
-        );
-    }
-}
-
-@media (max-width: 768px) {
-    .industries-grid:before {
-        background: radial-gradient(
-            ellipse at center,
-            rgba(5, 5, 5, 0) 40%,
-            rgba(5, 5, 5, 0.55) 95%
-        );
-    }
-}
-
-/* Fix for mobile layout to ensure cards stack properly */
-@media (max-width: 768px) {
-    .industries-grid {
-        grid-template-columns: 1fr; /* Force single column layout */
-        width: 100%;
-        max-width: 100%;
-        gap: 20px;
-    }
-
-    /* Ensure cards take full width */
-    .industry-card {
-        width: 100%;
-        min-height: 170px;
     }
 }
 
