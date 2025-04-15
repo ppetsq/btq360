@@ -10,4 +10,4 @@ Disallow: /nl/privacy.html
 Disallow: /nl/terms.html
 
 # Sitemap location
-Sitemap: https://btq360.petsq.works/sitemap.xml
+Sitemap: https://btq360.com/sitemap.xml
