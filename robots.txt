@@ -4,7 +4,10 @@ User-agent: *
 Allow: /
 
 # Block any temporary or development areas
-Disallow: /meta/
+Disallow: /privacy.html
+Disallow: /terms.html
+Disallow: /nl/privacy.html
+Disallow: /nl/terms.html
 
 # Sitemap location
 Sitemap: https://btq360.petsq.works/sitemap.xml
