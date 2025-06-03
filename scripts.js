@@ -38,7 +38,7 @@ function initAnimations(){let e;window.addEventListener("scroll",function(){e||(
                 <span></span>
                 <span></span>
                 <span></span>
-            `,e.appendChild(a)}})(),function e(){if(document.querySelector(".site-navigation"))return;let t=window.location.pathname.includes("/nl"),n=t?{home:"home",useCases:"toepassingen",references:"klanten",process:"proces",pricing:"prijzen",faq:"faq",contact:"contact",offer:"30% korting tot 31 Mei"}:{home:"home",useCases:"use cases",references:"references",process:"process",pricing:"pricing",faq:"faq",contact:"contact",offer:"30% off until 31st May"},a=`
+            `,e.appendChild(a)}})(),function e(){if(document.querySelector(".site-navigation"))return;let t=window.location.pathname.includes("/nl"),n=t?{home:"home",useCases:"toepassingen",references:"klanten",process:"proces",pricing:"prijzen",faq:"faq",contact:"contact",offer:"30% korting tot 30 Juni"}:{home:"home",useCases:"use cases",references:"references",process:"process",pricing:"pricing",faq:"faq",contact:"contact",offer:"30% off until 30th June"},a=`
             <nav class="site-navigation">
                 <div class="navigation-overlay"></div>
                 <div class="navigation-content">
