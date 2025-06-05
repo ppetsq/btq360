@@ -1,0 +1,332 @@
+/* ===== GLOBAL STYLES ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* ===== ENHANCED LOADING OVERLAY ===== */
+/* Add this to your styles.css file */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent instead of solid black */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+    backdrop-filter: blur(8px); /* Add subtle blur effect */
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 24px; /* Increased spacing */
+}
+
+.loading-text {
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 8px; /* Add spacing for percentage */
+}
+
+/* ⭐ NEW: Percentage text styling */
+.loading-percentage {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loading-percentage.visible {
+    opacity: 1;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===== SECTION MANAGEMENT ===== */
+.section-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    pointer-events: none;
+}
+
+.section-container.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* ===== PERSISTENT AUDIO CONTROLS ===== */
+.audio-controls {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 9000;
+    pointer-events: all;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.audio-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    pointer-events: all;
+}
+
+.audio-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.audio-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+.audio-icon.muted {
+    opacity: 0.6;
+}
+
+.audio-icon.playing {
+    opacity: 1;
+}
+
+/* ===== VIEWER CONTAINERS ===== */
+.viewer-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.viewer-container:active {
+    cursor: grabbing;
+}
+
+.intro-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+.intro-viewer:active {
+    cursor: grabbing;
+}
+
+/* ===== COMMON BACK BUTTONS ===== */
+.simple-back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 2000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.simple-back-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.back-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.simple-back-button:hover .back-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ===== CROSS NAVIGATION BUTTONS ===== */
+.cross-nav-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2000;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 22px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cross-nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.cross-nav-button.bottom-left {
+    left: 30px;
+    right: auto;
+}
+
+/* Update the existing responsive design section to include audio controls */
+@media (max-width: 768px) {
+    .audio-controls,
+    .simple-back-button {
+        top: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .audio-controls {
+        right: 20px;
+    }
+
+    .simple-back-button {
+        left: 20px;
+    }
+
+    .audio-icon,
+    .back-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Make sure the audio button itself matches other buttons */
+    .audio-button {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .audio-controls,
+    .simple-back-button {
+        top: 15px;
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .audio-controls {
+        right: 15px;
+    }
+
+    .simple-back-button {
+        left: 15px;
+    }
+
+    .audio-icon,
+    .back-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Make sure the audio button itself matches other buttons */
+    .audio-button {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ===== OUTFIT TITLE FONT ===== */
+.menu-title,
+.panel-title,
+#island-ui-panel .panel-title,
+#pilots-ui-panel .panel-title {
+    font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+}

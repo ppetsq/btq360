@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Meta Tags -->
+<meta name="description" content="Experience Isokari island's raw beauty in immersive 360°. Explore Finland's historic lighthouse island, ancient cliffs, and maritime pilot house with interactive virtual experiences.">
+<meta name="keywords" content="Isokari, Finland, 360 experience, virtual tour, lighthouse, Baltic Sea, Gulf of Bothnia, Finnish archipelago, maritime history, pilot house">
+<meta name="author" content="boutique360">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Isokari 360° - Immersive Island Experience">
+<meta property="og:description" content="Journey to Finland's edge where lighthouse keepers once watched over the Gulf of Bothnia. Experience Isokari island through stunning 360° perspectives.">
+<meta property="og:image" content="https://assets.360.petsq.works/isokari/og-image.jpg">
+<meta property="og:url" content="https://btq360.com/isokari">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Isokari 360°">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Isokari 360° - Immersive Island Experience">
+<meta name="twitter:description" content="Explore Finland's historic Isokari island through interactive 360° virtual tours.">
+<meta name="twitter:image" content="https://assets.360.petsq.works/isokari/og-image.jpg">
+
+<!-- Additional Meta Tags -->
+<link rel="canonical" href="https://btq360.com/isokari">
+<meta name="theme-color" content="#000000">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isokari 360° | Virtual Island Experience by boutique360</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles_menu.css">
+    <link rel="stylesheet" href="styles/styles_island.css">
+    <link rel="stylesheet" href="styles/styles_ph.css">
+    
+</head>
+<body>
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loading-text">Loading Isokari 360° experience...</div>
+    </div>
+
+    <div class="audio-controls" id="audio-controls">
+        <button class="audio-button muted" id="audio-toggle" title="Toggle Audio">
+            <img class="audio-icon muted" id="audio-icon" src="assets/audio-off.png" alt="Audio">
+        </button>
+    </div>
+
+    <div class="main-container">
+        <div class="section-container active" id="intro-section">
+            <button class="btq-button" id="menu-btq-button" title="Visit BTQ360.com">
+                <img src="assets/btq.png" alt="BTQ360" class="btq-icon">
+            </button>
+
+            <div class="intro-viewer" id="intro-viewer">
+                </div>
+            
+            <div class="menu-overlay">
+                <div class="menu-title">ISOKARI 360°</div>
+                <div class="menu-subtitle">
+                    Journey to Finland's edge where lighthouse keepers once watched over the Gulf of Bothnia. Experience Isokari island's raw beauty and learn about maritime history in immersive 360°.
+                </div>
+                <div class="menu-buttons">
+                    <button class="menu-button" id="nav-to-island">
+                        <span class="button-number">1)</span>
+                        <div class="menu-button-content">
+                            <img src="assets/isokari.png" alt="Island" class="menu-button-icon">
+                            <span class="menu-button-text">Island Experience</span>
+                        </div>
+                    </button>
+                    <button class="menu-button" id="nav-to-pilots">
+                        <span class="button-number">2)</span>
+                        <div class="menu-button-content">
+                            <img src="assets/ph.png" alt="Pilots House" class="menu-button-icon">
+                            <span class="menu-button-text">Old Pilot House</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+<!-- Simplified Island Section - Single Structure for Desktop and Mobile -->
+<div class="section-container" id="island-section">
+    <button class="simple-back-button" id="island-back-button" title="Back to Menu">
+        <img src="assets/back.png" alt="Back" class="back-icon">
+    </button>
+
+    <button class="btq-button" id="btq-button" title="Visit BTQ360.com">
+        <img src="assets/btq.png" alt="BTQ360" class="btq-icon">
+    </button>
+
+    <div class="viewer-container" id="island-viewer">
+    </div>
+
+    <button class="ui-toggle-button" id="ui-toggle-button" title="Toggle Menu">
+        ☰
+    </button>
+
+    <!-- Map Container (repositioned via CSS on mobile) -->
+    <div class="map-container" id="island-map-container">
+        <img src="assets/island-map-5.png" class="map-background" alt="Island Map" />
+        <!-- Dots positioned exactly as they were working -->
+        <div class="dot" data-index="0" style="left: 30%; top: 81%;"></div>
+        <div class="dot" data-index="1" style="left: 42%; top: 72%;"></div>
+        <div class="dot" data-index="2" style="left: 12%; top: 74%;"></div>
+        <div class="dot" data-index="3" style="left: 24%; top: 72%;"></div>
+        <div class="dot" data-index="4" style="left: 10%; top: 68%;"></div>
+        <div class="dot" data-index="5" style="left: 56%; top: 62%;"></div>
+        <div class="dot" data-index="6" style="left: 56%; top: 70%;"></div>
+        <div class="dot" data-index="7" style="left: 67%; top: 58%;"></div>
+        <div class="dot" data-index="8" style="left: 20%; top: 77%;"></div>
+        <div class="dot" data-index="9" style="left: 40%; top: 66%;"></div>
+        <div class="dot" data-index="10" style="left: 32%; top: 73%;"></div>
+        <div class="dot" data-index="11" style="left: 63%; top: 65%;"></div>
+    </div>
+
+    <div class="ui-panel" id="island-ui-panel">
+        <div class="panel-header">
+            <div class="panel-title">Isokari Cliffs</div>
+            <div class="panel-description">
+                These dramatic limestone cliffs rise majestically from the Baltic Sea, formed over millennia by ancient coral reefs. The unique mirror ball perspective reveals the interplay of light, water, and stone.
+            </div>
+            <button class="read-more-button" id="read-more-btn">Read more</button>
+        </div>
+
+        <div class="location-details">
+            <div class="detail-item">
+                <span class="detail-label">Date</span>
+                <span class="detail-value">Aug 15, 2024</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Time</span>
+                <span class="detail-value">14:32 UTC</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Location</span>
+                <span class="detail-value">60.2451°N, 22.0823°E</span>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <button class="control-button active" id="auto-rotate-toggle" title="Toggle Auto-Rotation">
+                    <img src="assets/arrow.png" alt="Auto Rotate" class="auto-rotate-icon" id="auto-rotate-icon">
+                </button>
+                
+                <button class="control-button" id="prev-button" title="Previous">
+                    <img src="assets/back.png" alt="Previous" class="nav-icon">
+                </button>
+                
+                <button class="control-button" id="next-button" title="Next">
+                    <img src="assets/next.png" alt="Next" class="nav-icon">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-container" id="pilots-section">
+    <button class="simple-back-button" id="pilots-back-button" title="Back to Menu">
+        <img src="assets/back.png" alt="Back" class="back-icon">
+    </button>
+
+    <button class="btq-button" id="pilots-btq-button" title="Visit BTQ360.com">
+        <img src="assets/btq.png" alt="BTQ360" class="btq-icon">
+    </button>
+    
+    <div class="viewer-container" id="pilots-viewer">
+    </div>
+
+    <button class="ui-toggle-button" id="pilots-ui-toggle-button" title="Toggle Menu">
+        ☰
+    </button>
+
+    <!-- House Image Container (replacing map) -->
+    <div class="house-container" id="pilots-house-container">
+        <img src="assets/house.png" class="house-image" alt="Pilots House" />
+    </div>
+
+    <div class="ui-panel" id="pilots-ui-panel">
+        <div class="panel-header">
+            <div class="panel-title">Old Pilot House</div>
+            <div class="panel-description">
+                Historic pilots house interior with authentic maritime artifacts and period furnishings from the 19th century Baltic Sea operations.
+            </div>
+            <button class="read-more-button" id="pilots-read-more-btn">Read more</button>
+        </div>
+
+        <div class="location-details">
+            <div class="detail-item">
+                <span class="detail-label">Era</span>
+                <span class="detail-value">1800s</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Type</span>
+                <span class="detail-value">Maritime</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Rooms</span>
+                <span class="detail-value">5 Spaces</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">View</span>
+                <span class="detail-value">360°</span>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <button class="control-button active" id="pilots-auto-rotate-toggle" title="Toggle Auto-Rotation">
+                    <img src="assets/arrow.png" alt="Auto Rotate" class="auto-rotate-icon" id="pilots-auto-rotate-icon">
+                </button>
+                
+                <button class="control-button" id="pilots-prev-button" title="Previous">
+                    <img src="assets/back.png" alt="Previous" class="nav-icon">
+                </button>
+                
+                <button class="control-button" id="pilots-next-button" title="Next">
+                    <img src="assets/next.png" alt="Next" class="nav-icon">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="scripts/scripts_core.js"></script>
+    <script src="scripts/scripts_menu.js"></script>
+    <script src="scripts/scripts_island.js"></script>
+    <script src="scripts/scripts_ph.js"></script>
+
+    <script>
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            window.ISOKARIApp = new ISOKARI.App();
+        });
+    </script>
+
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "TouristAttraction",
+        "name": "Isokari Island 360° Experience",
+        "description": "Virtual 360° tour of Isokari island featuring the historic lighthouse, dramatic cliffs, and maritime pilot house",
+        "url": "https://btq360.com/isokari",
+        "image": [
+            "https://assets.360.petsq.works/isokari/og-image.jpg",
+            "https://assets.360.petsq.works/isokari/island_10.jpg",
+            "https://assets.360.petsq.works/isokari/ph_01.jpg"
+        ],
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 60.7180,
+            "longitude": 21.0174
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "FI",
+            "addressRegion": "Southwest Finland"
+        },
+        "isAccessibleForFree": true,
+        "publicAccess": true,
+        "tourBookingPage": "https://www.isokari.fi",
+        "provider": {
+            "@type": "Organization",
+            "name": "boutique360",
+            "url": "https://btq360.com"
+        }
+        }
+        </script>
+
+</body>
+</html>

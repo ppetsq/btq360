@@ -1,0 +1,625 @@
+/* ===== ISLAND SECTION STYLES ===== */
+
+#island-section {
+    background: #000;
+}
+
+/* ===== FIXED ACTION BUTTONS ===== */
+
+/* BTQ360 Button */
+.btq-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 2000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    pointer-events: all;
+    opacity: 1;
+}
+
+.btq-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+.btq-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btq-icon {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.btq-icon:hover {
+    opacity: 1;
+}
+
+/* UI Toggle Button */
+.ui-toggle-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.ui-toggle-button:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: scale(1.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Desktop: Move toggle button above UI when panel is open */
+.ui-toggle-button.panel-open {
+    bottom: 220px;
+    transition: bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== DESKTOP UI PANEL ===== */
+
+.ui-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(25px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 30px;
+    padding-left: calc(30px + 180px + 30px); /* Space for map */
+    gap: 30px;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ui-panel.visible {
+    transform: translateY(0);
+}
+
+/* Panel Content Layout */
+.panel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.panel-description {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.read-more-button {
+    display: none; /* Hidden on desktop */
+}
+
+/* Location Details Grid */
+.location-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 280px;
+    flex: 1;
+    flex-shrink: 0;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.detail-label {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.detail-value {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-weight: 400; /* Much lighter for Safari compatibility */
+    color: #fff;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+/* Safari-specific font weight fix */
+@supports (-webkit-appearance: none) {
+    .detail-value {
+        font-weight: 300; /* Even lighter for Safari */
+        font-family: 'Roboto Mono', 'Inconsolata', 'Monaco', monospace; /* Different font order for Safari */
+    }
+}
+
+/* Control Buttons Section */
+.controls-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.control-group {
+    display: flex;
+    gap: 12px;
+}
+
+.control-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.control-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.control-button.active {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Control Icons */
+.auto-rotate-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.control-button:hover .auto-rotate-icon {
+    opacity: 1;
+}
+
+.nav-icon {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover .nav-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ===== STANDALONE NAVIGATION BUTTONS (WHEN UI IS HIDDEN) ===== */
+
+.standalone-nav-buttons {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1400; /* Below UI panel but above other elements */
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.standalone-nav-buttons.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.standalone-nav-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    pointer-events: all;
+}
+
+.standalone-nav-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.standalone-nav-button:active {
+    transform: scale(0.98);
+}
+
+.standalone-nav-icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.standalone-nav-button:hover .standalone-nav-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ===== DESKTOP MAP CONTAINER ===== */
+
+.map-container {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 180px;
+    height: 280px;
+    z-index: 1600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.map-container.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.map-background {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    opacity: 0.95;
+}
+
+/* Desktop Map Dots */
+.dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.dot:hover {
+    background: #FFD700;
+    transform: translate(-50%, -50%) scale(1.6);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.dot.active {
+    background: #FF8C00;
+    transform: translate(-50%, -50%) scale(2.0);
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.9);
+    animation: pulse-desktop 2s infinite;
+}
+
+@keyframes pulse-desktop {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(255, 140, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.9);
+    }
+    50% {
+        opacity: 0.9;
+        box-shadow: 0 0 22px rgba(255, 140, 0, 1), 0 0 12px rgba(0, 0, 0, 1);
+    }
+}
+
+/* ===== MOBILE RESPONSIVE STYLES (1024px and below) ===== */
+
+@media (max-width: 1024px) {
+    
+    /* Mobile UI Panel - REDUCED TOP PADDING */
+    .ui-panel {
+        height: auto !important;
+        max-height: 65vh !important;
+        min-height: 280px !important;
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        background: rgba(0, 0, 0, 0.2);
+        padding-left: 0;
+        align-items: stretch;
+        justify-content: flex-start;
+        overflow: visible !important;
+        padding-bottom: 20px;
+    }
+
+    /* Mobile Panel Content - REDUCED TOP PADDING & LEFT ALIGNED */
+    .panel-header {
+        order: 1;
+        padding: 60px 20px 16px 20px !important; /* Reduced from 120px to 60px */
+        text-align: left !important;
+        min-width: auto;
+        flex: none;
+    }
+
+    .panel-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+        line-height: 1.2;
+    }
+
+    .panel-description {
+        font-size: 11px !important;
+        line-height: 1.3;
+        max-width: 100%;
+        transition: all 0.3s ease;
+        /* Always show full text on mobile - no collapsing */
+    }
+
+    /* Hide read-more button on mobile */
+    .read-more-button {
+        display: none !important;
+    }
+
+    /* Mobile Location Details */
+    .location-details {
+        order: 2;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 10px 12px;
+        margin: 0 20px;
+        min-width: auto;
+        flex: none;
+        background: rgba(255, 255, 255, 0.08);
+        width: calc(100% - 40px);
+    }
+
+    .detail-item {
+        gap: 2px;
+    }
+
+    .detail-label {
+        font-size: 7px;
+        letter-spacing: 0.4px;
+    }
+
+    .detail-value {
+        font-size: 9px;
+        font-weight: 300; /* Even lighter on mobile */
+    }
+
+    /* Safari mobile fix */
+    @supports (-webkit-appearance: none) {
+        .detail-value {
+            font-weight: 200; /* Very light for Safari mobile */
+        }
+    }
+
+    /* Mobile Controls */
+    .controls-section {
+        order: 3;
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px 20px 16px 20px;
+        flex: none;
+    }
+
+    .control-button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    /* Mobile Action Buttons */
+    .ui-toggle-button {
+        bottom: 20px !important;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 14px;
+        z-index: 2100;
+    }
+
+    .ui-toggle-button.panel-open {
+        bottom: 20px !important; /* Don't move on mobile */
+    }
+
+    .btq-button {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        z-index: 2100;
+    }
+
+    .btq-button.hidden {
+        opacity: 1 !important; /* Stay visible on mobile */
+        pointer-events: all !important;
+    }
+
+    .btq-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Mobile Standalone Navigation Buttons */
+    .standalone-nav-buttons {
+        bottom: 20px;
+        gap: 12px;
+    }
+
+    .standalone-nav-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .standalone-nav-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Mobile Map Container - BIGGER SIZE, BETTER POSITIONED */
+    .map-container {
+        position: fixed !important;
+        bottom: 300px !important; /* Higher position to avoid overlap */
+        left: 50% !important; /* Positioned right for balance */
+        transform: translateX(-50%) !important;
+        width: 200px !important; /* Bigger - was 150px */
+        height: 300px !important; /* Bigger - was 234px */
+        background: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        z-index: 1600 !important;
+        pointer-events: none !important;
+        overflow: visible !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.3s ease !important;
+    }
+
+    .map-container.visible.positioned {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .map-background {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: none !important;
+        opacity: 0.9 !important;
+        object-fit: contain !important;
+    }
+
+    /* Mobile Map Dots - SLIGHTLY BIGGER FOR BETTER VISIBILITY */
+    .dot {
+        position: absolute !important;
+        width: 7px !important; /* Slightly bigger - was 4px */
+        height: 7px !important; /* Slightly bigger - was 4px */
+        pointer-events: none !important;
+        cursor: default !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 10 !important;
+        border-radius: 50% !important;
+    }
+
+    .dot:hover {
+        background: rgba(255, 255, 255, 0.4) !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    .dot.active {
+        background: #FF8C00 !important;
+        transform: translate(-50%, -50%) scale(2.0) !important; /* Slightly smaller scale */
+        animation: pulse-mobile 2s infinite !important;
+        box-shadow: 0 0 5px rgba(255, 140, 0, 0.9) !important;
+    }
+
+    @keyframes pulse-mobile {
+        0%, 100% {
+            opacity: 1;
+            box-shadow: 0 0 5px rgba(255, 140, 0, 0.9);
+        }
+        50% {
+            opacity: 0.8;
+            box-shadow: 0 0 8px rgba(255, 140, 0, 1);
+        }
+    }
+
+    /* Mobile Icon Sizing */
+    .auto-rotate-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .nav-icon {
+        width: 12px;
+        height: 12px;
+    }
+}
