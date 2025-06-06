@@ -72,8 +72,8 @@ ISOKARI.IslandController = class {
         this.imageContent = [
             {
                 // Image 01
-                title: "Island Sheep",
-                description: "Every summer, volunteers sign up to spend a week on Isokari taking care of sheep. It's part of an old tradition where sheep keep the landscape healthy by eating grass and fertilizing the ground naturally. The volunteer shepherds stay in the historic pilots house and help maintain this centuries old way of managing island ecosystems.",
+                title: "Summer Shepherds",
+                description: "Each summer, sheep are brought to Isokari as part of a traditional method for managing the landscape. Volunteers stay in the old pilot house and help care for the animals, supporting the island’s biodiversity by keeping open habitats from becoming overgrown.",
                 specs: {
                     date: "12/05/2025",
                     time: "17:56", 
@@ -83,7 +83,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 02
                 title: "The Supply Road",
-                description: "This path has been worn smooth by generations of lighthouse keepers hauling supplies from the harbor. Built on ancient granite bedrock, it's been the main road since the lighthouse was completed in 1833. Today, restaurant staff and maintenance crews still use this same route.",
+                description: "This path has served as Isokari’s main route between the harbor and lighthouse since the 1830s, worn smooth by generations of lighthouse keepers hauling supplies. Though the lighthouse is now automated, the route remains part of the island’s working infrastructure.",
                 specs: {
                     date: "11/05/2025",
                     time: "14:06", 
@@ -93,7 +93,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 03
                 title: "Between Fresh and Salt",
-                description: "These small lakes used to be part of the Baltic Sea, but the land here is slowly rising and has cut them off from the ocean. The water is still slightly salty, creating a unique environment where freshwater and marine life mix. Surrounding are one of the clearest water areas in the Baltic Sea.",
+                description: "These small lakes were once part of the Baltic Sea. As the land here rises a few millimetres each year, they’ve gradually been cut off from the ocean. The result is a rare environment, where species from both fresh and salt water coexist.",
                 specs: {
                     date: "11/05/2025",
                     time: "13:04", 
@@ -103,7 +103,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 04
                 title: "The Lighthouse",
-                description: "At nearly 50 meters high, this is the tallest lighthouse in the Gulf of Bothnia. Built in 1833, it's been guiding ships for almost 200 years. During World War II, it was prepared for demolition but luckily survived. You can climb the 200 steps to the top for incredible views of the open sea.",
+                description: "Built in 1833, Isokari Lighthouse is the tallest in the Gulf of Bothnia. Its light reaches 49.4 metres above sea level, with nearly 200 steps leading to the top. During World War II, it was prepared for demolition, but the order was luckily never carried out.",
                 specs: {
                     date: "12/05/2025",
                     time: "18:16", 
@@ -113,7 +113,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 05
                 title: "Ancient Stone Walls",
-                description: "These cliffs are made of rock that's over a billion years old, some of the oldest you'll find anywhere. The smooth, rounded shapes were carved by massive glaciers that melted away 12,000 years ago. Despite being solid rock, this small island somehow supports over 380 different plant species in its cracks and crevices.",
+                description: "These cliffs are made of bedrock over a billion years old, among the oldest found in Finland. Their smooth, rounded shapes were carved by glaciers that melted around 12,000 years ago. Despite being mostly bare rock, Isokari supports more than 380 plant species in its cracks and crevices.",
                 specs: {
                     date: "11/05/2025",
                     time: "13:39", 
@@ -123,7 +123,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 06
                 title: "High Ground",
-                description: "This is one of the highest spots on the island, right next to the old building where maritime pilots used to live. Now it's where the volunteer sheep caretakers stay during their residencies. From here, you can see in every direction across the sea - perfect for keeping an eye on both ships and sheep.",
+                description: "This elevated point stands next to the former residence of maritime pilots, once used to monitor ship traffic in the surrounding waters. Today, the same building houses summer volunteers who help manage the island’s grazing sheep.",
                 specs: {
                     date: "16/05/2025",
                     time: "11:01", 
@@ -132,8 +132,8 @@ ISOKARI.IslandController = class {
             },
             {
                 // Image 07
-                title: "Cold War Relic",
-                description: "This old artillery cannon was brought to the island during the Cold War when tensions ran high between East and West. It's been deactivated now, but it stands as a reminder that every island in the Baltic has strategic military importance.",
+                title: "Coastal Defence",
+                description: "This artillery gun dates back to the Cold War, when Finland took quiet measures to protect its coastline. Though no longer in use, it remains part of the island’s history and its wider role in the Baltic region.",
                 specs: {
                     date: "11/05/2025",
                     time: "14:14", 
@@ -143,7 +143,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 08
                 title: "Harbour",
-                description: "This is where visitors arrive by ferry or private boats, and you can see the modern pilot station in the distance. Black guillemots love nesting on the breakwater and boats can stay overnight for just 10 euros, continuing the island's long tradition of welcoming seafarers.",
+                description: "The harbour is the island’s main point of arrival, used by ferries and private boats. Nearby, the modern pilot station is still in active use, guiding ships to and from Uusikaupunki.",
                 specs: {
                     date: "16/05/2025",
                     time: "12:56", 
@@ -163,7 +163,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 10
                 title: "The Secret Lake",
-                description: "Hidden in the middle of the island, this lake is slowly getting wilder as reeds and plants take over. It used to be much more open, but without constant management, nature is reclaiming it. This makes it a perfect resting spot for migrating birds and their spotters.",
+                description: "Hidden in the middle of the island, this lake is slowly becoming wilder as reeds and plants spread. Once much more open, it is now being quietly reclaimed by nature. This makes it a perfect resting spot for migrating birds and birdwatchers. ",
                 specs: {
                     date: "12/05/2025",
                     time: "20:49", 
@@ -173,7 +173,7 @@ ISOKARI.IslandController = class {
             {
                 // Image 11
                 title: "Island Community",
-                description: "This cluster of old buildings houses everything needed for island life: guest rooms, restaurant, sauna, and staff quarters. Some of these structures are centuries old, built when this was a thriving fishing and pilot community. Now they serve the nature tourists during the summer season.",
+                description: "This cluster of old buildings near the base of the lighthouse once formed the heart of a fishing and sea pilot community. Today, they support summer life on the island with guest rooms, a restaurant, sauna, and staff quarters.",
                 specs: {
                     date: "12/05/2025",
                     time: "18:23", 
@@ -182,8 +182,8 @@ ISOKARI.IslandController = class {
             },
             {
                 // Image 12
-                title: "Remote Evening",
-                description: "This view captures what island life is really about - the vast solitude of being surrounded by water and sky. As the moon rises and the lighthouse begins its nightly watch, you feel the profound isolation that lighthouse keepers have experienced for nearly 200 years.",
+                title: "Evening Watch",
+                description: "As the moon rises and the lighthouse begins its nightly watch, the island settles into stillness. Surrounded by open sea and sky, this view reflects the solitude lighthouse keepers have known here for nearly 200 years.",
                 specs: {
                     date: "12/05/2025",
                     time: "23:07", 
