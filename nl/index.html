@@ -31,6 +31,45 @@
     <link rel="stylesheet" href="/styles.css">
     <script defer src="https://cdn.overtracking.com/t/tSxTsZY0gfcwsIiKJ/"></script>
     
+    <!-- Language Auto-Detection Script -->
+    <script>
+        (function() {
+            // Only run auto-detection on first page load, not when user navigates back
+            if (performance.navigation && performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
+                return;
+            }
+            
+            // Check if user has made a language choice before
+            const savedLanguageChoice = localStorage.getItem('btq360_language_choice');
+            
+            // If user previously chose Dutch, respect that choice
+            if (savedLanguageChoice === 'nl') {
+                return;
+            }
+            
+            // If user previously chose English, redirect to English version
+            if (savedLanguageChoice === 'en') {
+                window.location.href = '/';
+                return;
+            }
+            
+            // First-time visitor: check browser language
+            const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
+            const isDutchBrowser = browserLanguages.some(lang => 
+                lang.toLowerCase().startsWith('nl')
+            );
+            
+            // If browser is NOT set to Dutch, redirect to English version
+            if (!isDutchBrowser) {
+                localStorage.setItem('btq360_language_choice', 'en');
+                window.location.href = '/';
+            } else {
+                // Browser is Dutch, stay on Dutch version
+                localStorage.setItem('btq360_language_choice', 'nl');
+            }
+        })();
+    </script>
+    
 </head>
 <body>
 
@@ -47,9 +86,9 @@
             </div>
             <div class="header-right">
                 <div class="language-switcher">
-                    <a href="/" class="inactive">EN</a>
+                    <a href="/" class="inactive" onclick="localStorage.setItem('btq360_language_choice', 'en')">EN</a>
                     <span class="divider">/</span>
-                    <a href="/nl/" class="active">NL</a>
+                    <a href="/nl/" class="active" onclick="localStorage.setItem('btq360_language_choice', 'nl')">NL</a>
                   </div>
                 <div class="special-offer" onclick="window.location.href='#packages';">
                     <span>30% korting</span>
@@ -804,9 +843,9 @@
             <span><a href="/nl/terms.html">Algemene voorwaarden</a> | <a href="/nl/privacy.html">Privacybeleid</a> | <a href="/sitemap.xml">sitemap</a></span>
         </div>
         <div class="footer-language-switcher language-switcher">
-            <a href="/" class="inactive">EN</a>
+            <a href="/" class="inactive" onclick="localStorage.setItem('btq360_language_choice', 'en')">EN</a>
             <span class="divider">/</span>
-            <a href="/nl/" class="active">NL</a>
+            <a href="/nl/" class="active" onclick="localStorage.setItem('btq360_language_choice', 'nl')">NL</a>
           </div>
     </div>
 </footer>
