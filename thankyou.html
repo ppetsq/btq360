@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="Thank You | boutique360">
+    <meta property="og:description" content="Thank you for your interest in boutique360. We'll be in touch soon!">
+    <meta property="og:image" content="/assets/og-image.jpg">
+    <meta property="og:image:alt" content="boutique360 logo hovering over 360 image">
+    <meta property="og:url" content="https://btq360.com/thankyou">
+    <meta property="og:type" content="website">
+
+    <meta name="description" content="Thank you for your interest in boutique360. We'll be in touch soon!">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="canonical" href="https://btq360.com/thankyou">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/favicon.ico">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | boutique360</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles.css">
+    
+    <!-- Google Ads Conversion Tracking - Add your conversion code here -->
+    <!-- Example placeholder:
+    <script>
+      gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXX'});
+    </script>
+    -->
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logos/boutique360-logo.svg" alt="boutique360 logo">
+                </a>
+            </div>
+            <div class="header-right">
+                <div class="language-switcher">
+                    <a href="/" class="active" onclick="localStorage.setItem('btq360_language_choice', 'en')">EN</a>
+                    <span class="divider">/</span>
+                    <a href="/nl/" class="inactive" onclick="localStorage.setItem('btq360_language_choice', 'nl')">NL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="header-spacer"></div>
+
+<!-- THANK YOU SECTION -->
+<section class="thank-you-hero">
+    <div class="thank-you-background" id="thankyou-panorama-container">
+        <!-- 360° panorama will be injected here by JavaScript -->
+    </div>
+    <div class="thank-you-overlay"></div>
+    <div class="container">
+        <div class="thank-you-content">
+            <div class="thank-you-message fade-in">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="80" class="thank-you-icon">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#87d156" stroke-width="2"/>
+                    <path d="M8 12l3 3 5-5" fill="none" stroke="#87d156" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <h1>Thank you!</h1>
+                <p>We'll be in touch soon to discuss your 360° virtual tour needs.</p>
+            </div>
+            
+            <div class="thank-you-actions fade-in delay-200">
+                <a href="/" class="cta-button primary-cta">Back to Homepage</a>
+                <a href="/isokari/" class="cta-button secondary-cta">Visit Isokari Experience</a>
+            </div>
+            
+            <div class="thank-you-info fade-in delay-300">
+                <p>In the meantime, feel free to explore our immersive Isokari 360° experience or return to our homepage to learn more about our services.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">boutique360</div>
+                <div class="footer-contact">
+                    Schiekade 189<br>
+                    3013 BR Rotterdam<br>
+                    The Netherlands<br><br>
+                    <a href="mailto:hello@btq360.com" class="footer-email">hello@btq360.com</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="/#showcase">Showcase</a>
+                <a href="/#contact">Contact</a>
+                <a href="https://petsq.works/" target="_blank">petsq.works</a>
+                <div class="footer-social-container">
+                    <a href="https://www.linkedin.com/company/boutique360/" target="_blank" class="social-icon">
+                        <img src="/assets/images/logos/li.svg" alt="LinkedIn" width="18" height="18">
+                    </a>
+                    <a href="https://www.instagram.com/btq.360/" target="_blank" class="social-icon">
+                        <img src="/assets/images/logos/ig.svg" alt="Instagram" width="18" height="18">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <span>© 2025 boutique360</span><br><br>
+            <span><a href="/terms.html">Terms & Conditions</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/sitemap.xml">Sitemap</a></span>
+        </div>
+        <div class="footer-language-switcher language-switcher">
+            <a href="/" class="active" onclick="localStorage.setItem('btq360_language_choice', 'en')">EN</a>
+            <span class="divider">/</span>
+            <a href="/nl/" class="inactive" onclick="localStorage.setItem('btq360_language_choice', 'nl')">NL</a>
+        </div>
+    </div>
+</footer>
+
+<!-- CSS for Thank You Page -->
+<style>
+.thank-you-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 120px 0;
+}
+
+.thank-you-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.thank-you-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+.thank-you-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.thank-you-message {
+    margin-bottom: 50px;
+}
+
+.thank-you-icon {
+    margin-bottom: 30px;
+    width: 80px;
+    height: 80px;
+}
+
+.thank-you-message h1 {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.thank-you-message p {
+    font-size: 18px;
+    color: #bbb;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.thank-you-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.primary-cta {
+    background-color: rgba(135, 209, 86, 0.2);
+    border-color: rgba(135, 209, 86, 0.4);
+}
+
+.primary-cta:hover {
+    background-color: rgba(135, 209, 86, 0.3);
+    box-shadow: 0 0 15px rgba(135, 209, 86, 0.3);
+}
+
+.secondary-cta {
+    background-color: rgba(255, 223, 77, 0.2);
+    border-color: rgba(255, 223, 77, 0.4);
+}
+
+.secondary-cta:hover {
+    background-color: rgba(255, 223, 77, 0.3);
+    box-shadow: 0 0 15px rgba(255, 223, 77, 0.3);
+}
+
+.thank-you-info p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .thank-you-hero {
+        padding: 80px 0;
+    }
+    
+    .thank-you-message h1 {
+        font-size: 36px;
+    }
+    
+    .thank-you-message p {
+        font-size: 16px;
+    }
+    
+    .thank-you-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .thank-you-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+</style>
+
+<!-- JavaScript files -->
+<script src="/three.min.js"></script>
+<script src="/scripts.js"></script>
+<script>
+// Initialize thank you page panorama
+document.addEventListener('DOMContentLoaded', function() {
+    // Add header scroll functionality
+    function handleScroll() {
+        const header = document.getElementById('site-header');
+        const scrollY = window.scrollY;
+        
+        if (scrollY > 100) {
+            header.style.backgroundColor = 'rgba(5, 5, 5, 0.9)';
+            header.style.backdropFilter = 'blur(5px)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
+            header.style.borderBottom = '1px solid rgba(239, 89, 0, 0.1)';
+            header.style.opacity = '1';
+            header.style.visibility = 'visible';
+        } else {
+            header.style.backgroundColor = 'transparent';
+            header.style.backdropFilter = 'none';
+            header.style.boxShadow = 'none';
+            header.style.borderBottom = 'none';
+            header.style.opacity = '0';
+            header.style.visibility = 'hidden';
+        }
+    }
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    // Initialize panorama background
+    if (typeof setupPanorama === 'function') {
+        setupPanorama('thankyou-panorama-container', '/assets/images/360/union.jpg');
+    }
+    
+    // Initialize fade-in animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    fadeElements.forEach((element, index) => {
+        setTimeout(() => {
+            element.classList.add('visible');
+        }, index * 200);
+    });
+});
+</script>
+</body>
+</html>
