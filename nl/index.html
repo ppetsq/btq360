@@ -34,6 +34,13 @@
     <!-- Language Auto-Detection Script -->
     <script>
         (function() {
+            // Don't run language detection on thank you pages or other special pages
+            if (window.location.pathname.includes('/thankyou') || 
+                window.location.pathname.includes('/terms') || 
+                window.location.pathname.includes('/privacy')) {
+                return;
+            }
+            
             // Only run auto-detection on first page load, not when user navigates back
             if (performance.navigation && performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
                 return;
